@@ -1,8 +1,24 @@
-h1, h4 {
-text-align: center;
+html,
+body {
+    margin: 2%;
+}
+
+h1,
+h4 {
+    text-align: center;
+}
+
+header {
+    border-bottom: 4px solid black;
+    margin-bottom: 2%;
 }
 
 .btn {
     justify-content: center;
     text-align: center;
+}
+
+#section-calendar {
+    display: flex;
+    justify-content: center;
 }
