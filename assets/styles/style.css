@@ -1,10 +1,26 @@
-h1, h4 {
-text-align: center;
+html,
+body {
+    margin: 2%;
+}
+
+h1,
+h4 {
+    text-align: center;
+}
+
+header {
+    border-bottom: 4px solid black;
+    margin-bottom: 2%;
 }
 
 .btn {
     justify-content: center;
     text-align: center;
+}
+
+#section-calendar {
+    display: flex;
+    justify-content: center;
 }
 
 .event-modal {
@@ -91,4 +107,4 @@ text-align: center;
 .btn-hover.color-3 {
     background-image: linear-gradient(to right, #667eea, #764ba2, #6B8DD6, #8E37D7);
     box-shadow: 0 4px 15px 0 rgba(116, 79, 168, 0.75);
-}
+=======
