@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="assets/styles/skeleton.css">
     <link rel="stylesheet" href="assets/styles/caleandarTheme3.css">
     <link rel="stylesheet" href="assets/styles/style.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
 </head>
 
 <body>
@@ -26,21 +28,15 @@
         <section id="section-calendar" class="eight columns">
         </section>
         <aside id="upcoming-evts" class="four columns">
-            <div class ="upcoming-main-box">
+            <div class ="upcoming-main-box" id="accordion">
                 <h5>Upcoming Events</h5>
-                <div class ="upcoming-one">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras porttitor ac arcu at fermentum.
-                </div>
-                <div class ="upcoming-two">
-            quam eros, quis pretium libero ultrices eget. Fusce facilisis tristique sem ut elementum. 
-                </div>
-                <div class ="upcoming-three">
-            Fusce semper erat at
-            sodales luctus. Vivamus gravida vestibulum auctor.
-                </div>
-                <div class ="upcoming-four">
-            Vivamus euismod lorem vel pulvinar ullamcorper.
-                </div>
+                    <ul>
+                        <li>Mom's birthday</li>
+                    </ul>
+                <h5>All events</h5>
+                <ul>
+                    <li>Father's Day</li>
+                </ul>
             </div>
         </aside>
     </div>
@@ -125,7 +121,8 @@
 
 
     <!-- Note: columns can be nested, but it's not recommended since Skeleton's grid has %-based gutters, meaning a nested grid results in variable with gutters (which can end up being *really* small on certain browser/device sizes) -->
-
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script src="./assets/scripts/caleandar.js"></script>
     <script src="./assets/scripts/script.js"></script>
 </body>
