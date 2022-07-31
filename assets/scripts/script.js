@@ -16,5 +16,9 @@ var settings = {
     EventClick: '', //(function) a function that should instantiate on the click of any event. parameters passed in via data link attribute.
     EventTargetWholeDay: false, //(bool) clicking on the whole date will trigger event action, as opposed to just clicking on the title.
     DisabledDays: [], //(array of numbers) days of the week to be slightly transparent. ie: [1,6] to fade Sunday and Saturday.
-    ModelChange: model //(array of objects) new data object to pass into calendar (serving suggestion: passing through only the currently selected month's events if working with large dataset.
+    // ModelChange: model //(array of objects) new data object to pass into calendar (serving suggestion: passing through only the currently selected month's events if working with large dataset.
 }
+
+$( function() {
+    $( "#accordion" ).accordion();
+  } );

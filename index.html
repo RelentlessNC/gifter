@@ -12,12 +12,14 @@
     <link rel="stylesheet" href="assets/styles/skeleton.css">
     <link rel="stylesheet" href="assets/styles/caleandarTheme3.css">
     <link rel="stylesheet" href="assets/styles/style.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
 </head>
 
 <body>
     <header>
         <h1>Gifter</h1>
-        <h4>Slogan</h4>
+        <h4>slogan</h4>
         <div class="btn">
             <button type="button">Add Event</button>
         </div>
@@ -25,17 +27,102 @@
     <div class="row">
         <section id="section-calendar" class="nine columns">
         </section>
-        <aside id="upcoming-evts" class="three columns">
-            <h4>Upcoming Events</h4>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras porttitor ac arcu at fermentum. Nunc auctor velit felis, a ultricies neque elementum a. In hac habitasse platea dictumst. Praesent ultrices arcu eget magna ullamcorper efficitur. Integer imperdiet
-            quam eros, quis pretium libero ultrices eget. Fusce facilisis tristique sem ut elementum. Vestibulum semper lorem magna, quis imperdiet orci fermentum ac. Suspendisse sodales euismod arcu, et consequat quam sodales eu. Fusce semper erat at
-            sodales luctus. Vivamus gravida vestibulum auctor. Cras ac faucibus magna. Mauris tellus lorem, congue id vehicula sit amet, dignissim eu sem. Vivamus euismod lorem vel pulvinar ullamcorper. Nullam convallis libero eget lacus sodales tincidunt.
-            Suspendisse id enim sed elit dignissim molestie.
+        <aside id="upcoming-evts" class="four columns">
+            <div class ="upcoming-main-box" id="accordion">
+                <h5>Upcoming Events</h5>
+                    <ul>
+                        <li>Mom's birthday</li>
+                    </ul>
+                <h5>All events</h5>
+                <ul>
+                    <li>Father's Day</li>
+                </ul>
+            </div>
         </aside>
     </div>
 
-    <!-- Note: columns can be nested, but it's not recommended since Skeleton's grid has %-based gutters, meaning a nested grid results in variable with gutters (which can end up being *really* small on certain browser/device sizes) -->
+    <form class="event-modal">
+        <div class="event-box">
+            <h5>Let's get your event set up...</h5>
+            <label for="etitle">Event Title: </label>
+            <input type="text" id="etitle" name="etitle"><br>
+            <label for="edate">Event Date:</label>
+            <input type="date" id="edate" name="edate"><br>
+            <label for="etype">Event Type: </label>
+            <select name="etype" id="etype">
+                <option></option>
+                <option value="birthday">Birthday</option>
+                <option value="anniversary">Anniversary</option>
+                <option value="mothers-day">Mother's/Father's Day</option>
+                <option value="other">Other</option>
+                <input for="other-option" id="other-option" class="hide">
+              </select>
+        </div>
+        <div class="gift-box">
+            <h5>Send a gift...</h5>
+            <label for="rname">Recipients Name: </label>
+            <input type="text" id="rname" name="rname"><br>
+            <label for="email">Recipients Email:</label>
+            <input type="text" id="email" name="email"><br>
+            <label for="brand">Select a brand of gift card: </label>
+            <select name="brand" id="brand">
+                <option></option>
+                <option value="starbucks">Starbucks</option>
+                <option value="target">Target</option>
+                <option value="restaurant">Restaurant</option>
+                <option value="amazon">Amazon</option>
+              </select>
+            <label for="gift-amount">Gift Amount</label>
+            <input type="text" id="gift-amount" name="gift-amount">
+            <label for="personal-message">Leave a personal message</label>
+            <textarea style="width: 100%; max-width: 100%;" type="text" id="personal-message" name="personal-message" placeholder="Write your message here..."></textarea>
+            <button class="btn-hover color-3" id="schedule-event">Schedule Event</button>
+        </div>
+    </form> 
 
+    <form class="edit-event-modal">
+        <div class="edit-event-box">
+            <h5>Edit your event...</h5>
+            <label for="edit-etitle">Event Title: </label>
+            <input type="text" id="edit-etitle" name="edit-etitle"><br>
+            <label for="edit-edate">Event Date:</label>
+            <input type="date" id="edit-edate" name="edit-edate"><br>
+            <label for="edit-etype">Event Type: </label>
+            <select name="edit-etype" id="edit-etype">
+                <option></option>
+                <option value="edit-birthday">Birthday</option>
+                <option value="edit-anniversary">Anniversary</option>
+                <option value="edit-mothers-day">Mother's/Father's Day</option>
+                <option value="edit-other">Other</option>
+                <input for="edit-other-option" id="edit-other-option" class="hide">
+              </select>
+        </div>
+        <div class="edit-gift-box">
+            <h5>Edit your gift...</h5>
+            <label for="edit-rname">Recipients Name: </label>
+            <input type="text" id="edit-rname" name="edit-rname"><br>
+            <label for="edit-email">Recipients Email:</label>
+            <input type="text" id="edit-email" name="edit-email"><br>
+            <label for="edit-brand">Select a brand of gift card: </label>
+            <select name="edit-brand" id="edit-brand">
+                <option></option>
+                <option value="edit-starbucks">Starbucks</option>
+                <option value="edit-target">Target</option>
+                <option value="edit-restaurant">Restaurant</option>
+                <option value="edit-amazon">Amazon</option>
+              </select>
+            <label for="edit-gift-amount">Gift Amount</label>
+            <input type="text" id="edit-gift-amount" name="edit-gift-amount">
+            <label for="edit-personal-message">Leave a personal message</label>
+            <textarea style="width: 100%; max-width: 100%;" type="text" id="edit-personal-message" name="edit-personal-message" placeholder="Write your message here..."></textarea>
+            <button class="btn-hover color-3" id="edit-schedule-event">Save Changes</button>
+        </div>
+    </form> 
+
+
+    <!-- Note: columns can be nested, but it's not recommended since Skeleton's grid has %-based gutters, meaning a nested grid results in variable with gutters (which can end up being *really* small on certain browser/device sizes) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script src="./assets/scripts/caleandar.js"></script>
     <script src="./assets/scripts/script.js"></script>
 </body>
