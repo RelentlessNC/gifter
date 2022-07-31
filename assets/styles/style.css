@@ -23,6 +23,27 @@ header {
     justify-content: center;
 }
 
+.upcoming-main-box {
+    border-style:solid;
+    border-width: 4px;
+    box-sizing: border-box;
+    padding: 10px;
+    text-align: center;
+}
+
+.upcoming-one,
+.upcoming-two,
+.upcoming-three,
+.upcoming-four {
+    border-style: solid;
+    border-width: 2px;
+    border-color:lightgrey;
+    margin: 10px;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 10px
+}
+
 .event-modal {
     border: 5px solid black;
     max-width: 250px;
@@ -107,4 +128,4 @@ header {
 .btn-hover.color-3 {
     background-image: linear-gradient(to right, #667eea, #764ba2, #6B8DD6, #8E37D7);
     box-shadow: 0 4px 15px 0 rgba(116, 79, 168, 0.75);
-=======
+
