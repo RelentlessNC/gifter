@@ -33,5 +33,59 @@ $(".add-event").on('click', function() {
 $(".schedule-button").on('click', function(e) {
     e.preventDefault()
     eventModal.classList.toggle('hide')
+    $("body").css("background-color","gray");
+    $("#confirmation-message").css("visibility","visible");
+    // script for confirmation modal w/ jquery
+    $(function () {
+        $("#confirmation-message").dialog({
+                modal: true,
+                resizable: false,
+                buttons: [
+                    {
+                        text: "Confirm",
+                        "class": 'btn-hover color-3 modalButtonClass',
+                        // script for congrats modal when confirm is clicked
+                        click: function() {
+                            $( this ).dialog( "close" );
+                            $("#congrats-message").css("visibility","visible");
+                            $(function () {
+                                $("#congrats-message").dialog({
+                                        modal: true,
+                                        width: 500,
+                                        resizable: false,
+                                        buttons: [
+                                            {
+                                                text: "Back to Calendar",
+                                                "class": 'btn-hover color-3 modalButtonClass',
+                                                "id": 'backBtn',
+                                                click: function() {
+                                                    $( this ).dialog( "close" );
+                                                    $("body").css("background-color","transparent");
+                                                }
+                                            },
+                                            {
+                                                text: "Schedule Another Event",
+                                                "class": 'btn-hover color-3 modalButtonClass',
+                                                "id": 'scheduleAnotherBtn',
+                                                click: function() {
+                                                    $( this ).dialog( "close" );
+                                                    $("body").css("background-color","transparent");
+                                                }
+                                            }
+                                        ]
+                                    })
+                                })
+                            }
+                    },
+                    {
+                        text: "Cancel",
+                        "class": 'btn-hover color-3 modalButtonClass',
+                        click: function() {
+                            $( this ).dialog( "close" );
+                            $("body").css("background-color","transparent");
+                        }
+                    }
+                ]
+            })
+        })
 })
-

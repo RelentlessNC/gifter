@@ -137,3 +137,30 @@ header {
     box-shadow: 0 4px 15px 0 rgba(116, 79, 168, 0.75);
 
 }
+
+.ui-dialog-titlebar-close {
+    visibility: hidden;
+}
+
+#confirmation-message, #congrats-message {
+    background-color: white;
+    border-radius: 5px;
+    border: darkorchid;
+    border-style:solid;
+    text-align: center;
+    visibility: hidden;
+}
+
+.modalButtonClass{
+    background-color: pink;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    
+}
+
+#scheduleAnotherBtn, #backBtn {
+    width:300px;
+}
+
+
