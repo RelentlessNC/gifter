@@ -1,4 +1,4 @@
-const eventModal = document.getElementById("form-fill")
+const eventModal = document.getElementById("dialog-message")
 var calendar = caleandar(document.getElementById('section-calendar'));
 var events = [
     { 'Date': new Date(2016, 6, 1), 'Title': 'Doctor appointment at 3:25pm.' },
@@ -20,18 +20,32 @@ var settings = {
     // ModelChange: model //(array of objects) new data object to pass into calendar (serving suggestion: passing through only the currently selected month's events if working with large dataset.
 }
 
+//dialog box jQuery function
+
+
+//accordion jQuery function
 $( function() {
     $( "#accordion" ).accordion();
   } );
 
 //event listener for Add Event - toggles hide for event modal box
 $(".add-event").on('click', function() {
-    eventModal.classList.toggle('hide')
+    $( function() {
+        $( "#dialog-message" ).dialog({
+          modal: true,
+          buttons: {
+            'Schedule Event': function() {
+              $( this ).dialog( "close" );
+            }
+          }
+        });
+      } );
 })
 
 //event listener for Schedule Event button - toggles hide for event modal box
 $(".schedule-button").on('click', function(e) {
     e.preventDefault()
-    eventModal.classList.toggle('hide')
+    console.log($("#dialog-message").dialog({}))
+  
 })
 
