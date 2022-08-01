@@ -29,6 +29,10 @@
         </div>
     </header>
     <div class="row">
+
+        <section id="section-calendar" class="nine columns">
+        </section>
+
         <aside id="upcoming-evts" class="four columns">
             <div class ="upcoming-main-box" id="accordion">
                 <h5>Upcoming Events</h5>
@@ -120,6 +124,21 @@
             <textarea style="width: 100%; max-width: 100%;" type="text" id="edit-personal-message" name="edit-personal-message" placeholder="Write your message here..."></textarea>
         </div> -->
     </form> 
+
+    <!-- confirmation modals -->
+    <div id="confirmation-message">
+        <p>
+          Please confirm your purchase.
+        </p>
+        <p>
+            <b>Note: You will not be charged until the day of the event. Cancel/edit anytime before the event.</b>
+        </p>
+      </div>
+    <div id="congrats-message">
+    <p>
+        Nice! Your event has been scheduled &#129305;
+    </p>
+    </div>
 
 
     <!-- Note: columns can be nested, but it's not recommended since Skeleton's grid has %-based gutters, meaning a nested grid results in variable with gutters (which can end up being *really* small on certain browser/device sizes) -->
