@@ -21,7 +21,7 @@
         <h1>Gifter</h1>
         <h4>slogan</h4>
         <div class="btn">
-            <button type="button">Add Event</button>
+            <button class="add-event" type="button">Add Event</button>
         </div>
     </header>
     <div class="row">
@@ -41,7 +41,7 @@
         </aside>
     </div>
 
-    <form class="event-modal">
+    <form id="form-fill" class="event-modal">
         <div class="event-box">
             <h5>Let's get your event set up...</h5>
             <label for="etitle">Event Title: </label>
@@ -76,11 +76,11 @@
             <input type="text" id="gift-amount" name="gift-amount">
             <label for="personal-message">Leave a personal message</label>
             <textarea style="width: 100%; max-width: 100%;" type="text" id="personal-message" name="personal-message" placeholder="Write your message here..."></textarea>
-            <button class="btn-hover color-3" id="schedule-event">Schedule Event</button>
+            <button class="btn-hover color-3 schedule-button" id="schedule-event">Schedule Event</button>
         </div>
     </form> 
 
-    <form class="edit-event-modal">
+    <form class="edit-event-modal hide">
         <div class="edit-event-box">
             <h5>Edit your event...</h5>
             <label for="edit-etitle">Event Title: </label>
@@ -96,8 +96,9 @@
                 <option value="edit-other">Other</option>
                 <input for="edit-other-option" id="edit-other-option" class="hide">
               </select>
+              <button class="btn-hover color-3" id="edit-schedule-event">Save Changes</button>
         </div>
-        <div class="edit-gift-box">
+        <!-- <div class="edit-gift-box">
             <h5>Edit your gift...</h5>
             <label for="edit-rname">Recipients Name: </label>
             <input type="text" id="edit-rname" name="edit-rname"><br>
@@ -115,8 +116,8 @@
             <input type="text" id="edit-gift-amount" name="edit-gift-amount">
             <label for="edit-personal-message">Leave a personal message</label>
             <textarea style="width: 100%; max-width: 100%;" type="text" id="edit-personal-message" name="edit-personal-message" placeholder="Write your message here..."></textarea>
-            <button class="btn-hover color-3" id="edit-schedule-event">Save Changes</button>
-        </div>
+          
+        </div> -->
     </form> 
 
 
