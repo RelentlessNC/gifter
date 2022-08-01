@@ -1,3 +1,4 @@
+const eventModal = document.getElementById("form-fill")
 var calendar = caleandar(document.getElementById('section-calendar'));
 var events = [
     { 'Date': new Date(2016, 6, 1), 'Title': 'Doctor appointment at 3:25pm.' },
@@ -22,3 +23,15 @@ var settings = {
 $( function() {
     $( "#accordion" ).accordion();
   } );
+
+//event listener for Add Event - toggles hide for event modal box
+$(".add-event").on('click', function() {
+    eventModal.classList.toggle('hide')
+})
+
+//event listener for Schedule Event button - toggles hide for event modal box
+$(".schedule-button").on('click', function(e) {
+    e.preventDefault()
+    eventModal.classList.toggle('hide')
+})
+
