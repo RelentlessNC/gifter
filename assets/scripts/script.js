@@ -16,16 +16,10 @@ $(".add-event").on('click', function() {
     $( function() {
         $( "#dialog-message" ).dialog({
           modal: true,
-
-
+        })})
     $(function() {
         $("#dialog-message").dialog({
             modal: true,
-            buttons: {
-                'Schedule Event': function() {
-                    $(this).dialog("close");
-                }
-            }
         });
     });
 })
