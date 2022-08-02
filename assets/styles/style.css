@@ -165,13 +165,12 @@ header {
     margin-left: 0px;
 }
 
-
-#scheduleAnotherBtn, #backBtn {
-    width:300px;
+#scheduleAnotherBtn,
+#backBtn {
+    width: 300px;
 }
 
-
-#accordion h5{
+#accordion h5 {
     background-color: rgba(116, 79, 168, 0.75);
 }
 
