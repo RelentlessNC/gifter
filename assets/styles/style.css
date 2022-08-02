@@ -1,3 +1,11 @@
+:root {
+    --color1: #667eea;
+    --color2: #6B8DD6;
+    --color3: #764ba2;
+    --color3RGBA: rgba(116, 79, 168, 0.75);
+    --color4: #8E37D7;
+}
+
 html,
 body {
     margin: 2%;
@@ -24,7 +32,7 @@ header {
 }
 
 .upcoming-main-box {
-    border-style:solid;
+    border-style: solid;
     border-width: 4px;
     box-sizing: border-box;
     padding: 10px;
@@ -37,7 +45,7 @@ header {
 .upcoming-four {
     border-style: solid;
     border-width: 2px;
-    border-color:lightgrey;
+    border-color: lightgrey;
     margin: 10px;
     text-align: center;
     box-sizing: border-box;
@@ -71,7 +79,7 @@ header {
     min-width: 200px;
     padding: 15px;
     margin-left: 20px;
-    position:absolute;
+    position: absolute;
     top: 150px;
     left: 40%;
     z-index: 4;
@@ -109,10 +117,9 @@ header {
     cursor: pointer;
     margin: 20px;
     height: 40px;
-    text-align:center;
+    text-align: center;
     border: none;
     background-size: 300% 100%;
-
     border-radius: 50px;
     /* moz-transition: all .4s ease-in-out; */
     -o-transition: all .4s ease-in-out;
@@ -133,31 +140,31 @@ header {
 }
 
 .btn-hover.color-3 {
-    background-image: linear-gradient(to right, #667eea, #764ba2, #6B8DD6, #8E37D7);
-    box-shadow: 0 4px 15px 0 rgba(116, 79, 168, 0.75);
-
+    background-image: linear-gradient(to right, var(--color1), var(--color3), var(--color2), var(--color4));
+    box-shadow: 0 4px 15px 0 var(--color3RGBA);
 }
 
 .ui-dialog-titlebar-close {
     visibility: hidden;
 }
 
-#confirmation-message, #congrats-message {
+#confirmation-message,
+#congrats-message {
     background-color: white;
     border-radius: 5px;
-    border: darkorchid;
-    border-style:solid;
+    border: var(--color4);
+    border-style: solid;
     text-align: center;
     visibility: hidden;
 }
 
-.modalButtonClass{
+.modalButtonClass {
     background-color: pink;
     margin-top: 10px;
     margin-bottom: 0px;
     margin-left: 0px;
-    
 }
+
 
 #scheduleAnotherBtn, #backBtn {
     width:300px;
@@ -165,4 +172,9 @@ header {
 
 #accordion h5{
     background-color: rgba(116, 79, 168, 0.75);
+}
+
+#scheduleAnotherBtn,
+#backBtn {
+    width: 300px;
 }
