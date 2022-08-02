@@ -75,6 +75,7 @@ header {
 
 .edit-event-modal {
     border: 5px solid black;
+    background-color: white;
     max-width: 250px;
     min-width: 200px;
     padding: 15px;

@@ -1,4 +1,5 @@
 const eventModal = document.getElementById("dialog-message")
+const editBox = document.getElementById("edit-box")
 const giphyAPI = 'https://api.giphy.com/v1/gifs/search';
 const giphyKEY = 'PVW7bT7xE7oiwvc3VLc9oHgGuFdSrfUb';
 var allGiphs = [];
@@ -30,7 +31,6 @@ function displayGifs() {
     }
 }
 
-
 //tabs jQuery function
 $(function() {
     $("#tabs").tabs();
@@ -56,7 +56,11 @@ $(".add-event").on('click', function() {
     });
 })
 
-
+//edit button event listener
+$(".edit-button").on('click', function() {
+    console.log('hello')
+    editBox.classList.toggle('hide')
+})
 
 //event listener for Schedule Event button - toggles hide for event modal box
 $(".schedule-button").on('click', function(e) {
@@ -64,7 +68,6 @@ $(".schedule-button").on('click', function(e) {
 
     console.log($("#dialog-message").dialog({}))
     $("#dialog-message").dialog("close")
-
 
     $("#dialog-message").dialog("close")
 

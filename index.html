@@ -59,9 +59,12 @@
         <div id="tabs-1">
             <div class="upcoming-main-box" id="accordion">
                 <h5>Mom's birthday</h5>
-                <ul>
-                    <li>25$ gift card to Target</li>
-                </ul>
+                    <ul>
+                        <li>Friday, January 13th 2023</li>
+                        <li>25$ gift card to Target</li>
+                        <button id="edit-btn" class="edit-button">EDIT</button>
+                    </ul>
+                 
                 <h5>Father's Day</h5>
                 <ul>
                     <li>$25 gift card to Lowes</li>
@@ -121,7 +124,7 @@
         </div>
     </div>
 
-    <form class="edit-event-modal hide">
+    <form id="edit-box" class="edit-event-modal hide">
         <div class="edit-event-box">
             <h5>Edit your event...</h5>
             <label for="edit-etitle">Event Title: </label>
@@ -137,9 +140,11 @@
                 <option value="edit-other">Other</option>
                 <input for="edit-other-option" id="edit-other-option" class="hide">
               </select>
+
             <button class="btn-hover color-3" id="edit-schedule-event">Save Changes</button>
+
         </div>
-        <!-- <div class="edit-gift-box">
+        <div class="edit-gift-box">
             <h5>Edit your gift...</h5>
             <label for="edit-rname">Recipients Name: </label>
             <input type="text" id="edit-rname" name="edit-rname"><br>
@@ -157,8 +162,14 @@
             <input type="text" id="edit-gift-amount" name="edit-gift-amount">
             <label for="edit-personal-message">Leave a personal message</label>
             <textarea style="width: 100%; max-width: 100%;" type="text" id="edit-personal-message" name="edit-personal-message" placeholder="Write your message here..."></textarea>
+
+            <button class="btn-hover color-3" id="edit-schedule-event">Save Changes</button>
+        </div>
+    </form> 
+
         </div> -->
     </form>
+
 
     <!-- confirmation modals -->
     <div id="confirmation-message">
