@@ -12,7 +12,7 @@ $(function() {
 
 //event listener for Add Event - toggles hide for event modal box
 $(".add-event").on('click', function() {
-
+    console.log("HERE");
     $( function() {
         $( "#dialog-message" ).dialog({
           modal: true,

@@ -5,78 +5,56 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
+    <title>Gifter</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--Skeleton-->
     <link rel="stylesheet" href="assets/styles/skeletonNormalize.css">
     <link rel="stylesheet" href="assets/styles/skeleton.css">
-    <link rel="stylesheet" href="assets/styles/caleandarTheme3.css">
-    <!-- dialog box jQuery -->
+    <!--jQuery -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
-    <!-- accordion jQuery -->
+    <!-- Stylesheet -->
     <link rel="stylesheet" href="assets/styles/style.css">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
 </head>
 
 <body>
-    <header>
+    <header class="bannerImage">
         <h1>Gifter</h1>
-        <h4>slogan</h4>
+        <h4>The Gift That Keeps On Giving</h4>
+
         <div class="btn">
             <button class="add-event" type="button">Add Event</button>
         </div>
     </header>
 
-    <!--
-    <div class="row">
-
-
-        <section id="section-calendar" class="nine columns">
-        </section>
-
-        <aside id="upcoming-evts" class="four columns">
-    <div class="row" id="tabs">
-
-            <div class ="upcoming-main-box" id="accordion">
-                <h5>Upcoming Events</h5>
-                    <ul>
-                        <li>Mom's birthday</li>
-                    </ul>
-                <h5>All events</h5>
+     <div class="container">
+        <div class ="row">
+            <div class="12 columns" id="tabs">
                 <ul>
-                    <li>Father's Day</li>
+                <li><a href="#tabs-1">Upcoming Events</a></li>
+                <li><a href="#tabs-2">Past Events</a></li>
+                <li><a href="#tabs-3">Other</a></li>
                 </ul>
+                <div id="tabs-1">
+                    <div class ="upcoming-main-box" id="accordion">
+                        <h5>Mom's birthday</h5>
+                            <ul>
+                                <li>25$ gift card to Target</li>
+                            </ul>
+                        <h5>Father's Day</h5>
+                        <ul>
+                            <li>$25 gift card to Lowes</li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="tabs-2">
+                <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
+                </div>
+                <div id="tabs-3">
+                <p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a, lacus.</p>
+                <p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
+                </div>
             </div>
-    </div>
-    -->
-
-     
-    <div id="tabs">
-        <ul>
-        <li><a href="#tabs-1">Upcoming Events</a></li>
-        <li><a href="#tabs-2">Past Events</a></li>
-        <li><a href="#tabs-3">Other</a></li>
-        </ul>
-        <div id="tabs-1">
-            <div class ="upcoming-main-box" id="accordion">
-                <h5>Mom's birthday</h5>
-                    <ul>
-                        <li>25$ gift card to Target</li>
-                    </ul>
-                <h5>Father's Day</h5>
-                <ul>
-                    <li>$25 gift card to Lowes</li>
-                </ul>
-            </div>
-        </div>
-        <div id="tabs-2">
-        <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
-        </div>
-        <div id="tabs-3">
-        <p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a, lacus.</p>
-        <p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
         </div>
     </div>
 
@@ -137,25 +115,6 @@
               </select>
               <button class="btn-hover color-3" id="edit-schedule-event">Save Changes</button>
         </div>
-        <!-- <div class="edit-gift-box">
-            <h5>Edit your gift...</h5>
-            <label for="edit-rname">Recipients Name: </label>
-            <input type="text" id="edit-rname" name="edit-rname"><br>
-            <label for="edit-email">Recipients Email:</label>
-            <input type="text" id="edit-email" name="edit-email"><br>
-            <label for="edit-brand">Select a brand of gift card: </label>
-            <select name="edit-brand" id="edit-brand">
-                <option></option>
-                <option value="edit-starbucks">Starbucks</option>
-                <option value="edit-target">Target</option>
-                <option value="edit-restaurant">Restaurant</option>
-                <option value="edit-amazon">Amazon</option>
-              </select>
-            <label for="edit-gift-amount">Gift Amount</label>
-            <input type="text" id="edit-gift-amount" name="edit-gift-amount">
-            <label for="edit-personal-message">Leave a personal message</label>
-            <textarea style="width: 100%; max-width: 100%;" type="text" id="edit-personal-message" name="edit-personal-message" placeholder="Write your message here..."></textarea>
-        </div> -->
     </form> 
 
     <!-- confirmation modals -->
