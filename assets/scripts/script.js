@@ -71,17 +71,8 @@ $(".schedule-button").on('click', function() {
     const eventTypeEl = parentNode.children[8].children.value
     console.log(parentNode)
     console.log(eventTypeEl)
-   
-    $("#dialog-message").dialog( "close" )
-  
-$(".schedule-button").on('click', function(e) {
-    e.preventDefault()
-
     console.log($("#dialog-message").dialog({}))
     $("#dialog-message").dialog("close")
-
-    $("#dialog-message").dialog("close")
-
 
     eventModal.classList.toggle('hide')
     $("body").css("background-color", "gray");
@@ -90,10 +81,11 @@ $(".schedule-button").on('click', function(e) {
     $(function() {
         $("#confirmation-message").dialog({
             modal: true,
+            width: 650,
             resizable: false,
             buttons: [{
                     text: "Confirm",
-                    "class": 'btn-hover color-3 modalButtonClass',
+                    "class": 'modalButtonClass',
                     // script for congrats modal when confirm is clicked
                     click: function() {
                         $(this).dialog("close");
@@ -101,12 +93,11 @@ $(".schedule-button").on('click', function(e) {
                         $(function() {
                             $("#congrats-message").dialog({
                                 modal: true,
-                                width: 500,
+                                width: 650,
                                 resizable: false,
                                 buttons: [{
                                         text: "Back to Calendar",
-                                        "class": 'btn-hover color-3 modalButtonClass',
-                                        "id": 'backBtn',
+                                        "class": 'modalButtonClass',
                                         click: function() {
                                             $(this).dialog("close");
                                             $("body").css("background-color", "transparent");
@@ -114,8 +105,7 @@ $(".schedule-button").on('click', function(e) {
                                     },
                                     {
                                         text: "Schedule Another Event",
-                                        "class": 'btn-hover color-3 modalButtonClass',
-                                        "id": 'scheduleAnotherBtn',
+                                        "class": 'modalButtonClass',
                                         click: function() {
                                             $(this).dialog("close");
                                             $("body").css("background-color", "transparent");
@@ -128,7 +118,7 @@ $(".schedule-button").on('click', function(e) {
                 },
                 {
                     text: "Cancel",
-                    "class": 'btn-hover color-3 modalButtonClass',
+                    "class": 'modalButtonClass',
                     click: function() {
                         $(this).dialog("close");
                         $("body").css("background-color", "transparent");
