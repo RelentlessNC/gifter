@@ -1,7 +1,9 @@
 const eventModal = document.getElementById("dialog-message")
 
-//dialog box jQuery function
-
+//tabs jQuery function
+$( function() {
+    $( "#tabs" ).tabs();
+  } );
 
 //accordion jQuery function
 $(function() {
@@ -10,6 +12,11 @@ $(function() {
 
 //event listener for Add Event - toggles hide for event modal box
 $(".add-event").on('click', function() {
+
+    $( function() {
+        $( "#dialog-message" ).dialog({
+          modal: true,
+
     $(function() {
         $("#dialog-message").dialog({
             modal: true,
@@ -29,6 +36,8 @@ $(".schedule-button").on('click', function(e) {
     e.preventDefault()
 
     console.log($("#dialog-message").dialog({}))
+
+    $("#dialog-message").dialog( "close" )
 
 
     eventModal.classList.toggle('hide')
