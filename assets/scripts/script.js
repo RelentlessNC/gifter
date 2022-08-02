@@ -63,16 +63,35 @@ $(".edit-button").on('click', function() {
     editBox.classList.toggle('hide')
 })
 
+$("#etype").on('mouseout', function() {
+    const selectedOption = $("#etype option:selected").val()
+    let otherOption = document.getElementById("other-option")
+    if (selectedOption == 'other') {
+    otherOption.classList.remove('hide')
+    } else {
+        otherOption.classList.add('hide')
+    }
+})
+
 //event listener for Schedule Event button - toggles hide for event modal box
 $(".schedule-button").on('click', function() {
     const parentNode = $(this)[0].parentNode
-    const eventTitleEl = parentNode.children[2].value
-    const eventDateEl = parentNode.children[5].value
-    const eventTypeEl = parentNode.children[8].children.value
-    console.log(parentNode)
-    console.log(eventTypeEl)
-    console.log($("#dialog-message").dialog({}))
-    $("#dialog-message").dialog("close")
+    let event = {
+        title: parentNode.children[2].value,
+        date: parentNode.children[5].value,
+        type: $("#etype :selected").val(),
+        other: parentNode.children[9].value,
+        name: parentNode.children[12].value,
+        email: parentNode.children[15].value,
+        brand: $("#brand :selected").val(),
+        amount: parentNode.children[20].value,
+        message: parentNode.children[22].value
+    }
+    console.log(event)
+
+   
+    $("#dialog-message").dialog( "close" )
+  
 
     eventModal.classList.toggle('hide')
     $("body").css("background-color", "gray");
