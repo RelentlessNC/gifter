@@ -1,10 +1,40 @@
 const eventModal = document.getElementById("dialog-message")
 const editBox = document.getElementById("edit-box")
+const giphyAPI = 'https://api.giphy.com/v1/gifs/search';
+const giphyKEY = 'PVW7bT7xE7oiwvc3VLc9oHgGuFdSrfUb';
+var allGiphs = [];
+const eventType = 'rabbit'; //document.getElementById('etype').value;
+
+
+// Fetch the GIPHY API and retrieve the GIFS
+fetch(giphyAPI + '?q=' + eventType + '&limit=10&api_key=' + giphyKEY)
+    .then(function(response) {
+        if (!response) {
+            console.log('error');
+        }
+        return response.json();
+    })
+    .then(function(data) {
+        allGiphs = data;
+        displayGifs();
+
+    })
+    .catch((err) => {});
+
+function displayGifs() {
+    var tab3 = document.getElementById('tabs-3');
+
+    for (var i = 0; i < allGiphs.data.length; i++) {
+        var img = document.createElement('img');
+        img.setAttribute('src', allGiphs.data[i].images.downsized.url);
+        tab3.appendChild(img);
+    }
+}
 
 //tabs jQuery function
-$( function() {
-    $( "#tabs" ).tabs();
-  } );
+$(function() {
+    $("#tabs").tabs();
+});
 
 //accordion jQuery function
 $(function() {
@@ -14,10 +44,11 @@ $(function() {
 //event listener for Add Event - toggles hide for event modal box
 $(".add-event").on('click', function() {
 
-    $( function() {
-        $( "#dialog-message" ).dialog({
-          modal: true,
-        })})
+    $(function() {
+        $("#dialog-message").dialog({
+            modal: true,
+        })
+    })
     $(function() {
         $("#dialog-message").dialog({
             modal: true,
@@ -36,10 +67,9 @@ $(".schedule-button").on('click', function(e) {
     e.preventDefault()
 
     console.log($("#dialog-message").dialog({}))
-    $("#dialog-message").dialog( "close" )
-  
+    $("#dialog-message").dialog("close")
 
-    // $("#dialog-message").dialog( "close" )
+    $("#dialog-message").dialog("close")
 
 
     eventModal.classList.toggle('hide')
