@@ -1,6 +1,7 @@
 const eventModal = document.getElementById("dialog-message")
 const editBox = document.getElementById("edit-box")
 
+
 //tabs jQuery function
 $( function() {
     $( "#tabs" ).tabs();
@@ -32,10 +33,14 @@ $(".edit-button").on('click', function() {
 })
 
 //event listener for Schedule Event button - toggles hide for event modal box
-$(".schedule-button").on('click', function(e) {
-    e.preventDefault()
-
-    console.log($("#dialog-message").dialog({}))
+$(".schedule-button").on('click', function() {
+    const parentNode = $(this)[0].parentNode
+    const eventTitleEl = parentNode.children[2].value
+    const eventDateEl = parentNode.children[5].value
+    const eventTypeEl = parentNode.children[8].children.value
+    console.log(parentNode)
+    console.log(eventTypeEl)
+   
     $("#dialog-message").dialog( "close" )
   
 
