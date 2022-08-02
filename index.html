@@ -59,12 +59,12 @@
         <div id="tabs-1">
             <div class="upcoming-main-box" id="accordion">
                 <h5>Mom's birthday</h5>
-                    <ul>
-                        <li>Friday, January 13th 2023</li>
-                        <li>25$ gift card to Target</li>
-                        <button id="edit-btn" class="edit-button">EDIT</button>
-                    </ul>
-                 
+                <ul>
+                    <li>Friday, January 13th 2023</li>
+                    <li>25$ gift card to Target</li>
+                    <button id="edit-btn" class="edit-button">EDIT</button>
+                </ul>
+
                 <h5>Father's Day</h5>
                 <ul>
                     <li>$25 gift card to Lowes</li>
@@ -140,6 +140,21 @@
               </select>
 
         </div>
+
+        <!-- REMINDER MODAL -->
+        <div class="reminder-modal hide" id="reminder-modal">
+            <h5>Event Reminder</h5>
+            <p id="event-title">Event: </p>
+            <p id="event-date">Date: </p>
+            <p id="event-type">Type: </p>
+            <p id="event-gift">Gift: </p>
+        </div>
+
+        <div class="giphy-modal hide" id="giphy-modal">
+            <h5>GIPHY</h5>
+            <ul id="giphy-options"></ul>
+        </div>
+
         <div class="edit-gift-box">
             <h5>Edit your gift...</h5>
             <label for="edit-rname">Recipients Name: </label>
@@ -161,14 +176,14 @@
 
             <button class="btn-hover color-3" id="edit-schedule-event">Save Changes</button>
         </div>
-    </form> 
+    </form>
 
-        </div>
+    </div>
     </form>
 
 
     <!-- confirmation modals -->
-    <div id="confirmation-message" title = "Confirm">
+    <div id="confirmation-message" title="Confirm">
         <p>
             Please confirm your purchase.
         </p>
@@ -176,7 +191,7 @@
             <b>Note: You will not be charged until the day of the event. Cancel/edit anytime before the event.</b>
         </p>
     </div>
-    <div id="congrats-message" title = "Way to go!">
+    <div id="congrats-message" title="Way to go!">
         <p>
             Nice! Your event has been scheduled &#129305;
         </p>
@@ -194,4 +209,4 @@
     <script src="./assets/scripts/script.js"></script>
 </body>
 
-</html>
+</html> 
