@@ -17,6 +17,7 @@ $(".add-event").on('click', function() {
         $( "#dialog-message" ).dialog({
           modal: true,
 
+
     $(function() {
         $("#dialog-message").dialog({
             modal: true,
@@ -36,6 +37,8 @@ $(".schedule-button").on('click', function(e) {
     e.preventDefault()
 
     console.log($("#dialog-message").dialog({}))
+    $("#dialog-message").dialog( "close" )
+  
 
     $("#dialog-message").dialog( "close" )
 
