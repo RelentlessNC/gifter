@@ -6,6 +6,7 @@ var allGiphs = [];
 const eventType = 'rabbit'; //document.getElementById('etype').value;
 
 
+
 // Fetch the GIPHY API and retrieve the GIFS
 fetch(giphyAPI + '?q=' + eventType + '&limit=10&api_key=' + giphyKEY)
     .then(function(response) {
@@ -128,3 +129,35 @@ $(".schedule-button").on('click', function() {
         })
     })
 })
+
+// Need to check all future dates against today's current date and display a reminder box if
+// event is today's date +14 days or less
+dateReminder();
+
+function dateReminder() {
+    // get data from local storage and store it in an array
+    var today = new Date();
+    var todayUnix = Math.floor(Date.parse(today.getFullYear(), today.getMonth(), today.getDate()));
+    var fourteenDaysUnix = today.setDate(today.getDate() + 14);
+    var fourteenDays = new Date(fourteenDaysUnix);
+    console.log(fourteenDays);
+    // console.log(todayUnix);
+    // console.log(fourteenDaysUnix);
+    // console.log(new Date(fourteenDaysUnix));
+    // console.log(todayUnix >= fourteenDaysUnix);
+    // for (var i = 0; i < allEvents.length; i++){
+    //     if (allEvents[i].date <= (todaysDate.getDate + 14)){
+    // DISPLAY REMINDER MODAL
+    $(function() {
+        $("#reminder-modal").dialog({
+            modal: true,
+            buttons: {
+                Ok: function() {
+                    $(this).dialog("close");
+                }
+            }
+        });
+    });
+    //     }
+    // }
+}
