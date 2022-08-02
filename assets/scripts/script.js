@@ -1,11 +1,41 @@
 const eventModal = document.getElementById("dialog-message")
 const editBox = document.getElementById("edit-box")
+const giphyAPI = 'https://api.giphy.com/v1/gifs/search';
+const giphyKEY = 'PVW7bT7xE7oiwvc3VLc9oHgGuFdSrfUb';
+var allGiphs = [];
+const eventType = 'rabbit'; //document.getElementById('etype').value;
+
+
+// Fetch the GIPHY API and retrieve the GIFS
+fetch(giphyAPI + '?q=' + eventType + '&limit=10&api_key=' + giphyKEY)
+    .then(function(response) {
+        if (!response) {
+            console.log('error');
+        }
+        return response.json();
+    })
+    .then(function(data) {
+        allGiphs = data;
+        displayGifs();
+
+    })
+    .catch((err) => {});
+
+function displayGifs() {
+    var tab3 = document.getElementById('tabs-3');
+
+    for (var i = 0; i < allGiphs.data.length; i++) {
+        var img = document.createElement('img');
+        img.setAttribute('src', allGiphs.data[i].images.downsized.url);
+        tab3.appendChild(img);
+    }
+}
 
 
 //tabs jQuery function
-$( function() {
-    $( "#tabs" ).tabs();
-  } );
+$(function() {
+    $("#tabs").tabs();
+});
 
 //accordion jQuery function
 $(function() {
@@ -15,10 +45,11 @@ $(function() {
 //event listener for Add Event - toggles hide for event modal box
 $(".add-event").on('click', function() {
 
-    $( function() {
-        $( "#dialog-message" ).dialog({
-          modal: true,
-        })})
+    $(function() {
+        $("#dialog-message").dialog({
+            modal: true,
+        })
+    })
     $(function() {
         $("#dialog-message").dialog({
             modal: true,
@@ -62,9 +93,6 @@ $(".schedule-button").on('click', function() {
     $("#dialog-message").dialog( "close" )
   
 
-    // $("#dialog-message").dialog( "close" )
-
-
     eventModal.classList.toggle('hide')
     $("body").css("background-color", "gray");
     $("#confirmation-message").css("visibility", "visible");
@@ -72,10 +100,11 @@ $(".schedule-button").on('click', function() {
     $(function() {
         $("#confirmation-message").dialog({
             modal: true,
+            width: 650,
             resizable: false,
             buttons: [{
                     text: "Confirm",
-                    "class": 'btn-hover color-3 modalButtonClass',
+                    "class": 'modalButtonClass',
                     // script for congrats modal when confirm is clicked
                     click: function() {
                         $(this).dialog("close");
@@ -83,12 +112,11 @@ $(".schedule-button").on('click', function() {
                         $(function() {
                             $("#congrats-message").dialog({
                                 modal: true,
-                                width: 500,
+                                width: 650,
                                 resizable: false,
                                 buttons: [{
                                         text: "Back to Calendar",
-                                        "class": 'btn-hover color-3 modalButtonClass',
-                                        "id": 'backBtn',
+                                        "class": 'modalButtonClass',
                                         click: function() {
                                             $(this).dialog("close");
                                             $("body").css("background-color", "transparent");
@@ -96,8 +124,7 @@ $(".schedule-button").on('click', function() {
                                     },
                                     {
                                         text: "Schedule Another Event",
-                                        "class": 'btn-hover color-3 modalButtonClass',
-                                        "id": 'scheduleAnotherBtn',
+                                        "class": 'modalButtonClass',
                                         click: function() {
                                             $(this).dialog("close");
                                             $("body").css("background-color", "transparent");
@@ -110,7 +137,7 @@ $(".schedule-button").on('click', function() {
                 },
                 {
                     text: "Cancel",
-                    "class": 'btn-hover color-3 modalButtonClass',
+                    "class": 'modalButtonClass',
                     click: function() {
                         $(this).dialog("close");
                         $("body").css("background-color", "transparent");
