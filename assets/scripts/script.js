@@ -6,6 +6,7 @@ const giftbitKey = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJTSEEyNTYifQ==.MytEdlNFcVp3clFCT2h
 const giftbitAPI = 'https://private-anon-b3a6e921d5-giftbit.apiary-proxy.com/papi/v1/brands';
 var allGiphs = [];
 var allBrands = [];
+var allEvents = [];
 const eventType = 'rabbit'; //document.getElementById('etype').value;
 
 
