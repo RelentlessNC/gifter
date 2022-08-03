@@ -6,9 +6,13 @@
     --color4: #8E37D7;
 }
 
-html,
+/* html,
 body {
     margin: 2%;
+} */
+
+.container{
+    margin: 0;
 }
 
 h1,
@@ -16,14 +20,36 @@ h4 {
     text-align: center;
 }
 
-header {
+header{
     border-bottom: 4px solid black;
     margin-bottom: 2%;
+    z-index:1;
+    color:white;
+}
+
+button, .button {
+    color:white;
+}
+
+.add-event:hover {
+    color:white;
+    border-color: white;
+}
+
+.bannerImage {
+    background-image: url("/assets/images/Banner.jpg");
+    max-height: fit-content;
+    max-width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
 }
 
 .btn {
     justify-content: center;
     text-align: center;
+    color:white;
 }
 
 #section-calendar {
@@ -146,7 +172,7 @@ header {
 }
 
 .ui-dialog-titlebar-close {
-    visibility: hidden;
+    visibility: visible;
 }
 
 .modalButtonClass {
