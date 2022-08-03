@@ -74,8 +74,6 @@
                 <option value="other">Other</option>
                 <input for="other-option" id="other-option" class="hide">
               </select>
-        </div>
-        <div class="gift-box">
             <h5>Send a gift...</h5>
             <label for="rname">Recipients Name: </label>
             <input type="text" id="rname" name="rname"><br>
@@ -95,9 +93,9 @@
             <textarea style="width: 100%; max-width: 100%;" type="text" id="personal-message" name="personal-message" placeholder="Write your message here..."></textarea>
             <button class="btn-hover color-3 schedule-button" id="schedule-event">Schedule Event</button>
         </div>
-    </div> 
+    </div>
 
-    <form class="edit-event-modal hide">
+    <form id="edit-box" class="edit-event-modal hide">
         <div class="edit-event-box">
             <h5>Edit your event...</h5>
             <label for="edit-etitle">Event Title: </label>
@@ -113,23 +111,32 @@
                 <option value="edit-other">Other</option>
                 <input for="edit-other-option" id="edit-other-option" class="hide">
               </select>
-              <button class="btn-hover color-3" id="edit-schedule-event">Save Changes</button>
+
+        </div>
+
+        <!-- REMINDER MODAL -->
+        <div class="reminder-modal hide" id="reminder-modal">
+            <h5>Event Reminder</h5>
+            <p id="event-title">Event: </p>
+            <p id="event-date">Date: </p>
+            <p id="event-type">Type: </p>
+            <p id="event-gift">Gift: </p>
         </div>
     </form> 
 
     <!-- confirmation modals -->
-    <div id="confirmation-message">
+    <div id="confirmation-message" title="Confirm">
         <p>
-          Please confirm your purchase.
+            Please confirm your purchase.
         </p>
         <p>
             <b>Note: You will not be charged until the day of the event. Cancel/edit anytime before the event.</b>
         </p>
-      </div>
-    <div id="congrats-message">
-    <p>
-        Nice! Your event has been scheduled &#129305;
-    </p>
+    </div>
+    <div id="congrats-message" title="Way to go!">
+        <p>
+            Nice! Your event has been scheduled &#129305;
+        </p>
     </div>
 
 
@@ -144,4 +151,4 @@
     <script src="./assets/scripts/script.js"></script>
 </body>
 
-</html>
+</html> 
