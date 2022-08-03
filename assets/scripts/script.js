@@ -6,7 +6,6 @@ const giftbitKey = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJTSEEyNTYifQ==.MytEdlNFcVp3clFCT2h
 const giftbitAPI = 'https://private-anon-b3a6e921d5-giftbit.apiary-proxy.com/papi/v1/brands';
 var allGiphs = [];
 var allBrands = [];
-var allEvents = [];
 const eventType = 'rabbit'; //document.getElementById('etype').value;
 
 
@@ -36,28 +35,32 @@ function displayGifs() {
 }
 
 // giftbit api
-fetch(giftbitAPI, {
-        headers: {
-            'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJTSEEyNTYifQ==.MytEdlNFcVp3clFCT2hrZ0Uxb1FNc2pZbWRoRjVKVmYwdlh3L2x6c0hqL1QvYTJpQ1N2cW1kc1JqOEFLWDJTMjJ0cmNzODNaSVVMOGJvcldOWTVNVkJBV1Yvb1B3ck4vZGQyMVNkcE9EN1pSMm8xeFdYbHRwd0ZPaVlsaHB2Smk=.weqw9hjbaEcLpqZlkrVMFngOntTuAIi3d09A/4dybFs=',
-        }
-    })
-    .then((response) => response.json())
-    .then(function(data) {
-        allBrands = data;
-        displayBrands();
-        console.log(data);
-    });
+fetch(giftbitAPI,{
+    headers: {
+        'Authorization':'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJTSEEyNTYifQ==.MytEdlNFcVp3clFCT2hrZ0Uxb1FNc2pZbWRoRjVKVmYwdlh3L2x6c0hqL1QvYTJpQ1N2cW1kc1JqOEFLWDJTMjJ0cmNzODNaSVVMOGJvcldOWTVNVkJBV1Yvb1B3ck4vZGQyMVNkcE9EN1pSMm8xeFdYbHRwd0ZPaVlsaHB2Smk=.weqw9hjbaEcLpqZlkrVMFngOntTuAIi3d09A/4dybFs=',
+    }
+})
+  .then((response) => response.json())
+  .then(function(data) {
+    allBrands = data;
+    displayBrands();
+    console.log(data);
+  });
 
 //   display giftbit options under dropdown
 function displayBrands() {
-
+    var editBrandDrop = document.getElementById('edit-brand')
     var brandDrop = document.getElementById('brand');
 
-    for (var i = 0; i < allBrands.length; i++) {
+    for (var i = 0; i < allBrands.brands.length; i++) {
         var option = document.createElement('option');
-        option.setAttribute('value', allBrand.data[i].name);
-        console.log(option);
-        brandDrop.appendChild(option);
+        var editOption = document.createElement('option');
+        option.setAttribute('value', allBrands.brands[i].name);
+        option.innerHTML = allBrands.brands[i].name;
+        editOption.setAttribute('value', allBrands.brands[i].name);
+        editOption.innerHTML = allBrands.brands[i].name;
+        editBrandDrop.appendChild(option);
+        brandDrop.appendChild(editOption);
     }
 }
 
@@ -96,7 +99,17 @@ $("#etype").on('mouseout', function() {
     const selectedOption = $("#etype option:selected").val()
     let otherOption = document.getElementById("other-option")
     if (selectedOption == 'other') {
-        otherOption.classList.remove('hide')
+    otherOption.classList.remove('hide')
+    } else {
+        otherOption.classList.add('hide')
+    }
+})
+
+$("#edit-etype").on('mouseout', function() {
+    const selectedOption = $("#edit-etype option:selected").val()
+    let otherOption = document.getElementById("edit-other-option")
+    if (selectedOption == 'edit-other') {
+    otherOption.classList.remove('hide')
     } else {
         otherOption.classList.add('hide')
     }
@@ -116,24 +129,11 @@ $(".schedule-button").on('click', function() {
         amount: parentNode.children[20].value,
         message: parentNode.children[22].value
     }
+    console.log(event)
 
-    //  search the array to see if the current object matches any objects in the array.
-    //  if there is a match, replace the existing event in the array with the current event
-    if (allEvents.find(obj => obj.title === event.title)) {
-        var location = allEvents.findIndex(obj => obj.title === event.title);
-        allEvents[location] = event;
-    } else {
-        //  if no match, then add the current event to the array
-        allEvents.push(event);
-    }
-
-    // save the allEvents variable to the local storage
-    localStorage.setItem('events', JSON.stringify(allEvents));
-    console.log(allEvents);
-
-
-    $("#dialog-message").dialog("close")
-
+   
+    $("#dialog-message").dialog( "close" )
+  
 
     eventModal.classList.toggle('hide')
     $("body").css("background-color", "gray");
@@ -170,6 +170,16 @@ $(".schedule-button").on('click', function() {
                                         click: function() {
                                             $(this).dialog("close");
                                             $("body").css("background-color", "transparent");
+                                            $(function() {
+                                                $("#dialog-message").dialog({
+                                                    modal: true,
+                                                })
+                                            })
+                                            $(function() {
+                                                $("#dialog-message").dialog({
+                                                    modal: true,
+                                                });
+                                            });
                                         }
                                     }
                                 ]
