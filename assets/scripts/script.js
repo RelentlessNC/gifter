@@ -20,6 +20,7 @@ fetch(giphyAPI + '?q=' + eventType + '&limit=10&api_key=' + giphyKEY)
         return response.json();
     })
     .then(function(data) {
+        console.log(data);
         allGiphs = data;
         displayGifs();
 
@@ -53,12 +54,17 @@ fetch(giftbitAPI, {
 function displayBrands() {
 
     var brandDrop = document.getElementById('brand');
+    var editBrandDrop = document.getElementById('edit-brand');
 
-    for (var i = 0; i < allBrands.length; i++) {
+    for (var i = 0; i < allBrands.brands.length; i++) {
         var option = document.createElement('option');
-        option.setAttribute('value', allBrand.data[i].name);
-        console.log(option);
-        brandDrop.appendChild(option);
+        var editOption = document.createElement('option');
+        option.setAttribute('value', allBrands.brands[i].name);
+        option.innerHTML = allBrands.brands[i].name;
+        editOption.setAttribute('value', allBrands.brands[i].name);
+        editOption.innerHTML = allBrands.brands[i].name;
+        editBrandDrop.appendChild(option);
+        brandDrop.appendChild(editOption);
     }
 }
 
