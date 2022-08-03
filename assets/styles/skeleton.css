@@ -30,11 +30,13 @@
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .container {
   position: relative;
-  width:100% !important;
-  max-width: 100%;
+  width:50%;
+  max-width: 100% !important;
   margin: 2%;
   padding: 0;
-  box-sizing: border-box; }
+  box-sizing: border-box; 
+  
+}
 .column,
 .columns {
   width: 100%;
