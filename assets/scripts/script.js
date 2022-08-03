@@ -20,6 +20,7 @@ fetch(giphyAPI + '?q=' + eventType + '&limit=10&api_key=' + giphyKEY)
         return response.json();
     })
     .then(function(data) {
+        console.log(data);
         allGiphs = data;
         displayGifs();
 
@@ -27,12 +28,14 @@ fetch(giphyAPI + '?q=' + eventType + '&limit=10&api_key=' + giphyKEY)
     .catch((err) => {});
 
 function displayGifs() {
-    var tab3 = document.getElementById('tabs-3');
+    // var tab3 = document.getElementById('tabs-3');
+    let gifMessage = document.getElementById('personal-message')
+
 
     for (var i = 0; i < allGiphs.data.length; i++) {
         var img = document.createElement('img');
-        img.setAttribute('src', allGiphs.data[i].images.downsized.url);
-        tab3.appendChild(img);
+        img.setAttribute('src', allGiphs.data[i].embed_url);
+        gifMessage.appendChild(img);
     }
 }
 
@@ -53,12 +56,17 @@ fetch(giftbitAPI, {
 function displayBrands() {
 
     var brandDrop = document.getElementById('brand');
+    var editBrandDrop = document.getElementById('edit-brand');
 
-    for (var i = 0; i < allBrands.length; i++) {
+    for (var i = 0; i < allBrands.brands.length; i++) {
         var option = document.createElement('option');
-        option.setAttribute('value', allBrand.data[i].name);
-        console.log(option);
-        brandDrop.appendChild(option);
+        var editOption = document.createElement('option');
+        option.setAttribute('value', allBrands.brands[i].name);
+        option.innerHTML = allBrands.brands[i].name;
+        editOption.setAttribute('value', allBrands.brands[i].name);
+        editOption.innerHTML = allBrands.brands[i].name;
+        editBrandDrop.appendChild(option);
+        brandDrop.appendChild(editOption);
     }
 }
 
@@ -86,12 +94,15 @@ $(".add-event").on('click', function() {
     });
 })
 
+
 //edit button event listener
-$(".edit-button").on('click', function() {
+$(".edit-button").on('click', function(e) {
     console.log('hello')
+    e.preventDefault()
     editBox.classList.toggle('hide')
 })
 
+//event listener for "other" option selector
 $("#etype").on('mouseout', function() {
     const selectedOption = $("#etype option:selected").val()
     let otherOption = document.getElementById("other-option")
@@ -167,9 +178,21 @@ $(".schedule-button").on('click', function() {
                                     {
                                         text: "Schedule Another Event",
                                         "class": 'modalButtonClass',
+                                        "id": 'schedule-another',
                                         click: function() {
                                             $(this).dialog("close");
                                             $("body").css("background-color", "transparent");
+                                            //event listener for add another event, brings up dialog box again for the event modal
+                                            $(function() {
+                                                $("#dialog-message").dialog({
+                                                    modal: true,
+                                                })
+                                            })
+                                            $(function() {
+                                                $("#dialog-message").dialog({
+                                                    modal: true,
+                                                });
+                                            });
                                         }
                                     }
                                 ]
