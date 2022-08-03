@@ -40,6 +40,7 @@
                         <h5>Mom's birthday</h5>
                             <ul>
                                 <li>25$ gift card to Target</li>
+                                <button class="edit-button">EDIT</button>
                             </ul>
                         <h5>Father's Day</h5>
                         <ul>
@@ -105,27 +106,8 @@
                 <option value="edit-other">Other</option>
                 <input for="edit-other-option" id="edit-other-option" class="hide">
               </select>
-
         </div>
-
-        <!-- REMINDER MODAL -->
-        <div class="reminder-modal hide" id="reminder-modal">
-            <h5>Event Reminder</h5>
-            <p id="event-title">Event: </p>
-            <p id="event-date">Date: </p>
-            <p id="event-type">Type: </p>
-            <p id="event-gift">Gift: </p>
-        </div>
-
-    </form> 
-
-
-        <div class="giphy-modal hide" id="giphy-modal">
-            <h5>GIPHY</h5>
-            <ul id="giphy-options"></ul>
-        </div>
-
-        <div class="edit-gift-box">
+        <div class="edit-gift-box" >
             <h5>Edit your gift...</h5>
             <label for="edit-rname">Recipients Name: </label>
             <input type="text" id="edit-rname" name="edit-rname"><br>
@@ -137,10 +119,26 @@
             <input type="text" id="edit-gift-amount" name="edit-gift-amount">
             <label for="edit-personal-message">Leave a personal message</label>
             <textarea style="width: 100%; max-width: 100%;" type="text" id="edit-personal-message" name="edit-personal-message" placeholder="Write your message here..."></textarea>
-
             <button class="btn-hover color-3" id="edit-schedule-event">Save Changes</button>
         </div>
     </form>
+
+        <!-- REMINDER MODAL -->
+        <div class="reminder-modal hide" id="reminder-modal">
+            <h5>Event Reminder</h5>
+            <p id="event-title">Event: </p>
+            <p id="event-date">Date: </p>
+            <p id="event-type">Type: </p>
+            <p id="event-gift">Gift: </p>
+        </div>
+
+
+        <div class="giphy-modal hide" id="giphy-modal">
+            <h5>GIPHY</h5>
+            <ul id="giphy-options"></ul>
+        </div>
+    
+   
 
     </div>
     </form>
