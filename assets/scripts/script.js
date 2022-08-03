@@ -28,7 +28,6 @@ fetch(giphyAPI + '?q=' + eventType + '&limit=10&api_key=' + giphyKEY)
 
 function displayGifs() {
     var tab3 = document.getElementById('tabs-3');
-
     for (var i = 0; i < allGiphs.data.length; i++) {
         var img = document.createElement('img');
         img.setAttribute('src', allGiphs.data[i].images.downsized.url);
@@ -108,7 +107,7 @@ $(".schedule-button").on('click', function() {
     const parentNode = $(this)[0].parentNode
     let event = {
         title: parentNode.children[2].value,
-        date: parentNode.children[5].value,
+        date: Date.parse(parentNode.children[5].value),
         type: $("#etype :selected").val(),
         other: parentNode.children[9].value,
         name: parentNode.children[12].value,
@@ -193,32 +192,32 @@ $(".schedule-button").on('click', function() {
 
 // Need to check all future dates against today's current date and display a reminder box if
 // event is today's date +14 days or less
-dateReminder();
 
 function dateReminder() {
-    // get data from local storage and store it in an array
-    var today = new Date();
-    var todayUnix = Math.floor(Date.parse(today.getFullYear(), today.getMonth(), today.getDate()));
-    var fourteenDaysUnix = today.setDate(today.getDate() + 14);
-    var fourteenDays = new Date(fourteenDaysUnix);
-    console.log(fourteenDays);
-    // console.log(todayUnix);
-    // console.log(fourteenDaysUnix);
-    // console.log(new Date(fourteenDaysUnix));
-    // console.log(todayUnix >= fourteenDaysUnix);
-    // for (var i = 0; i < allEvents.length; i++){
-    //     if (allEvents[i].date <= (todaysDate.getDate + 14)){
-    // DISPLAY REMINDER MODAL
-    $(function() {
-        $("#reminder-modal").dialog({
-            modal: true,
-            buttons: {
-                Ok: function() {
-                    $(this).dialog("close");
-                }
+    if (localStorage.length > 0) {
+        allEvents = JSON.parse(localStorage.getItem("events"));
+        // get data from local storage and store it in an array
+        var today = new Date();
+        var fourteenDays = today.setDate(today.getDate() + 14);
+        for (var i = 0; i < allEvents.length; i++) {
+            console.log(i);
+            if (allEvents[i].date <= (fourteenDays)) {
+                // DISPLAY REMINDER MODAL
+                $(function() {
+                    $("#reminder-modal").dialog({
+                        modal: true,
+                        buttons: {
+                            Ok: function() {
+                                $(this).dialog("close");
+                            }
+                        }
+                    });
+                });
+                document.getElementById('event-title').textContent = 'Event: ' + allEvents[i].title;
+                document.getElementById('event-date').textContent = 'Date: ' + Date(allEvents[i].date);
+                document.getElementById('event-type').textContent = 'Type: ' + allEvents[i].type;
+                document.getElementById('event-gift').textContent = 'Gift: ' + allEvents[i].brand;
             }
-        });
-    });
-    //     }
-    // }
+        }
+    }
 }
