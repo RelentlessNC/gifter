@@ -28,7 +28,6 @@ fetch(giphyAPI + '?q=' + eventType + '&limit=10&api_key=' + giphyKEY)
 
 function displayGifs() {
     var tab3 = document.getElementById('tabs-3');
-
     for (var i = 0; i < allGiphs.data.length; i++) {
         var img = document.createElement('img');
         img.setAttribute('src', allGiphs.data[i].images.downsized.url);
@@ -37,28 +36,32 @@ function displayGifs() {
 }
 
 // giftbit api
-fetch(giftbitAPI, {
-        headers: {
-            'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJTSEEyNTYifQ==.MytEdlNFcVp3clFCT2hrZ0Uxb1FNc2pZbWRoRjVKVmYwdlh3L2x6c0hqL1QvYTJpQ1N2cW1kc1JqOEFLWDJTMjJ0cmNzODNaSVVMOGJvcldOWTVNVkJBV1Yvb1B3ck4vZGQyMVNkcE9EN1pSMm8xeFdYbHRwd0ZPaVlsaHB2Smk=.weqw9hjbaEcLpqZlkrVMFngOntTuAIi3d09A/4dybFs=',
-        }
-    })
-    .then((response) => response.json())
-    .then(function(data) {
-        allBrands = data;
-        displayBrands();
-        console.log(data);
-    });
+fetch(giftbitAPI,{
+    headers: {
+        'Authorization':'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJTSEEyNTYifQ==.MytEdlNFcVp3clFCT2hrZ0Uxb1FNc2pZbWRoRjVKVmYwdlh3L2x6c0hqL1QvYTJpQ1N2cW1kc1JqOEFLWDJTMjJ0cmNzODNaSVVMOGJvcldOWTVNVkJBV1Yvb1B3ck4vZGQyMVNkcE9EN1pSMm8xeFdYbHRwd0ZPaVlsaHB2Smk=.weqw9hjbaEcLpqZlkrVMFngOntTuAIi3d09A/4dybFs=',
+    }
+})
+  .then((response) => response.json())
+  .then(function(data) {
+    allBrands = data;
+    displayBrands();
+    console.log(data);
+  });
 
 //   display giftbit options under dropdown
 function displayBrands() {
-
+    var editBrandDrop = document.getElementById('edit-brand')
     var brandDrop = document.getElementById('brand');
 
-    for (var i = 0; i < allBrands.length; i++) {
+    for (var i = 0; i < allBrands.brands.length; i++) {
         var option = document.createElement('option');
-        option.setAttribute('value', allBrand.data[i].name);
-        console.log(option);
-        brandDrop.appendChild(option);
+        var editOption = document.createElement('option');
+        option.setAttribute('value', allBrands.brands[i].name);
+        option.innerHTML = allBrands.brands[i].name;
+        editOption.setAttribute('value', allBrands.brands[i].name);
+        editOption.innerHTML = allBrands.brands[i].name;
+        editBrandDrop.appendChild(option);
+        brandDrop.appendChild(editOption);
     }
 }
 
@@ -74,11 +77,12 @@ $(function() {
 
 //event listener for Add Event - toggles hide for event modal box
 $(".add-event").on('click', function() {
-    console.log("HERE");
-    $( function() {
-        $( "#dialog-message" ).dialog({
-          modal: true,
-        })})
+
+    $(function() {
+        $("#dialog-message").dialog({
+            modal: true,
+        })
+    })
     $(function() {
         $("#dialog-message").dialog({
             modal: true,
@@ -96,7 +100,17 @@ $("#etype").on('mouseout', function() {
     const selectedOption = $("#etype option:selected").val()
     let otherOption = document.getElementById("other-option")
     if (selectedOption == 'other') {
-        otherOption.classList.remove('hide')
+    otherOption.classList.remove('hide')
+    } else {
+        otherOption.classList.add('hide')
+    }
+})
+
+$("#edit-etype").on('mouseout', function() {
+    const selectedOption = $("#edit-etype option:selected").val()
+    let otherOption = document.getElementById("edit-other-option")
+    if (selectedOption == 'edit-other') {
+    otherOption.classList.remove('hide')
     } else {
         otherOption.classList.add('hide')
     }
@@ -107,7 +121,7 @@ $(".schedule-button").on('click', function() {
     const parentNode = $(this)[0].parentNode
     let event = {
         title: parentNode.children[2].value,
-        date: parentNode.children[5].value,
+        date: Date.parse(parentNode.children[5].value),
         type: $("#etype :selected").val(),
         other: parentNode.children[9].value,
         name: parentNode.children[12].value,
@@ -116,24 +130,11 @@ $(".schedule-button").on('click', function() {
         amount: parentNode.children[20].value,
         message: parentNode.children[22].value
     }
+    console.log(event)
 
-    //  search the array to see if the current object matches any objects in the array.
-    //  if there is a match, replace the existing event in the array with the current event
-    if (allEvents.find(obj => obj.title === event.title)) {
-        var location = allEvents.findIndex(obj => obj.title === event.title);
-        allEvents[location] = event;
-    } else {
-        //  if no match, then add the current event to the array
-        allEvents.push(event);
-    }
-
-    // save the allEvents variable to the local storage
-    localStorage.setItem('events', JSON.stringify(allEvents));
-    console.log(allEvents);
-
-
-    $("#dialog-message").dialog("close")
-
+   
+    $("#dialog-message").dialog( "close" )
+  
 
     eventModal.classList.toggle('hide')
     $("body").css("background-color", "gray");
@@ -170,6 +171,16 @@ $(".schedule-button").on('click', function() {
                                         click: function() {
                                             $(this).dialog("close");
                                             $("body").css("background-color", "transparent");
+                                            $(function() {
+                                                $("#dialog-message").dialog({
+                                                    modal: true,
+                                                })
+                                            })
+                                            $(function() {
+                                                $("#dialog-message").dialog({
+                                                    modal: true,
+                                                });
+                                            });
                                         }
                                     }
                                 ]
@@ -192,32 +203,32 @@ $(".schedule-button").on('click', function() {
 
 // Need to check all future dates against today's current date and display a reminder box if
 // event is today's date +14 days or less
-dateReminder();
 
 function dateReminder() {
-    // get data from local storage and store it in an array
-    var today = new Date();
-    var todayUnix = Math.floor(Date.parse(today.getFullYear(), today.getMonth(), today.getDate()));
-    var fourteenDaysUnix = today.setDate(today.getDate() + 14);
-    var fourteenDays = new Date(fourteenDaysUnix);
-    console.log(fourteenDays);
-    // console.log(todayUnix);
-    // console.log(fourteenDaysUnix);
-    // console.log(new Date(fourteenDaysUnix));
-    // console.log(todayUnix >= fourteenDaysUnix);
-    // for (var i = 0; i < allEvents.length; i++){
-    //     if (allEvents[i].date <= (todaysDate.getDate + 14)){
-    // DISPLAY REMINDER MODAL
-    $(function() {
-        $("#reminder-modal").dialog({
-            modal: true,
-            buttons: {
-                Ok: function() {
-                    $(this).dialog("close");
-                }
+    if (localStorage.length > 0) {
+        allEvents = JSON.parse(localStorage.getItem("events"));
+        // get data from local storage and store it in an array
+        var today = new Date();
+        var fourteenDays = today.setDate(today.getDate() + 14);
+        for (var i = 0; i < allEvents.length; i++) {
+            console.log(i);
+            if (allEvents[i].date <= (fourteenDays)) {
+                // DISPLAY REMINDER MODAL
+                $(function() {
+                    $("#reminder-modal").dialog({
+                        modal: true,
+                        buttons: {
+                            Ok: function() {
+                                $(this).dialog("close");
+                            }
+                        }
+                    });
+                });
+                document.getElementById('event-title').textContent = 'Event: ' + allEvents[i].title;
+                document.getElementById('event-date').textContent = 'Date: ' + Date(allEvents[i].date);
+                document.getElementById('event-type').textContent = 'Type: ' + allEvents[i].type;
+                document.getElementById('event-gift').textContent = 'Gift: ' + allEvents[i].brand;
             }
-        });
-    });
-    //     }
-    // }
+        }
+    }
 }

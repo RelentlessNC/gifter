@@ -34,6 +34,13 @@
         </div>
 
         <h1 class="title">Gifter</h1>
+
+
+<body onload="dateReminder()">
+    <header class="bannerImage">
+
+        <h1>Gifter</h1>
+
         <h4>The Gift That Keeps On Giving</h4>
 
         <div class="btn">
@@ -54,6 +61,7 @@
                         <h5>Mom's birthday</h5>
                             <ul>
                                 <li>25$ gift card to Target</li>
+                                <button class="edit-button">EDIT</button>
                             </ul>
                         <h5>Father's Day</h5>
                         <ul>
@@ -94,13 +102,7 @@
             <label for="email">Recipients Email:</label>
             <input type="text" id="email" name="email"><br>
             <label for="brand">Select a brand of gift card: </label>
-            <select name="brand" id="brand">
-                <option></option>
-                <option value="starbucks">Starbucks</option>
-                <option value="target">Target</option>
-                <option value="restaurant">Restaurant</option>
-                <option value="amazon">Amazon</option>
-              </select>
+            <select name="brand" id="brand"></select>
             <label for="gift-amount">Gift Amount</label>
             <input type="text" id="gift-amount" name="gift-amount">
             <label for="personal-message">Leave a personal message</label>
@@ -125,18 +127,43 @@
                 <option value="edit-other">Other</option>
                 <input for="edit-other-option" id="edit-other-option" class="hide">
               </select>
-
         </div>
+        <div class="edit-gift-box" >
+            <h5>Edit your gift...</h5>
+            <label for="edit-rname">Recipients Name: </label>
+            <input type="text" id="edit-rname" name="edit-rname"><br>
+            <label for="edit-email">Recipients Email:</label>
+            <input type="text" id="edit-email" name="edit-email"><br>
+            <label for="edit-brand">Select a brand of gift card: </label>
+            <select name="edit-brand" id="edit-brand"></select>
+            <label for="edit-gift-amount">Gift Amount</label>
+            <input type="text" id="edit-gift-amount" name="edit-gift-amount">
+            <label for="edit-personal-message">Leave a personal message</label>
+            <textarea style="width: 100%; max-width: 100%;" type="text" id="edit-personal-message" name="edit-personal-message" placeholder="Write your message here..."></textarea>
+            <button class="btn-hover color-3" id="edit-schedule-event">Save Changes</button>
+        </div>
+    </form>
 
         <!-- REMINDER MODAL -->
         <div class="reminder-modal hide" id="reminder-modal">
             <h5>Event Reminder</h5>
-            <p id="event-title">Event: </p>
-            <p id="event-date">Date: </p>
-            <p id="event-type">Type: </p>
-            <p id="event-gift">Gift: </p>
+            <p id="event-title"></p>
+            <p id="event-date"></p>
+            <p id="event-type"></p>
+            <p id="event-gift"></p>
         </div>
-    </form> 
+
+
+        <div class="giphy-modal hide" id="giphy-modal">
+            <h5>GIPHY</h5>
+            <ul id="giphy-options"></ul>
+        </div>
+    
+   
+
+    </div>
+    </form>
+
 
     <!-- confirmation modals -->
     <div id="confirmation-message" title="Confirm">
@@ -165,4 +192,4 @@
     <script src="./assets/scripts/script.js"></script>
 </body>
 
-</html> 
+</html>
