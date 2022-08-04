@@ -31,7 +31,7 @@
 
 .container {
   position: relative;
-  width:50%;
+  width:  auto !important;
   max-width: 100% !important;
   margin: 2%;
   padding: 0;
