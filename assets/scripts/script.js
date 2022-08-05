@@ -40,7 +40,7 @@ fetch(giphyAPI + '?q=' + eventType + '&limit=10&api_key=' + giphyKEY)
         })
         .catch((err) => { });
 
-}
+})}
 
 function displayGifs(gifData) {
     var tab3 = document.getElementById('test-2');
