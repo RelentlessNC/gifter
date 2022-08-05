@@ -232,6 +232,8 @@ function upcomingEvents() {
     let upcomingMessage = upcomingEventsEl[0].message;
     let upcomingBrand = upcomingEventsEl[0].brand;
     let upcomingAmount = upcomingEventsEl[0].amount;
+  
+    
 
     console.log(upcomingTitle);
 
