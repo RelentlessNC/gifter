@@ -4,15 +4,74 @@
     --color3: #764ba2;
     --color3RGBA: rgba(116, 79, 168, 0.75);
     --color4: #8E37D7;
+
+    --orange: #ffad00;
+    --darkPurple: #8303ab;
+    --opGradient:linear-gradient(to bottom right, #8303ab, #ffad00);
 }
 
-/* html,
-body {
-    margin: 2%;
-} */
-
 .container{
-    margin: 0;
+    margin: 0 2%;
+}
+
+header ul {
+    display:flex;
+    align-items: center;
+}
+
+header ul li {
+	display: inline;
+	float: left;
+	position: relative;
+	margin: 0;
+    padding-left:5px;
+    padding-right: 5p;
+	
+	list-style-type: none;
+}
+
+header ul li a {
+	display: inline-block;
+	padding: 14px 16px;
+	
+	color: white;
+	font-size: 1.7rem;
+	text-decoration: none;
+	
+	transition: 0.2s;
+}
+
+.navigation{
+    display:flex;
+    justify-content: end;
+}
+
+#logo {
+    height:50px;
+}
+
+.navBar{
+    margin:0 5% 0;
+}
+
+.tabs, .tabs::after, .tabs:active {
+    background-image: linear-gradient(to bottom right, #8303ab, #ffad00);
+    color:white;
+}
+
+.title {
+    font-family: 'noto-serif', 'serif';
+}
+
+.ui-state-default a:link,
+ .ui-state-default a:visited, a.ui-button, a:link.ui-button,
+  a:visited.ui-button{
+    color:white;
+    
+}
+
+.tabsList li a:active {
+    color:white;
 }
 
 h1,
@@ -20,12 +79,10 @@ h4 {
     text-align: center;
 }
 
-header{
-    border-bottom: 4px solid black;
-    margin-bottom: 2%;
-    z-index:1;
+button, .button {
     color:white;
 }
+
 
 .add-event:hover {
     color:white;
@@ -40,6 +97,9 @@ header{
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
+    margin-bottom: 2%;
+    z-index:1;
+    color:white;
 }
 
 .btn {
@@ -54,8 +114,8 @@ header{
 }
 
 .upcoming-main-box {
-    border-style: solid;
-    border-width: 4px;
+    /* border-style: solid;
+    border-width: 4px; */
     box-sizing: border-box;
     padding: 10px;
     text-align: center;
@@ -160,6 +220,10 @@ header{
 
 .btn-hover:focus {
     outline: none;
+}
+
+.btn::after{
+    color:white;
 }
 
 .btn-hover.color-3 {
