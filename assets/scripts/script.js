@@ -9,8 +9,6 @@ var allBrands = [];
 var allEvents = [];
 const eventType = 'rabbit'; //document.getElementById('etype').value;
 
-retrieveEvents()
-
 
 // Fetch the GIPHY API and retrieve the GIFS
 fetch(giphyAPI + '?q=' + eventType + '&limit=10&api_key=' + giphyKEY)
