@@ -36,7 +36,7 @@
         <h1 class="title">Gifter</h1>
 
 
-<body onload="dateReminder()">
+<body onload="retrieveEvents(),reminderModal()">
     <header class="bannerImage">
 
         <h1>Gifter</h1>
@@ -55,14 +55,15 @@
                 <li><a class="tabs" href="#tabs-1">Upcoming Events</a></li>
                 <li><a class="tabs" href="#tabs-2">Past Events</a></li>
                 <li><a class="tabs" href="#tabs-3">Other</a></li>
+
                 </ul>
                 <div id="tabs-1">
-                    <div class ="upcoming-main-box" id="accordion">
+                    <div class="upcoming-main-box" id="accordion">
                         <h5>Mom's birthday</h5>
-                            <ul>
-                                <li>25$ gift card to Target</li>
-                                <button class="edit-button">EDIT</button>
-                            </ul>
+                        <ul>
+                            <li>25$ gift card to Target</li>
+                            <button class="edit-button">EDIT</button>
+                        </ul>
                         <h5>Father's Day</h5>
                         <ul>
                             <li>$25 gift card to Lowes</li>
@@ -70,11 +71,16 @@
                     </div>
                 </div>
                 <div id="tabs-2">
-                <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
+                    <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa
+                        ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra
+                        nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
                 </div>
                 <div id="tabs-3">
-                <p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a, lacus.</p>
-                <p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
+                    <p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent
+                        per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a, lacus.</p>
+                    <p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra
+                        blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula
+                        velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
                 </div>
             </div>
         </div>
@@ -128,7 +134,7 @@
                 <input for="edit-other-option" id="edit-other-option" class="hide">
               </select>
         </div>
-        <div class="edit-gift-box" >
+        <div class="edit-gift-box">
             <h5>Edit your gift...</h5>
             <label for="edit-rname">Recipients Name: </label>
             <input type="text" id="edit-rname" name="edit-rname"><br>
@@ -144,22 +150,22 @@
         </div>
     </form>
 
-        <!-- REMINDER MODAL -->
-        <div class="reminder-modal hide" id="reminder-modal">
-            <h5>Event Reminder</h5>
-            <p id="event-title"></p>
-            <p id="event-date"></p>
-            <p id="event-type"></p>
-            <p id="event-gift"></p>
-        </div>
+    <!-- REMINDER MODAL -->
+    <div class="reminder-modal hide" id="reminder-modal">
+        <h5>Event Reminder</h5>
+        <p id="event-title"></p>
+        <p id="event-date"></p>
+        <p id="event-type"></p>
+        <p id="event-gift"></p>
+    </div>
 
 
-        <div class="giphy-modal hide" id="giphy-modal">
-            <h5>GIPHY</h5>
-            <ul id="giphy-options"></ul>
-        </div>
-    
-   
+    <div class="giphy-modal hide" id="giphy-modal">
+        <h5>GIPHY</h5>
+        <ul id="giphy-options"></ul>
+    </div>
+
+
 
     </div>
     </form>
