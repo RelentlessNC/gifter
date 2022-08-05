@@ -28,8 +28,7 @@ function fetchGifs(e) {
 
         })
         .catch((err) => { });
-
-};
+}
 
 function displayGifs(gifData) {
     var randGif = Math.floor(Math.random() * gifData.data.length);
