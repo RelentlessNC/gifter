@@ -9,6 +9,7 @@ var allBrands = [];
 var allEvents = [];
 const eventType = 'rabbit'; //document.getElementById('etype').value;
 
+retrieveEvents()
 
 
 // Fetch the GIPHY API and retrieve the GIFS
@@ -211,6 +212,29 @@ $(".schedule-button").on('click', function() {
     })
 })
 
+function upcomingEvents() {
+    let upcomingEventsEl = Object.values(allEvents);
+    let upcomingTitle = upcomingEventsEl[0].title;
+    let upcomingDate = upcomingEventsEl[0].date;
+    let upcomingMessage = upcomingEventsEl[0].message;
+    let upcomingBrand = upcomingEventsEl[0].brand;
+    let upcomingAmount = upcomingEventsEl[0].amount;
+
+
+    for (var i = 0; i <allEvents.length; i++){
+        let upcomingTitle = upcomingEventsEl[i].title;
+        let upcomingDate = upcomingEventsEl[i].date;
+        let upcomingMessage = upcomingEventsEl[i].message;
+        let upcomingBrand = upcomingEventsEl[i].brand;
+        let upcomingAmount = upcomingEventsEl[i].amount;
+    }
+}
+
+upcomingEvents();
+
+// Need to check all future dates against today's current date and display a reminder box if
+// event is today's date +14 days or less
+
 
 
 function retrieveEvents() {
@@ -219,6 +243,7 @@ function retrieveEvents() {
         allEvents = JSON.parse(localStorage.getItem("events"));
     }
 }
+
 
 // DISPLAY REMINDER MODAL
 function reminderModal() {
