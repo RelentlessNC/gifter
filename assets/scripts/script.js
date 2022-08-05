@@ -9,6 +9,7 @@ var allBrands = [];
 var allEvents = [];
 const eventType = 'rabbit'; //document.getElementById('etype').value;
 
+retrieveEvents()
 
 
 // Fetch the GIPHY API and retrieve the GIFS
@@ -130,7 +131,20 @@ $(".schedule-button").on('click', function() {
         amount: parentNode.children[20].value,
         message: parentNode.children[22].value
     }
+    //  search the array to see if the current object matches any objects in the array.
+    //  if there is a match, replace the existing event in the array with the current event
+    if (allEvents.find(obj => obj.title === event.title)) {
+        var location = allEvents.findIndex(obj => obj.title === event.title);
+        allEvents[location] = event;
+    } else {
+        //  if no match, then add the current event to the array
+        allEvents.push(event);
+    }
+    // save the allEvents variable to the local storage
+    localStorage.setItem('events', JSON.stringify(allEvents));
     console.log(event)
+
+
 
    
     $("#dialog-message").dialog( "close" )
@@ -201,6 +215,39 @@ $(".schedule-button").on('click', function() {
     })
 })
 
+function retrieveEvents() {
+    // get data from local storage and store it in an array
+    if (localStorage.length > 0) {
+        allEvents = JSON.parse(localStorage.getItem("events"));
+    }
+}
+
+console.log(allEvents)
+console.log('hello')
+
+function upcomingEvents() {
+    let upcomingEventsEl = Object.values(allEvents);
+    let upcomingTitle = upcomingEventsEl[0].title;
+    let upcomingDate = upcomingEventsEl[0].date;
+    let upcomingMessage = upcomingEventsEl[0].message;
+    let upcomingBrand = upcomingEventsEl[0].brand;
+    let upcomingAmount = upcomingEventsEl[0].amount;
+
+    console.log(upcomingTitle);
+
+    upcomingAmount
+
+    for (var i = 0; i <allEvents.length; i++){
+        let upcomingTitle = upcomingEventsEl[i].title;
+        let upcomingDate = upcomingEventsEl[i].date;
+        let upcomingMessage = upcomingEventsEl[i].message;
+        let upcomingBrand = upcomingEventsEl[i].brand;
+        let upcomingAmount = upcomingEventsEl[i].amount;
+    }
+}
+
+upcomingEvents();
+
 // Need to check all future dates against today's current date and display a reminder box if
 // event is today's date +14 days or less
 
@@ -232,3 +279,5 @@ function dateReminder() {
         }
     }
 }
+
+
