@@ -37,17 +37,17 @@ function displayGifs() {
 }
 
 // giftbit api
-fetch(giftbitAPI,{
-    headers: {
-        'Authorization':'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJTSEEyNTYifQ==.MytEdlNFcVp3clFCT2hrZ0Uxb1FNc2pZbWRoRjVKVmYwdlh3L2x6c0hqL1QvYTJpQ1N2cW1kc1JqOEFLWDJTMjJ0cmNzODNaSVVMOGJvcldOWTVNVkJBV1Yvb1B3ck4vZGQyMVNkcE9EN1pSMm8xeFdYbHRwd0ZPaVlsaHB2Smk=.weqw9hjbaEcLpqZlkrVMFngOntTuAIi3d09A/4dybFs=',
-    }
-})
-  .then((response) => response.json())
-  .then(function(data) {
-    allBrands = data;
-    displayBrands();
-    console.log(data);
-  });
+fetch(giftbitAPI, {
+        headers: {
+            'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJTSEEyNTYifQ==.MytEdlNFcVp3clFCT2hrZ0Uxb1FNc2pZbWRoRjVKVmYwdlh3L2x6c0hqL1QvYTJpQ1N2cW1kc1JqOEFLWDJTMjJ0cmNzODNaSVVMOGJvcldOWTVNVkJBV1Yvb1B3ck4vZGQyMVNkcE9EN1pSMm8xeFdYbHRwd0ZPaVlsaHB2Smk=.weqw9hjbaEcLpqZlkrVMFngOntTuAIi3d09A/4dybFs=',
+        }
+    })
+    .then((response) => response.json())
+    .then(function(data) {
+        allBrands = data;
+        displayBrands();
+        console.log(data);
+    });
 
 //   display giftbit options under dropdown
 function displayBrands() {
@@ -101,7 +101,7 @@ $("#etype").on('mouseout', function() {
     const selectedOption = $("#etype option:selected").val()
     let otherOption = document.getElementById("other-option")
     if (selectedOption == 'other') {
-    otherOption.classList.remove('hide')
+        otherOption.classList.remove('hide')
     } else {
         otherOption.classList.add('hide')
     }
@@ -111,7 +111,7 @@ $("#edit-etype").on('mouseout', function() {
     const selectedOption = $("#edit-etype option:selected").val()
     let otherOption = document.getElementById("edit-other-option")
     if (selectedOption == 'edit-other') {
-    otherOption.classList.remove('hide')
+        otherOption.classList.remove('hide')
     } else {
         otherOption.classList.add('hide')
     }
@@ -131,6 +131,7 @@ $(".schedule-button").on('click', function() {
         amount: parentNode.children[20].value,
         message: parentNode.children[22].value
     }
+
     //  search the array to see if the current object matches any objects in the array.
     //  if there is a match, replace the existing event in the array with the current event
     if (allEvents.find(obj => obj.title === event.title)) {
@@ -140,15 +141,11 @@ $(".schedule-button").on('click', function() {
         //  if no match, then add the current event to the array
         allEvents.push(event);
     }
+
     // save the allEvents variable to the local storage
     localStorage.setItem('events', JSON.stringify(allEvents));
-    console.log(event)
 
-
-
-   
-    $("#dialog-message").dialog( "close" )
-  
+    $("#dialog-message").dialog("close")
 
     eventModal.classList.toggle('hide')
     $("body").css("background-color", "gray");
@@ -215,16 +212,6 @@ $(".schedule-button").on('click', function() {
     })
 })
 
-function retrieveEvents() {
-    // get data from local storage and store it in an array
-    if (localStorage.length > 0) {
-        allEvents = JSON.parse(localStorage.getItem("events"));
-    }
-}
-
-console.log(allEvents)
-console.log('hello')
-
 function upcomingEvents() {
     let upcomingEventsEl = Object.values(allEvents);
     let upcomingTitle = upcomingEventsEl[0].title;
@@ -232,12 +219,7 @@ function upcomingEvents() {
     let upcomingMessage = upcomingEventsEl[0].message;
     let upcomingBrand = upcomingEventsEl[0].brand;
     let upcomingAmount = upcomingEventsEl[0].amount;
-  
-    
 
-    console.log(upcomingTitle);
-
-    upcomingAmount
 
     for (var i = 0; i <allEvents.length; i++){
         let upcomingTitle = upcomingEventsEl[i].title;
@@ -253,33 +235,54 @@ upcomingEvents();
 // Need to check all future dates against today's current date and display a reminder box if
 // event is today's date +14 days or less
 
-function dateReminder() {
+
+
+function retrieveEvents() {
+    // get data from local storage and store it in an array
     if (localStorage.length > 0) {
         allEvents = JSON.parse(localStorage.getItem("events"));
-        // get data from local storage and store it in an array
-        var today = new Date();
-        var fourteenDays = today.setDate(today.getDate() + 14);
-        for (var i = 0; i < allEvents.length; i++) {
-            console.log(i);
-            if (allEvents[i].date <= (fourteenDays)) {
-                // DISPLAY REMINDER MODAL
-                $(function() {
-                    $("#reminder-modal").dialog({
-                        modal: true,
-                        buttons: {
-                            Ok: function() {
-                                $(this).dialog("close");
-                            }
-                        }
-                    });
-                });
-                document.getElementById('event-title').textContent = 'Event: ' + allEvents[i].title;
-                document.getElementById('event-date').textContent = 'Date: ' + Date(allEvents[i].date);
-                document.getElementById('event-type').textContent = 'Type: ' + allEvents[i].type;
-                document.getElementById('event-gift').textContent = 'Gift: ' + allEvents[i].brand;
-            }
-        }
     }
 }
 
 
+// DISPLAY REMINDER MODAL
+function reminderModal() {
+    var today = new Date();
+    var fourteenDays = today.setDate(today.getDate() + 14);
+    var i = 0;
+    if (allEvents[i].date <= fourteenDays) {
+        document.getElementById('event-title').textContent = 'Event: ' + allEvents[i].title;
+        document.getElementById('event-date').textContent = 'Date: ' + Date(allEvents[i].date);
+        document.getElementById('event-type').textContent = 'Type: ' + allEvents[i].type;
+        document.getElementById('event-gift').textContent = 'Gift: ' + allEvents[i].brand;
+    }
+    $("#reminder-modal").dialog({
+        modal: true,
+        buttons: {
+            Prev: function() {
+                i--;
+                if (i > 0 && allEvents[i].date <= fourteenDays) {
+                    document.getElementById('event-title').textContent = 'Event: ' + allEvents[i].title;
+                    document.getElementById('event-date').textContent = 'Date: ' + Date(allEvents[i].date);
+                    console.log(allEvents[i]);
+                    document.getElementById('event-type').textContent = 'Type: ' + allEvents[i].type;
+                    document.getElementById('event-gift').textContent = 'Gift: ' + allEvents[i].brand;
+                } else {
+                    $(this).dialog("close");
+                }
+            },
+            Next: function() {
+                i++;
+                if (i < allEvents.length && allEvents[i].date <= fourteenDays) {
+                    document.getElementById('event-title').textContent = 'Event: ' + allEvents[i].title;
+                    document.getElementById('event-date').textContent = 'Date: ' + Date(allEvents[i].date);
+                    document.getElementById('event-type').textContent = 'Type: ' + allEvents[i].type;
+                    document.getElementById('event-gift').textContent = 'Gift: ' + allEvents[i].brand;
+                }
+            },
+            Ok: function() {
+                $(this).dialog("close");
+            }
+        }
+    });
+}
