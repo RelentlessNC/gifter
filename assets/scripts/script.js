@@ -9,10 +9,21 @@ const giftbitAPI = 'https://private-anon-b3a6e921d5-giftbit.apiary-proxy.com/pap
 var allBrands = [];
 var allEvents = [];
 
-
+selectEventTypeEl.addEventListener("change", fetchGifs)
 
 function fetchGifs(e) {
     // Fetch the GIPHY API and retrieve the GIFS
+// Fetch the GIPHY API and retrieve the GIFS
+fetch(giphyAPI + '?q=' + eventType + '&limit=10&api_key=' + giphyKEY)
+    .then(function(response) {
+        if (!response) {
+            console.log('error');
+        }
+        return response.json();
+    })
+    .then(function(data) {
+        allGiphs = data;
+        displayGifs();
 
     fetch(giphyAPI + '?q=' + e.target.value + '&limit=1&api_key=' + giphyKEY)
         .then(function (response) {
@@ -28,7 +39,6 @@ function fetchGifs(e) {
 
         })
         .catch((err) => { });
-
 
 }
 
@@ -292,5 +302,3 @@ function reminderModal() {
         }
     });
 }
-
-selectEventTypeEl.addEventListener("change", fetchGifs)

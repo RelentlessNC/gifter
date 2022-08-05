@@ -30,14 +30,14 @@
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 .container {
-    position: relative;
-    width: 100%;
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 0 20px;
-    box-sizing: border-box;
+  position: relative;
+  width:  auto !important;
+  max-width: 100% !important;
+  margin: 2%;
+  padding: 0;
+  box-sizing: border-box; 
+  
 }
-
 .column,
 .columns {
     width: 100%;
