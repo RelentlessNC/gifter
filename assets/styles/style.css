@@ -253,6 +253,10 @@ button, .button {
     background-color: rgba(116, 79, 168, 0.75);
 }
 
+.edit-button{
+    color: #555;
+}
+
 #message-box {
     width: 100%;
     max-width: 100%;
@@ -260,4 +264,4 @@ button, .button {
     margin-bottom: 30px;
     border-color: rgb(225, 224, 224);
     border-radius: 3px
-}
+  }
