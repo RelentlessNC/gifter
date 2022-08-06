@@ -165,6 +165,13 @@ $(".schedule-button").on('click', function() {
                     // script for congrats modal when confirm is clicked
                     click: function() {
                         $(this).dialog("close");
+                        // add events to accordion here
+                        var accordionEvent = document.getElementById('accordion');
+                        var h5 = document.createElement('h5');
+                        var accUl = document.createElement('ul');
+                        h5.innerHTML = allEvents[allEvents.length-1].title;
+                        accordionEvent.appendChild(h5);
+                        
                         $("#congrats-message").css("visibility", "visible");
                         $(function() {
                             $("#congrats-message").dialog({
