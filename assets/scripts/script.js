@@ -251,10 +251,7 @@ function reminderModal() {
     var i = 0;
     // if no gift selected, then event-gift content = '';
     if (allEvents[i].date <= fourteenDays) {
-        document.getElementById('event-title').textContent = 'Event: ' + allEvents[i].title;
-        document.getElementById('event-date').textContent = 'Date: ' + new Date(allEvents[i].date);
-        document.getElementById('event-type').textContent = 'Type: ' + allEvents[i].type;
-        document.getElementById('event-gift').textContent = 'Gift: ' + allEvents[i].brand;
+        within2Weeks(i, fourteenDays);
     }
     $("#reminder-modal").dialog({
         modal: true,
@@ -263,33 +260,26 @@ function reminderModal() {
                 if (i > 0) {
                     i--;
                     console.log(i);
-                    if (i >= 0 && allEvents[i].date <= fourteenDays) {
-                        document.getElementById('event-title').textContent = 'Event: ' + allEvents[i].title;
-                        document.getElementById('event-date').textContent = 'Date: ' + new Date(allEvents[i].date);
-                        document.getElementById('event-type').textContent = 'Type: ' + allEvents[i].type;
-                        document.getElementById('event-gift').textContent = 'Gift: ' + allEvents[i].brand;
-                    } else if (i >= 0 && allEvents[i].date > fourteenDays) {
-                        document.getElementById('event-title').textContent = allEvents[i].title;
-                        document.getElementById('event-date').textContent = '';
-                        document.getElementById('event-type').textContent = '';
-                        document.getElementById('event-gift').textContent = 'Event is not within the next 2 weeks.';
+                    if (allEvents[i].date <= fourteenDays) {
+                        within2Weeks(i, fourteenDays);
+                    } else if (allEvents[i].date > fourteenDays) {
+                        notWithin2Weeks(i, fourteenDays);
+                    }
+                } else if (i == 0) {
+                    if (allEvents[i].date <= fourteenDays) {
+                        within2Weeks(i, fourteenDays);
+                    } else if (allEvents[i].date > fourteenDays) {
+                        notWithin2Weeks(i, fourteenDays);
                     }
                 }
             },
             Next: function() {
-                if (i < allEvents.length) {
-                    i++;
-                    console.log(i);
-                    if (i < allEvents.length && allEvents[i].date <= fourteenDays) {
-                        document.getElementById('event-title').textContent = 'Event: ' + allEvents[i].title;
-                        document.getElementById('event-date').textContent = 'Date: ' + new Date(allEvents[i].date);
-                        document.getElementById('event-type').textContent = 'Type: ' + allEvents[i].type;
-                        document.getElementById('event-gift').textContent = 'Gift: ' + allEvents[i].brand;
-                    } else if (i < allEvents.length && allEvents[i].date > fourteenDays) {
-                        document.getElementById('event-title').textContent = allEvents[i].title;
-                        document.getElementById('event-date').textContent = '';
-                        document.getElementById('event-type').textContent = '';
-                        document.getElementById('event-gift').textContent = 'Event is not within the next 2 weeks.';
+                if (i < allEvents.length - 1) {
+                    if (allEvents[i].date <= fourteenDays) {
+                        i++;
+                        within2Weeks(i, fourteenDays);
+                    } else if (allEvents[i].date > fourteenDays) {
+                        notWithin2Weeks(i, fourteenDays);
                     }
                 }
             },
@@ -298,4 +288,19 @@ function reminderModal() {
             }
         }
     });
+}
+
+function within2Weeks(i, fourteenDays) {
+    document.getElementById('event-title').textContent = 'Event: ' + allEvents[i].title;
+    document.getElementById('event-date').textContent = 'Date: ' + new Date(allEvents[i].date);
+    document.getElementById('event-type').textContent = 'Type: ' + allEvents[i].type;
+    document.getElementById('event-gift').textContent = 'Gift: ' + allEvents[i].brand;
+}
+
+//
+function notWithin2Weeks(i, fourteenDays) {
+    document.getElementById('event-title').textContent = '';
+    document.getElementById('event-date').textContent = '';
+    document.getElementById('event-type').textContent = '';
+    document.getElementById('event-gift').textContent = 'The remaining events are not within the next 2 weeks.';
 }
