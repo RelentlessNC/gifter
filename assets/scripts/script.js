@@ -19,19 +19,19 @@ function fetchGifs(e) {
     // Fetch the GIPHY API and retrieve the GIFS
 
     fetch(giphyAPI + '?q=' + e.target.value + '&api_key=' + giphyKEY)
-        .then(function (response) {
+        .then(function(response) {
             if (!response) {
                 console.log('error');
             }
             return response.json();
         })
-        .then(function (data) {
+        .then(function(data) {
             // allGiphs = data;
             displayGifs(data);
             // console.log(allGiphs)
 
         })
-        .catch((err) => { });
+        .catch((err) => {});
 }
 
 function displayGifs(gifData) {
@@ -223,33 +223,39 @@ $(".schedule-button").on('click', function() {
 function upcomingEvents() {
     let upcomingEventsEl = Object.values(allEvents);
     let accordionDiv = document.getElementById('accordion')
-
-    for (var i = 0; i <allEvents.length; i++){
-        var eventDate = new Date(upcomingEventsEl[i].date)
-        let ul = document.createElement('ul');
-        let h5 = document.createElement('h5');
-        let div = document.createElement('div')
-        let lineDate = document.createElement('li');
-        let lineMessage = document.createElement('li');
-        let lineBrand = document.createElement('li');
-        let lineAmount = document.createElement('li');
-        let lineName = document.createElement('li');
-        let lineEmail = document.createElement('li');
-        h5.innerText = upcomingEventsEl[i].title;
-        lineName.innerText = upcomingEventsEl[i].name;
-        lineEmail.innerText = upcomingEventsEl[i].email;
-        lineDate.innerText = eventDate;
-        lineMessage.innerText = upcomingEventsEl[i].message;
-        lineBrand.innerText = upcomingEventsEl[i].brand;
-        lineAmount.innerText = upcomingEventsEl[i].amount;
-        ul.appendChild(lineName);
-        ul.appendChild(lineEmail);
-        ul.appendChild(lineDate);
-        ul.appendChild(lineMessage);
-        ul.appendChild(lineBrand);
-        ul.appendChild(lineAmount);
-        accordionDiv.appendChild(h5);
-        accordionDiv.appendChild(ul);
+    for (var i = 0; i < allEvents.length; i++) {
+        let upcomingTitle = upcomingEventsEl[i].title;
+        let upcomingDate = upcomingEventsEl[i].date;
+        let upcomingMessage = upcomingEventsEl[i].message;
+        let upcomingBrand = upcomingEventsEl[i].brand;
+        let upcomingAmount = upcomingEventsEl[i].amount;
+        for (var i = 0; i < allEvents.length; i++) {
+            var eventDate = new Date(upcomingEventsEl[i].date)
+            let ul = document.createElement('ul');
+            let h5 = document.createElement('h5');
+            let div = document.createElement('div')
+            let lineDate = document.createElement('li');
+            let lineMessage = document.createElement('li');
+            let lineBrand = document.createElement('li');
+            let lineAmount = document.createElement('li');
+            let lineName = document.createElement('li');
+            let lineEmail = document.createElement('li');
+            h5.innerText = upcomingEventsEl[i].title;
+            lineName.innerText = upcomingEventsEl[i].name;
+            lineEmail.innerText = upcomingEventsEl[i].email;
+            lineDate.innerText = eventDate;
+            lineMessage.innerText = upcomingEventsEl[i].message;
+            lineBrand.innerText = upcomingEventsEl[i].brand;
+            lineAmount.innerText = upcomingEventsEl[i].amount;
+            ul.appendChild(lineName);
+            ul.appendChild(lineEmail);
+            ul.appendChild(lineDate);
+            ul.appendChild(lineMessage);
+            ul.appendChild(lineBrand);
+            ul.appendChild(lineAmount);
+            accordionDiv.appendChild(h5);
+            accordionDiv.appendChild(ul);
+        }
     }
 }
 
@@ -264,6 +270,7 @@ function retrieveEvents() {
     // get data from local storage and store it in an array
     if (localStorage.length > 0) {
         allEvents = JSON.parse(localStorage.getItem("events"));
+        allEvents.sort((a, b) => a.date - b.date);
     }
 }
 
@@ -273,39 +280,58 @@ function reminderModal() {
     var today = new Date();
     var fourteenDays = today.setDate(today.getDate() + 14);
     var i = 0;
+    // if no gift selected, then event-gift content = '';
     if (allEvents[i].date <= fourteenDays) {
-        document.getElementById('event-title').textContent = 'Event: ' + allEvents[i].title;
-        document.getElementById('event-date').textContent = 'Date: ' + Date(allEvents[i].date);
-        document.getElementById('event-type').textContent = 'Type: ' + allEvents[i].type;
-        document.getElementById('event-gift').textContent = 'Gift: ' + allEvents[i].brand;
+        within2Weeks(i, fourteenDays);
     }
     $("#reminder-modal").dialog({
         modal: true,
         buttons: {
             Prev: function() {
-                i--;
-                if (i > 0 && allEvents[i].date <= fourteenDays) {
-                    document.getElementById('event-title').textContent = 'Event: ' + allEvents[i].title;
-                    document.getElementById('event-date').textContent = 'Date: ' + Date(allEvents[i].date);
-                    console.log(allEvents[i]);
-                    document.getElementById('event-type').textContent = 'Type: ' + allEvents[i].type;
-                    document.getElementById('event-gift').textContent = 'Gift: ' + allEvents[i].brand;
-                } else {
-                    $(this).dialog("close");
+                if (i > 0) {
+                    i--;
+                    console.log(i);
+                    if (allEvents[i].date <= fourteenDays) {
+                        within2Weeks(i, fourteenDays);
+                    } else if (allEvents[i].date > fourteenDays) {
+                        notWithin2Weeks(i, fourteenDays);
+                    }
+                } else if (i == 0) {
+                    if (allEvents[i].date <= fourteenDays) {
+                        within2Weeks(i, fourteenDays);
+                    } else if (allEvents[i].date > fourteenDays) {
+                        notWithin2Weeks(i, fourteenDays);
+                    }
                 }
             },
             Next: function() {
-                i++;
-                if (i < allEvents.length && allEvents[i].date <= fourteenDays) {
-                    document.getElementById('event-title').textContent = 'Event: ' + allEvents[i].title;
-                    document.getElementById('event-date').textContent = 'Date: ' + Date(allEvents[i].date);
-                    document.getElementById('event-type').textContent = 'Type: ' + allEvents[i].type;
-                    document.getElementById('event-gift').textContent = 'Gift: ' + allEvents[i].brand;
+                if (i < allEvents.length - 1) {
+                    if (allEvents[i].date <= fourteenDays) {
+                        i++;
+                        within2Weeks(i, fourteenDays);
+                    } else if (allEvents[i].date > fourteenDays) {
+                        notWithin2Weeks(i, fourteenDays);
+                    }
                 }
             },
-            Ok: function() {
+            Close: function() {
                 $(this).dialog("close");
             }
         }
     });
+}
+
+function within2Weeks(i, fourteenDays) {
+    document.getElementById('event-title').textContent = 'Event: ' + allEvents[i].title;
+    document.getElementById('event-date').textContent = 'Date: ' + new Date(allEvents[i].date);
+    document.getElementById('event-type').textContent = 'Type: ' + allEvents[i].type;
+    document.getElementById('event-gift').textContent = 'Gift: ' + allEvents[i].brand;
+}
+
+//
+function notWithin2Weeks(i, fourteenDays) {
+    document.getElementById('event-title').textContent = '';
+    document.getElementById('event-date').textContent = '';
+    document.getElementById('event-type').textContent = '';
+    document.getElementById('event-gift').textContent = 'The remaining events are not within the next 2 weeks.';
 }
