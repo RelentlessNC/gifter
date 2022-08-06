@@ -9,7 +9,11 @@ const giftbitAPI = 'https://private-anon-b3a6e921d5-giftbit.apiary-proxy.com/pap
 var allBrands = [];
 var allEvents = [];
 
+
+retrieveEvents()
+
 selectEventTypeEl.addEventListener("change", fetchGifs)
+
 
 function fetchGifs(e) {
     // Fetch the GIPHY API and retrieve the GIFS
@@ -149,6 +153,7 @@ $(".schedule-button").on('click', function() {
     localStorage.setItem('events', JSON.stringify(allEvents));
 
     $("#dialog-message").dialog("close")
+    retrieveEvents();
 
     eventModal.classList.toggle('hide')
     $("body").css("background-color", "gray");
@@ -217,19 +222,34 @@ $(".schedule-button").on('click', function() {
 
 function upcomingEvents() {
     let upcomingEventsEl = Object.values(allEvents);
-    let upcomingTitle = upcomingEventsEl[0].title;
-    let upcomingDate = upcomingEventsEl[0].date;
-    let upcomingMessage = upcomingEventsEl[0].message;
-    let upcomingBrand = upcomingEventsEl[0].brand;
-    let upcomingAmount = upcomingEventsEl[0].amount;
-
+    let accordionDiv = document.getElementById('accordion')
 
     for (var i = 0; i <allEvents.length; i++){
-        let upcomingTitle = upcomingEventsEl[i].title;
-        let upcomingDate = upcomingEventsEl[i].date;
-        let upcomingMessage = upcomingEventsEl[i].message;
-        let upcomingBrand = upcomingEventsEl[i].brand;
-        let upcomingAmount = upcomingEventsEl[i].amount;
+        var eventDate = new Date(upcomingEventsEl[i].date)
+        let ul = document.createElement('ul');
+        let h5 = document.createElement('h5');
+        let div = document.createElement('div')
+        let lineDate = document.createElement('li');
+        let lineMessage = document.createElement('li');
+        let lineBrand = document.createElement('li');
+        let lineAmount = document.createElement('li');
+        let lineName = document.createElement('li');
+        let lineEmail = document.createElement('li');
+        h5.innerText = upcomingEventsEl[i].title;
+        lineName.innerText = upcomingEventsEl[i].name;
+        lineEmail.innerText = upcomingEventsEl[i].email;
+        lineDate.innerText = eventDate;
+        lineMessage.innerText = upcomingEventsEl[i].message;
+        lineBrand.innerText = upcomingEventsEl[i].brand;
+        lineAmount.innerText = upcomingEventsEl[i].amount;
+        ul.appendChild(lineName);
+        ul.appendChild(lineEmail);
+        ul.appendChild(lineDate);
+        ul.appendChild(lineMessage);
+        ul.appendChild(lineBrand);
+        ul.appendChild(lineAmount);
+        accordionDiv.appendChild(h5);
+        accordionDiv.appendChild(ul);
     }
 }
 
