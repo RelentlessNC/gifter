@@ -270,7 +270,9 @@ function retrieveEvents() {
     // get data from local storage and store it in an array
     if (localStorage.length > 0) {
         allEvents = JSON.parse(localStorage.getItem("events"));
-        allEvents.sort((a, b) => a.date - b.date);
+        if (allEvents != null) {
+            allEvents.sort((a, b) => a.date - b.date);
+        }
     }
 }
 
