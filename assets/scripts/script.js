@@ -1,39 +1,46 @@
 const eventModal = document.getElementById("dialog-message")
 const editBox = document.getElementById("edit-box")
 const giphyAPI = 'https://api.giphy.com/v1/gifs/search';
+const selectEventTypeEl = document.getElementById("etype");
 const giphyKEY = 'PVW7bT7xE7oiwvc3VLc9oHgGuFdSrfUb';
 const giftbitKey = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJTSEEyNTYifQ==.MytEdlNFcVp3clFCT2hrZ0Uxb1FNc2pZbWRoRjVKVmYwdlh3L2x6c0hqL1QvYTJpQ1N2cW1kc1JqOEFLWDJTMjJ0cmNzODNaSVVMOGJvcldOWTVNVkJBV1Yvb1B3ck4vZGQyMVNkcE9EN1pSMm8xeFdYbHRwd0ZPaVlsaHB2Smk=.weqw9hjbaEcLpqZlkrVMFngOntTuAIi3d09A/4dybFs=';
 const giftbitAPI = 'https://private-anon-b3a6e921d5-giftbit.apiary-proxy.com/papi/v1/brands';
-var allGiphs = [];
+// var allGiphs = [];
 var allBrands = [];
 var allEvents = [];
-const eventType = 'rabbit'; //document.getElementById('etype').value;
+
 
 retrieveEvents()
-console.log(allEvents)
 
-// Fetch the GIPHY API and retrieve the GIFS
-fetch(giphyAPI + '?q=' + eventType + '&limit=10&api_key=' + giphyKEY)
-    .then(function(response) {
-        if (!response) {
-            console.log('error');
-        }
-        return response.json();
-    })
-    .then(function(data) {
-        allGiphs = data;
-        displayGifs();
+selectEventTypeEl.addEventListener("change", fetchGifs)
 
-    })
-    .catch((err) => {});
 
-function displayGifs() {
-    var tab3 = document.getElementById('tabs-3');
-    for (var i = 0; i < allGiphs.data.length; i++) {
-        var img = document.createElement('img');
-        img.setAttribute('src', allGiphs.data[i].images.downsized.url);
-        tab3.appendChild(img);
-    }
+function fetchGifs(e) {
+    // Fetch the GIPHY API and retrieve the GIFS
+
+    fetch(giphyAPI + '?q=' + e.target.value + '&api_key=' + giphyKEY)
+        .then(function (response) {
+            if (!response) {
+                console.log('error');
+            }
+            return response.json();
+        })
+        .then(function (data) {
+            // allGiphs = data;
+            displayGifs(data);
+            // console.log(allGiphs)
+
+        })
+        .catch((err) => { });
+}
+
+function displayGifs(gifData) {
+    var randGif = Math.floor(Math.random() * gifData.data.length);
+    var textbox = document.getElementById('test-2');
+    textbox.innerHTML = "";
+    var img = document.createElement('img');
+    img.setAttribute('src', gifData.data[randGif].images.fixed_height_small.url);
+    textbox.appendChild(img);
 }
 
 // giftbit api
