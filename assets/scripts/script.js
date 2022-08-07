@@ -95,11 +95,18 @@ $(".add-event").on('click', function() {
     });
 })
 
-//edit button event listener
-$(".edit-button").on('click', function() {
-    console.log('hello')
-    editBox.classList.toggle('hide')
-})
+const wrapper = document.getElementById('accordion');
+
+wrapper.addEventListener('click', (event) => {
+  const isButton = event.target.nodeName === 'BUTTON';
+  if (!isButton) {
+    return;
+  }
+  //edit button event listener
+console.log('hello')
+editBox.classList.toggle('hide')
+});
+
 
 $("#etype").on('mouseout', function() {
     const selectedOption = $("#etype option:selected").val()
@@ -220,39 +227,37 @@ $(".schedule-button").on('click', function() {
 function upcomingEvents() {
     let upcomingEventsEl = Object.values(allEvents);
     let accordionDiv = document.getElementById('accordion')
-    for (var i = 0; i < allEvents.length; i++) {
-        let upcomingTitle = upcomingEventsEl[i].title;
-        let upcomingDate = upcomingEventsEl[i].date;
-        let upcomingMessage = upcomingEventsEl[i].message;
-        let upcomingBrand = upcomingEventsEl[i].brand;
-        let upcomingAmount = upcomingEventsEl[i].amount;
-        for (var i = 0; i < allEvents.length; i++) {
-            var eventDate = new Date(upcomingEventsEl[i].date)
-            let ul = document.createElement('ul');
-            let h5 = document.createElement('h5');
-            let div = document.createElement('div')
-            let lineDate = document.createElement('li');
-            let lineMessage = document.createElement('li');
-            let lineBrand = document.createElement('li');
-            let lineAmount = document.createElement('li');
-            let lineName = document.createElement('li');
-            let lineEmail = document.createElement('li');
-            h5.innerText = upcomingEventsEl[i].title;
-            lineName.innerText = upcomingEventsEl[i].name;
-            lineEmail.innerText = upcomingEventsEl[i].email;
-            lineDate.innerText = eventDate;
-            lineMessage.innerText = upcomingEventsEl[i].message;
-            lineBrand.innerText = upcomingEventsEl[i].brand;
-            lineAmount.innerText = upcomingEventsEl[i].amount;
-            ul.appendChild(lineName);
-            ul.appendChild(lineEmail);
-            ul.appendChild(lineDate);
-            ul.appendChild(lineMessage);
-            ul.appendChild(lineBrand);
-            ul.appendChild(lineAmount);
-            accordionDiv.appendChild(h5);
-            accordionDiv.appendChild(ul);
-        }
+
+    for (var i = 0; i <allEvents.length; i++){
+        var eventDate = new Date(upcomingEventsEl[i].date)
+        let ul = document.createElement('ul');
+        let h5 = document.createElement('h5');
+        let div = document.createElement('div')
+        let lineDate = document.createElement('li');
+        let lineMessage = document.createElement('li');
+        let lineBrand = document.createElement('li');
+        let lineAmount = document.createElement('li');
+        let lineName = document.createElement('li');
+        let lineEmail = document.createElement('li');
+        let lineButton = document.createElement('button');
+        lineButton.setAttribute('class','edit-button');
+        lineButton.textContent = 'Edit'
+        h5.innerText = upcomingEventsEl[i].title;
+        lineName.innerText = upcomingEventsEl[i].name;
+        lineEmail.innerText = upcomingEventsEl[i].email;
+        lineDate.innerText = eventDate;
+        lineMessage.innerText = upcomingEventsEl[i].message;
+        lineBrand.innerText = upcomingEventsEl[i].brand;
+        lineAmount.innerText = upcomingEventsEl[i].amount;
+        ul.appendChild(lineName);
+        ul.appendChild(lineEmail);
+        ul.appendChild(lineDate);
+        ul.appendChild(lineMessage);
+        ul.appendChild(lineBrand);
+        ul.appendChild(lineAmount);
+        ul.appendChild(lineButton);
+        accordionDiv.appendChild(h5);
+        accordionDiv.appendChild(ul);
     }
 }
 
