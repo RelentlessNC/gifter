@@ -9,6 +9,7 @@ var allBrands = [];
 var allEvents = [];
 
 
+
 retrieveEvents()
 
 selectEventTypeEl.addEventListener("change", fetchGifs)
@@ -77,7 +78,7 @@ $(function() {
 
 //accordion jQuery function
 $(function() {
-    $("#accordion").accordion();
+    $("#accordion, #accordion2").accordion();
 });
 
 //event listener for Add Event - toggles hide for event modal box
@@ -224,6 +225,7 @@ $(".schedule-button").on('click', function() {
     })
 })
 
+//this function will populate the information from the event modal to the upcoming events tab.
 function upcomingEvents() {
     let upcomingEventsEl = Object.values(allEvents);
     let accordionDiv = document.getElementById('accordion')
@@ -262,6 +264,48 @@ function upcomingEvents() {
 }
 
 upcomingEvents();
+
+function pastEvents() {
+    let pastEventDiv = document.getElementById('accordion2')
+    let pastEventsEl = Object.values(allEvents);
+    var setDate = new Date();
+    var todayDate = setDate.setDate(setDate.getDate());
+    var i = 0
+    if (pastEventsEl[i].date < todayDate ) {
+        for (var i = 0; i <allEvents.length; i++){
+            var eventDate = new Date(pastEventsEl[i].date)
+            let ul = document.createElement('ul');
+            let h5 = document.createElement('h5');
+            let div = document.createElement('div')
+            let lineDate = document.createElement('li');
+            let lineMessage = document.createElement('li');
+            let lineBrand = document.createElement('li');
+            let lineAmount = document.createElement('li');
+            let lineName = document.createElement('li');
+            let lineEmail = document.createElement('li');
+            h5.innerText = pastEventsEl[i].title;
+            lineName.innerText = pastEventsEl[i].name;
+            lineEmail.innerText = pastEventsEl[i].email;
+            lineDate.innerText = eventDate;
+            lineMessage.innerText = pastEventsEl[i].message;
+            lineBrand.innerText = pastEventsEl[i].brand;
+            lineAmount.innerText = pastEventsEl[i].amount;
+            ul.appendChild(lineName);
+            ul.appendChild(lineEmail);
+            ul.appendChild(lineDate);
+            ul.appendChild(lineMessage);
+            ul.appendChild(lineBrand);
+            ul.appendChild(lineAmount);
+            console.log(ul.appendChild(lineAmount))
+            pastEventDiv.appendChild(h5);
+            pastEventDiv.appendChild(ul);
+        }
+    }
+}
+
+pastEvents()
+
+
 
 // Need to check all future dates against today's current date and display a reminder box if
 // event is today's date +14 days or less

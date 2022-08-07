@@ -252,8 +252,23 @@ button,
     background-color: rgba(116, 79, 168, 0.75);
 }
 
-.edit-button {
+
+#accordion2 h5 {
+    background-color: rgba(116, 79, 168, 0.75);
+    display: flex;
+    justify-content: center;
+}
+
+#accordion2 ul{
+    text-align: center;
+}
+
+.edit-button{
     color: #555;
+}
+
+.ui-accordion-content {
+    min-height: 177px; 
 }
 
 #message-box {
@@ -264,3 +279,4 @@ button,
     border-color: rgb(225, 224, 224);
     border-radius: 3px
   }
+
