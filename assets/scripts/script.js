@@ -186,6 +186,7 @@ $(".schedule-button").on('click', function() {
                                         "class": 'modalButtonClass',
                                         click: function() {
                                             $(this).dialog("close");
+                                            window.location.reload(true);
                                             $("body").css("background-color", "transparent");
                                         }
                                     },
