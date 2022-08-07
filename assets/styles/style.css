@@ -256,6 +256,11 @@ button,
     color: #555;
 }
 
-.test-2 {
-    background-color: #8E37D7;
-}
+#message-box {
+    width: 100%;
+    max-width: 100%;
+    border-style: solid;
+    margin-bottom: 30px;
+    border-color: rgb(225, 224, 224);
+    border-radius: 3px
+  }
