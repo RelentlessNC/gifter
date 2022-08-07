@@ -98,11 +98,18 @@ $(".add-event").on('click', function() {
     });
 })
 
-//edit button event listener
-$(".edit-button").on('click', function() {
-    console.log('hello')
-    editBox.classList.toggle('hide')
-})
+const wrapper = document.getElementById('accordion');
+
+wrapper.addEventListener('click', (event) => {
+  const isButton = event.target.nodeName === 'BUTTON';
+  if (!isButton) {
+    return;
+  }
+  //edit button event listener
+console.log('hello')
+editBox.classList.toggle('hide')
+});
+
 
 $("#etype").on('mouseout', function() {
     const selectedOption = $("#etype option:selected").val()
@@ -235,6 +242,9 @@ function upcomingEvents() {
         let lineAmount = document.createElement('li');
         let lineName = document.createElement('li');
         let lineEmail = document.createElement('li');
+        let lineButton = document.createElement('button');
+        lineButton.setAttribute('class','edit-button');
+        lineButton.textContent = 'Edit'
         h5.innerText = upcomingEventsEl[i].title;
         lineName.innerText = upcomingEventsEl[i].name;
         lineEmail.innerText = upcomingEventsEl[i].email;
@@ -248,6 +258,7 @@ function upcomingEvents() {
         ul.appendChild(lineMessage);
         ul.appendChild(lineBrand);
         ul.appendChild(lineAmount);
+        ul.appendChild(lineButton);
         accordionDiv.appendChild(h5);
         accordionDiv.appendChild(ul);
     }
