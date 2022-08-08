@@ -6,7 +6,10 @@ const giphyKEY = 'PVW7bT7xE7oiwvc3VLc9oHgGuFdSrfUb';
 const giftbitKey = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJTSEEyNTYifQ==.MytEdlNFcVp3clFCT2hrZ0Uxb1FNc2pZbWRoRjVKVmYwdlh3L2x6c0hqL1QvYTJpQ1N2cW1kc1JqOEFLWDJTMjJ0cmNzODNaSVVMOGJvcldOWTVNVkJBV1Yvb1B3ck4vZGQyMVNkcE9EN1pSMm8xeFdYbHRwd0ZPaVlsaHB2Smk=.weqw9hjbaEcLpqZlkrVMFngOntTuAIi3d09A/4dybFs=';
 const giftbitAPI = 'https://private-anon-b3a6e921d5-giftbit.apiary-proxy.com/papi/v1/brands';
 var allBrands = [];
-var allEvents = [];
+var allEventsArray = [];
+var today = new Date();
+var todayUnix = Date.parse(today);
+var fourteenDays = today.setDate(today.getDate() + 14);
 
 
 
@@ -99,13 +102,13 @@ $(".add-event").on('click', function() {
 const wrapper = document.getElementById('accordion');
 
 wrapper.addEventListener('click', (event) => {
-  const isButton = event.target.nodeName === 'BUTTON';
-  if (!isButton) {
-    return;
-  }
-  //edit button event listener
-console.log('hello')
-editBox.classList.toggle('hide')
+    const isButton = event.target.nodeName === 'BUTTON';
+    if (!isButton) {
+        return;
+    }
+    //edit button event listener
+    console.log('hello')
+    editBox.classList.toggle('hide')
 });
 
 
@@ -146,16 +149,16 @@ $(".schedule-button").on('click', function() {
 
     //  search the array to see if the current object matches any objects in the array.
     //  if there is a match, replace the existing event in the array with the current event
-    if (allEvents.find(obj => obj.title === event.title)) {
-        var location = allEvents.findIndex(obj => obj.title === event.title);
-        allEvents[location] = event;
+    if (allEventsArray.find(obj => obj.title === event.title)) {
+        var location = allEventsArray.findIndex(obj => obj.title === event.title);
+        allEventsArray[location] = event;
     } else {
         //  if no match, then add the current event to the array
-        allEvents.push(event);
+        allEventsArray.push(event);
     }
 
-    // save the allEvents variable to the local storage
-    localStorage.setItem('events', JSON.stringify(allEvents));
+    // save the allEventsArray variable to the local storage
+    localStorage.setItem('events', JSON.stringify(allEventsArray));
 
     $("#dialog-message").dialog("close")
     retrieveEvents();
@@ -228,10 +231,10 @@ $(".schedule-button").on('click', function() {
 
 //this function will populate the information from the event modal to the upcoming events tab.
 function upcomingEvents() {
-    let upcomingEventsEl = Object.values(allEvents);
+    let upcomingEventsEl = Object.values(allEventsArray);
     let accordionDiv = document.getElementById('accordion')
 
-    for (var i = 0; i <allEvents.length; i++){
+    for (var i = 0; i < allEventsArray.length; i++) {
         var eventDate = new Date(upcomingEventsEl[i].date)
         let ul = document.createElement('ul');
         let h5 = document.createElement('h5');
@@ -243,7 +246,7 @@ function upcomingEvents() {
         let lineName = document.createElement('li');
         let lineEmail = document.createElement('li');
         let lineButton = document.createElement('button');
-        lineButton.setAttribute('class','edit-button');
+        lineButton.setAttribute('class', 'edit-button');
         lineButton.textContent = 'Edit'
         h5.innerText = upcomingEventsEl[i].title;
         lineName.innerText = upcomingEventsEl[i].name;
@@ -268,13 +271,9 @@ upcomingEvents();
 
 function pastEvents() {
     let pastEventDiv = document.getElementById('accordion2')
-    let pastEventsEl = Object.values(allEvents);
-    var setDate = new Date();
-    var todayDate = setDate.setDate(setDate.getDate());
-    var i = 0
-    if (pastEventsEl[i].date < todayDate ) {
-        for (var i = 0; i <allEvents.length; i++){
-            var eventDate = new Date(pastEventsEl[i].date)
+    var today = Date.parse(new Date);
+    for (var i = 0; i < allEventsArray.length; i++) {
+        if (allEventsArray[i].date < today) {
             let ul = document.createElement('ul');
             let h5 = document.createElement('h5');
             let div = document.createElement('div')
@@ -284,25 +283,26 @@ function pastEvents() {
             let lineAmount = document.createElement('li');
             let lineName = document.createElement('li');
             let lineEmail = document.createElement('li');
-            h5.innerText = pastEventsEl[i].title;
-            lineName.innerText = pastEventsEl[i].name;
-            lineEmail.innerText = pastEventsEl[i].email;
-            lineDate.innerText = eventDate;
-            lineMessage.innerText = pastEventsEl[i].message;
-            lineBrand.innerText = pastEventsEl[i].brand;
-            lineAmount.innerText = pastEventsEl[i].amount;
+            h5.innerText = allEventsArray[i].title;
+            lineName.innerText = 'Event: ' + allEventsArray[i].name;
+            lineEmail.innerText = 'Email: ' + allEventsArray[i].email;
+            var eventDate = new Date(allEventsArray[i].date);
+            lineDate.innerText = 'Date: ' + eventDate.getMonth() + '/' + eventDate.getDate() + '/' + eventDate.getFullYear();
+            lineMessage.innerText = 'Message: ' + allEventsArray[i].message;
+            lineBrand.innerText = 'Brand: ' + allEventsArray[i].brand;
+            lineAmount.innerText = 'Amount: ' + allEventsArray[i].amount;
             ul.appendChild(lineName);
             ul.appendChild(lineEmail);
             ul.appendChild(lineDate);
             ul.appendChild(lineMessage);
             ul.appendChild(lineBrand);
             ul.appendChild(lineAmount);
-            console.log(ul.appendChild(lineAmount))
             pastEventDiv.appendChild(h5);
             pastEventDiv.appendChild(ul);
         }
     }
 }
+
 
 pastEvents()
 
@@ -316,9 +316,9 @@ pastEvents()
 function retrieveEvents() {
     // get data from local storage and store it in an array
     if (localStorage.length > 0) {
-        allEvents = JSON.parse(localStorage.getItem("events"));
-        if (allEvents != null) {
-            allEvents.sort((a, b) => a.date - b.date);
+        allEventsArray = JSON.parse(localStorage.getItem("events"));
+        if (allEventsArray != null) {
+            allEventsArray.sort((a, b) => a.date - b.date);
         }
     }
 }
@@ -326,40 +326,47 @@ function retrieveEvents() {
 
 // DISPLAY REMINDER MODAL
 function reminderModal() {
-    var today = new Date();
-    var fourteenDays = today.setDate(today.getDate() + 14);
     var i = 0;
+    var upcoming = false;
+    while (!upcoming) {
+        if (allEventsArray[i].date < todayUnix) {
+            i++;
+            startingPoint = i;
+        } else {
+            upcoming = true;
+        }
+    }
     // if no gift selected, then event-gift content = '';
-    if (allEvents[i].date <= fourteenDays) {
+    if (allEventsArray[i].date <= fourteenDays) {
         within2Weeks(i, fourteenDays);
     }
     $("#reminder-modal").dialog({
         modal: true,
         buttons: {
             Prev: function() {
-                if (i > 0) {
+                if (i > startingPoint) {
                     i--;
-                    console.log(i);
-                    if (allEvents[i].date <= fourteenDays) {
-                        within2Weeks(i, fourteenDays);
-                    } else if (allEvents[i].date > fourteenDays) {
-                        notWithin2Weeks(i, fourteenDays);
+                    if (allEventsArray[i].date <= fourteenDays) {
+                        within2Weeks(i);
+                    } else if (allEventsArray[i].date > fourteenDays) {
+                        notWithin2Weeks(i);
                     }
-                } else if (i == 0) {
-                    if (allEvents[i].date <= fourteenDays) {
+                } else {
+                    console.log(i);
+                    if (allEventsArray[i].date <= fourteenDays) {
                         within2Weeks(i, fourteenDays);
-                    } else if (allEvents[i].date > fourteenDays) {
-                        notWithin2Weeks(i, fourteenDays);
+                    } else if (allEventsArray[i].date > fourteenDays) {
+                        notWithin2Weeks(i);
                     }
                 }
             },
             Next: function() {
-                if (i < allEvents.length - 1) {
-                    if (allEvents[i].date <= fourteenDays) {
+                if (i < allEventsArray.length) {
+                    if (allEventsArray[i + 1].date <= fourteenDays) {
                         i++;
-                        within2Weeks(i, fourteenDays);
-                    } else if (allEvents[i].date > fourteenDays) {
-                        notWithin2Weeks(i, fourteenDays);
+                        within2Weeks(i);
+                    } else if (allEventsArray[i + 1].date > fourteenDays) {
+                        notWithin2Weeks(i);
                     }
                 }
             },
@@ -370,15 +377,15 @@ function reminderModal() {
     });
 }
 
-function within2Weeks(i, fourteenDays) {
-    document.getElementById('event-title').textContent = 'Event: ' + allEvents[i].title;
-    document.getElementById('event-date').textContent = 'Date: ' + new Date(allEvents[i].date);
-    document.getElementById('event-type').textContent = 'Type: ' + allEvents[i].type;
-    document.getElementById('event-gift').textContent = 'Gift: ' + allEvents[i].brand;
+function within2Weeks(i) {
+    document.getElementById('event-title').textContent = 'Event: ' + allEventsArray[i].title;
+    document.getElementById('event-date').textContent = 'Date: ' + new Date(allEventsArray[i].date);
+    document.getElementById('event-type').textContent = 'Type: ' + allEventsArray[i].type;
+    document.getElementById('event-gift').textContent = 'Gift: ' + allEventsArray[i].brand;
 }
 
 //
-function notWithin2Weeks(i, fourteenDays) {
+function notWithin2Weeks(i) {
     document.getElementById('event-title').textContent = '';
     document.getElementById('event-date').textContent = '';
     document.getElementById('event-type').textContent = '';
