@@ -232,7 +232,6 @@ button,
 }
 
 .bannerImage {
-    background-image: url("/assets/images/banner.jpg");
     max-height: fit-content;
     max-width: 100%;
     background-position: center;
