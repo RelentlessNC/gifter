@@ -15,10 +15,6 @@ var fourteenDays = todayUnix + (86400 * 14); // Unix timestamp
 // console.log('fourteenDays: ' + new Date(fourteenDays * 1000));
 var TZOffset = today.getTimezoneOffset() * 60000;
 
-
-
-retrieveEvents()
-
 selectEventTypeEl.addEventListener("change", fetchGifs)
 
 
@@ -99,7 +95,7 @@ if (document.getElementById("aLogo").href.includes('#top') != true) {
 
 // // change the color of the background of navbar and calls changeImg
 // if (mediaQuery.matches) { // If media query matches
-    
+
 //     $(".navContainer").hover(function (){
 
 //         $(this).css("background-color", "white");
@@ -135,7 +131,7 @@ if (document.getElementById("aLogo").href.includes('#top') != true) {
 function openNav() {
     document.getElementById("overlayNav").style.width = "100%";
 }
-  
+
 /* Close when someone clicks on the "x" symbol inside the overlay */
 function closeNav() {
     document.getElementById("overlayNav").style.width = "0%";
@@ -387,80 +383,79 @@ $(".schedule-button").on('click', function() {
 //this function will populate the information from the event modal to the upcoming events tab.
 function upcomingEvents() {
     let accordionDiv = document.getElementById('accordion')
-    for (var i = 0; i < allEventsArray.length; i++) {
-        if (allEventsArray[i].date >= todayUnix) {
-            var eventDate = new Date(allEventsArray[i].date * 1000);
-            let ul = document.createElement('ul');
-            let h5 = document.createElement('h5');
-            let div = document.createElement('div')
-            let lineDate = document.createElement('li');
-            let lineMessage = document.createElement('li');
-            let lineBrand = document.createElement('li');
-            let lineAmount = document.createElement('li');
-            let lineName = document.createElement('li');
-            let lineEmail = document.createElement('li');
-            let lineButton = document.createElement('button');
-            lineButton.setAttribute('class', 'edit-button');
-            lineButton.textContent = 'Edit'
-            h5.innerText = allEventsArray[i].title;
-            lineName.innerText = allEventsArray[i].name;
-            lineEmail.innerText = allEventsArray[i].email;
-            lineDate.innerText = 'Date: ' + (eventDate.getMonth() + 1) + '/' + eventDate.getDate() + '/' + eventDate.getFullYear();
-            lineMessage.innerText = allEventsArray[i].message;
-            lineBrand.innerText = allEventsArray[i].brand;
-            lineAmount.innerText = allEventsArray[i].amount;
-            ul.appendChild(lineName);
-            ul.appendChild(lineEmail);
-            ul.appendChild(lineDate);
-            ul.appendChild(lineMessage);
-            ul.appendChild(lineBrand);
-            ul.appendChild(lineAmount);
-            ul.appendChild(lineButton);
-            accordionDiv.appendChild(h5);
-            accordionDiv.appendChild(ul);
+    if (allEventsArray.length > 0) {
+        for (var i = 0; i < allEventsArray.length; i++) {
+            if (allEventsArray[i].date >= todayUnix) {
+                var eventDate = new Date(allEventsArray[i].date * 1000);
+                let ul = document.createElement('ul');
+                let h5 = document.createElement('h5');
+                let div = document.createElement('div')
+                let lineDate = document.createElement('li');
+                let lineMessage = document.createElement('li');
+                let lineBrand = document.createElement('li');
+                let lineAmount = document.createElement('li');
+                let lineName = document.createElement('li');
+                let lineEmail = document.createElement('li');
+                let lineButton = document.createElement('button');
+                lineButton.setAttribute('class', 'edit-button');
+                lineButton.textContent = 'Edit'
+                h5.innerText = allEventsArray[i].title;
+                lineName.innerText = allEventsArray[i].name;
+                lineEmail.innerText = allEventsArray[i].email;
+                lineDate.innerText = 'Date: ' + (eventDate.getMonth() + 1) + '/' + eventDate.getDate() + '/' + eventDate.getFullYear();
+                lineMessage.innerText = allEventsArray[i].message;
+                lineBrand.innerText = allEventsArray[i].brand;
+                lineAmount.innerText = allEventsArray[i].amount;
+                ul.appendChild(lineName);
+                ul.appendChild(lineEmail);
+                ul.appendChild(lineDate);
+                ul.appendChild(lineMessage);
+                ul.appendChild(lineBrand);
+                ul.appendChild(lineAmount);
+                ul.appendChild(lineButton);
+                accordionDiv.appendChild(h5);
+                accordionDiv.appendChild(ul);
+            }
         }
     }
 }
 
-upcomingEvents();
+
 
 function pastEvents() {
     let pastEventDiv = document.getElementById('accordion2')
-    for (var i = 0; i < allEventsArray.length; i++) {
-        if (allEventsArray[i].date < todayUnix) {
-            let ul = document.createElement('ul');
-            let h5 = document.createElement('h5');
-            let div = document.createElement('div')
-            let lineDate = document.createElement('li');
-            let lineMessage = document.createElement('li');
-            let lineBrand = document.createElement('li');
-            let lineAmount = document.createElement('li');
-            let lineName = document.createElement('li');
-            let lineEmail = document.createElement('li');
-            h5.innerText = allEventsArray[i].title;
-            lineName.innerText = 'Event: ' + allEventsArray[i].name;
-            lineEmail.innerText = 'Email: ' + allEventsArray[i].email;
-            var eventDate = new Date(allEventsArray[i].date * 1000);
-            lineDate.innerText = 'Date: ' + (eventDate.getMonth() + 1) + '/' + eventDate.getDate() + '/' + eventDate.getFullYear();
-            lineMessage.innerText = 'Message: ' + allEventsArray[i].message;
-            lineBrand.innerText = 'Brand: ' + allEventsArray[i].brand;
-            lineAmount.innerText = 'Amount: ' + allEventsArray[i].amount;
-            ul.appendChild(lineName);
-            ul.appendChild(lineEmail);
-            ul.appendChild(lineDate);
-            ul.appendChild(lineMessage);
-            ul.appendChild(lineBrand);
-            ul.appendChild(lineAmount);
-            pastEventDiv.appendChild(h5);
-            pastEventDiv.appendChild(ul);
+    if (allEventsArray.length > 0) {
+        for (var i = 0; i < allEventsArray.length; i++) {
+            if (allEventsArray[i].date < todayUnix) {
+                let ul = document.createElement('ul');
+                let h5 = document.createElement('h5');
+                let div = document.createElement('div')
+                let lineDate = document.createElement('li');
+                let lineMessage = document.createElement('li');
+                let lineBrand = document.createElement('li');
+                let lineAmount = document.createElement('li');
+                let lineName = document.createElement('li');
+                let lineEmail = document.createElement('li');
+                h5.innerText = allEventsArray[i].title;
+                lineName.innerText = 'Event: ' + allEventsArray[i].name;
+                lineEmail.innerText = 'Email: ' + allEventsArray[i].email;
+                var eventDate = new Date(allEventsArray[i].date * 1000);
+                lineDate.innerText = 'Date: ' + (eventDate.getMonth() + 1) + '/' + eventDate.getDate() + '/' + eventDate.getFullYear();
+                lineMessage.innerText = 'Message: ' + allEventsArray[i].message;
+                lineBrand.innerText = 'Brand: ' + allEventsArray[i].brand;
+                lineAmount.innerText = 'Amount: ' + allEventsArray[i].amount;
+                ul.appendChild(lineName);
+                ul.appendChild(lineEmail);
+                ul.appendChild(lineDate);
+                ul.appendChild(lineMessage);
+                ul.appendChild(lineBrand);
+                ul.appendChild(lineAmount);
+                pastEventDiv.appendChild(h5);
+                pastEventDiv.appendChild(ul);
+            }
         }
     }
 }
-
-
-pastEvents()
-
-
 
 // Need to check all future dates against today's current date and display a reminder box if
 // event is today's date +14 days or less
@@ -476,6 +471,8 @@ function retrieveEvents() {
             for (var i = 0; i < allEventsArray.length; i++) {
                 //console.log(new Date(allEventsArray[i].date));
             }
+            upcomingEvents();
+            pastEvents();
             reminderModal();
         }
     }
