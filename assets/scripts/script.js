@@ -28,7 +28,6 @@ function fetchGifs(e) {
             return response.json();
         })
         .then(function(data) {
-            console.log(data);
             displayGifs(data);
 
         })
@@ -142,7 +141,7 @@ $(".save-button").on('click', function() {
         other: parentNode.children[9].value,
         name: parentNode.children[12].value,
         email: parentNode.children[15].value,
-        brand: $("#brand :selected").val(),
+        brand: $("#edit-brand :selected").val(),
         amount: parentNode.children[20].value,
         message: parentNode.children[22].value
     }
@@ -226,6 +225,7 @@ $(".save-button").on('click', function() {
             ]
         })
     })
+    console.log(allEventsArray);
 })
 
 

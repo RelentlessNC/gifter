@@ -271,7 +271,7 @@ button,
     min-height: 177px; 
 }
 
-#message-box {
+#message-box,#message-box2 {
     width: 100%;
     max-width: 100%;
     border-style: solid;
