@@ -7,9 +7,14 @@ const giftbitKey = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJTSEEyNTYifQ==.MytEdlNFcVp3clFCT2h
 const giftbitAPI = 'https://private-anon-b3a6e921d5-giftbit.apiary-proxy.com/papi/v1/brands';
 var allBrands = [];
 var allEventsArray = [];
-var today = new Date();
-var todayUnix = Date.parse(today);
-var fourteenDays = today.setDate(today.getDate() + 14);
+var today = new Date(); //today's date object
+var todayUnix = Math.floor((today) / 1000); //today's unix date
+var fourteenDays = todayUnix + (86400 * 14); // Unix timestamp
+// console.log('today: ' + today);
+// console.log('todayUnix: ' + todayUnix);
+// console.log('fourteenDays Unix: ' + fourteenDays);
+// console.log('fourteenDays: ' + new Date(fourteenDays * 1000));
+var TZOffset = today.getTimezoneOffset() * 60000;
 
 
 
@@ -54,7 +59,6 @@ fetch(giftbitAPI, {
     .then(function(data) {
         allBrands = data;
         displayBrands();
-        console.log(data);
     });
 
 //   display giftbit options under dropdown
@@ -107,7 +111,6 @@ wrapper.addEventListener('click', (event) => {
         return;
     }
     //edit button event listener
-    console.log('hello')
     editBox.classList.toggle('hide')
 });
 
@@ -137,7 +140,7 @@ $(".schedule-button").on('click', function() {
     const parentNode = $(this)[0].parentNode
     let event = {
         title: parentNode.children[2].value,
-        date: Date.parse(parentNode.children[5].value),
+        date: Math.floor(new Date(parentNode.children[5].value) / 1000 + 60000), //60,000 is converting minutes into milliseconds to account for Timzone Offset.
         type: $("#etype :selected").val(),
         other: parentNode.children[9].value,
         name: parentNode.children[12].value,
@@ -160,10 +163,10 @@ $(".schedule-button").on('click', function() {
     // save the allEventsArray variable to the local storage
     localStorage.setItem('events', JSON.stringify(allEventsArray));
 
-    $("#dialog-message").dialog("close")
+    $("#dialog-message").dialog("close");
     retrieveEvents();
 
-    eventModal.classList.toggle('hide')
+    eventModal.classList.toggle('hide');
     $("body").css("background-color", "gray");
     $("#confirmation-message").css("visibility", "visible");
     // script for confirmation modal w/ jquery
@@ -231,39 +234,39 @@ $(".schedule-button").on('click', function() {
 
 //this function will populate the information from the event modal to the upcoming events tab.
 function upcomingEvents() {
-    let upcomingEventsEl = Object.values(allEventsArray);
     let accordionDiv = document.getElementById('accordion')
-
     for (var i = 0; i < allEventsArray.length; i++) {
-        var eventDate = new Date(upcomingEventsEl[i].date)
-        let ul = document.createElement('ul');
-        let h5 = document.createElement('h5');
-        let div = document.createElement('div')
-        let lineDate = document.createElement('li');
-        let lineMessage = document.createElement('li');
-        let lineBrand = document.createElement('li');
-        let lineAmount = document.createElement('li');
-        let lineName = document.createElement('li');
-        let lineEmail = document.createElement('li');
-        let lineButton = document.createElement('button');
-        lineButton.setAttribute('class', 'edit-button');
-        lineButton.textContent = 'Edit'
-        h5.innerText = upcomingEventsEl[i].title;
-        lineName.innerText = upcomingEventsEl[i].name;
-        lineEmail.innerText = upcomingEventsEl[i].email;
-        lineDate.innerText = eventDate;
-        lineMessage.innerText = upcomingEventsEl[i].message;
-        lineBrand.innerText = upcomingEventsEl[i].brand;
-        lineAmount.innerText = upcomingEventsEl[i].amount;
-        ul.appendChild(lineName);
-        ul.appendChild(lineEmail);
-        ul.appendChild(lineDate);
-        ul.appendChild(lineMessage);
-        ul.appendChild(lineBrand);
-        ul.appendChild(lineAmount);
-        ul.appendChild(lineButton);
-        accordionDiv.appendChild(h5);
-        accordionDiv.appendChild(ul);
+        if (allEventsArray[i].date >= todayUnix) {
+            var eventDate = new Date(allEventsArray[i].date * 1000);
+            let ul = document.createElement('ul');
+            let h5 = document.createElement('h5');
+            let div = document.createElement('div')
+            let lineDate = document.createElement('li');
+            let lineMessage = document.createElement('li');
+            let lineBrand = document.createElement('li');
+            let lineAmount = document.createElement('li');
+            let lineName = document.createElement('li');
+            let lineEmail = document.createElement('li');
+            let lineButton = document.createElement('button');
+            lineButton.setAttribute('class', 'edit-button');
+            lineButton.textContent = 'Edit'
+            h5.innerText = allEventsArray[i].title;
+            lineName.innerText = allEventsArray[i].name;
+            lineEmail.innerText = allEventsArray[i].email;
+            lineDate.innerText = 'Date: ' + (eventDate.getMonth() + 1) + '/' + eventDate.getDate() + '/' + eventDate.getFullYear();
+            lineMessage.innerText = allEventsArray[i].message;
+            lineBrand.innerText = allEventsArray[i].brand;
+            lineAmount.innerText = allEventsArray[i].amount;
+            ul.appendChild(lineName);
+            ul.appendChild(lineEmail);
+            ul.appendChild(lineDate);
+            ul.appendChild(lineMessage);
+            ul.appendChild(lineBrand);
+            ul.appendChild(lineAmount);
+            ul.appendChild(lineButton);
+            accordionDiv.appendChild(h5);
+            accordionDiv.appendChild(ul);
+        }
     }
 }
 
@@ -271,9 +274,8 @@ upcomingEvents();
 
 function pastEvents() {
     let pastEventDiv = document.getElementById('accordion2')
-    var today = Date.parse(new Date);
     for (var i = 0; i < allEventsArray.length; i++) {
-        if (allEventsArray[i].date < today) {
+        if (allEventsArray[i].date < todayUnix) {
             let ul = document.createElement('ul');
             let h5 = document.createElement('h5');
             let div = document.createElement('div')
@@ -286,8 +288,8 @@ function pastEvents() {
             h5.innerText = allEventsArray[i].title;
             lineName.innerText = 'Event: ' + allEventsArray[i].name;
             lineEmail.innerText = 'Email: ' + allEventsArray[i].email;
-            var eventDate = new Date(allEventsArray[i].date);
-            lineDate.innerText = 'Date: ' + eventDate.getMonth() + '/' + eventDate.getDate() + '/' + eventDate.getFullYear();
+            var eventDate = new Date(allEventsArray[i].date * 1000);
+            lineDate.innerText = 'Date: ' + (eventDate.getMonth() + 1) + '/' + eventDate.getDate() + '/' + eventDate.getFullYear();
             lineMessage.innerText = 'Message: ' + allEventsArray[i].message;
             lineBrand.innerText = 'Brand: ' + allEventsArray[i].brand;
             lineAmount.innerText = 'Amount: ' + allEventsArray[i].amount;
@@ -319,6 +321,10 @@ function retrieveEvents() {
         allEventsArray = JSON.parse(localStorage.getItem("events"));
         if (allEventsArray != null) {
             allEventsArray.sort((a, b) => a.date - b.date);
+            for (var i = 0; i < allEventsArray.length; i++) {
+                //console.log(new Date(allEventsArray[i].date));
+            }
+            reminderModal();
         }
     }
 }
@@ -328,6 +334,7 @@ function retrieveEvents() {
 function reminderModal() {
     var i = 0;
     var upcoming = false;
+    var startingPoint;
     while (!upcoming) {
         if (allEventsArray[i].date < todayUnix) {
             i++;
@@ -352,7 +359,6 @@ function reminderModal() {
                         notWithin2Weeks(i);
                     }
                 } else {
-                    console.log(i);
                     if (allEventsArray[i].date <= fourteenDays) {
                         within2Weeks(i, fourteenDays);
                     } else if (allEventsArray[i].date > fourteenDays) {
@@ -379,7 +385,8 @@ function reminderModal() {
 
 function within2Weeks(i) {
     document.getElementById('event-title').textContent = 'Event: ' + allEventsArray[i].title;
-    document.getElementById('event-date').textContent = 'Date: ' + new Date(allEventsArray[i].date);
+    var eventDate = new Date(allEventsArray[i].date * 1000);
+    document.getElementById('event-date').textContent = 'Date: ' + (eventDate.getMonth() + 1) + '/' + eventDate.getDate() + '/' + eventDate.getFullYear();
     document.getElementById('event-type').textContent = 'Type: ' + allEventsArray[i].type;
     document.getElementById('event-gift').textContent = 'Gift: ' + allEventsArray[i].brand;
 }
