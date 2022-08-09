@@ -79,7 +79,9 @@
             <label for="email">Recipients Email:</label>
             <input type="text" id="email" name="email"><br>
             <label for="brand">Select a brand of gift card: </label>
-            <select name="brand" id="brand"></select>
+            <select name="brand" id="brand">
+                <option value="" disabled selected>Select your option</option>
+            </select>
             <label for="gift-amount">Gift Amount</label>
             <input type="text" id="gift-amount" name="gift-amount">
             <label for="personal-message">Leave a personal message</label>
@@ -88,39 +90,40 @@
         </div>
     </div>
 
-    <form id="edit-box" class="edit-event-modal hide">
-        <div class="edit-event-box">
-            <h5>Edit your event...</h5>
-            <label for="edit-etitle">Event Title: </label>
-            <input type="text" id="edit-etitle" name="edit-etitle"><br>
-            <label for="edit-edate">Event Date:</label>
-            <input type="date" id="edit-edate" name="edit-edate"><br>
-            <label for="edit-etype">Event Type: </label>
-            <select name="edit-etype" id="edit-etype">
+    <div id="edit-message" title="Edit your event" class="event-modal hide">
+        <div class="event-box">
+            <h5>Edit an event...</h5>
+            <label id = "edit-title" for="etitle">Enter the name of the event you would like to edit: </label>
+            <input type="text" id="etitle" name="etitle"><br>
+            <label for="edate">Event Date:</label>
+            <input type="date" id="edate" name="edate"><br>
+            <label for="etype">Event Type: </label>
+            <select name="etype" id="etype">
                 <option></option>
-                <option value="edit-birthday">Birthday</option>
-                <option value="edit-anniversary">Anniversary</option>
-                <option value="edit-mothers-day">Mother's/Father's Day</option>
-                <option value="edit-other">Other</option>
-                <input for="edit-other-option" id="edit-other-option" class="hide">
+                <option value="birthday">Birthday</option>
+                <option value="anniversary">Anniversary</option>
+                <option value="mothers-day">Mother's/Father's Day</option>
+                <option value="other">Other</option>
+                <input for="other-option" id="other-option" class="hide">
               </select>
+            <h5>Send a gift...</h5>
+            <label for="rname">Recipients Name: </label>
+            <input type="text" id="rname" name="rname"><br>
+            <label for="email">Recipients Email:</label>
+            <input type="text" id="email" name="email"><br>
+            <label for="brand">Select a brand of gift card: </label>
+            <select name="brand" id="edit-brand">
+                <option value="" disabled selected>Select your option</option>
+            </select>
+            <label for="gift-amount">Gift Amount</label>
+            <input type="text" id="gift-amount" name="gift-amount">
+            <label for="personal-message">Leave a personal message</label>
+            <div contenteditable="true" id="message-box2" type="text" name="personal-message">Write your message here...</div>
+            <button class="btn-hover color-3 save-button" id="save-event">Save</button>
         </div>
-        <div class="edit-gift-box">
-            <h5>Edit your gift...</h5>
-            <label for="edit-rname">Recipients Name: </label>
-            <input type="text" id="edit-rname" name="edit-rname"><br>
-            <label for="edit-email">Recipients Email:</label>
-            <input type="text" id="edit-email" name="edit-email"><br>
-            <label for="edit-brand">Select a brand of gift card: </label>
-            <select name="edit-brand" id="edit-brand"></select>
-            <label for="edit-gift-amount">Gift Amount</label>
-            <input type="text" id="edit-gift-amount" name="edit-gift-amount">
-            <label for="edit-personal-message">Leave a personal message</label>
-            <textarea style="width: 100%; max-width: 100%;" type="text" id="edit-personal-message" name="edit-personal-message" placeholder="Write your message here..."></textarea>
-            <button class="btn-hover color-3" id="edit-schedule-event">Save Changes</button>
-        </div>
-    </form>
+    </div>
 
+    
     <!-- REMINDER MODAL -->
     <div class="reminder-modal hide" id="reminder-modal">
         <h5>Event Reminder</h5>
