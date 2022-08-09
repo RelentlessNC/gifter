@@ -44,6 +44,12 @@ WireFraming https://www.mockflow.com/
 ## Screenshot
 
 <img title="preview" src="assets/images/preview.png">
+
+## Links 
+
+URL of deployed application - https://relentlessnc.github.io/group10-project1/
+
+URL of GitHub repository - https://github.com/RelentlessNC/group10-project1
  
 ## License
 
