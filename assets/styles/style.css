@@ -8,6 +8,11 @@
     --orange: #ffad00;
     --darkPurple: #8303ab;
     --opGradient:linear-gradient(to bottom right, #8303ab, #ffad00);
+
+    --less_transparent_background:rgba(46, 55, 69, .97);
+    --off_white:#dcfbfa;
+
+
 }
 
 .container{
@@ -21,11 +26,10 @@
 
 .about {
     display:flex;
+    flex-wrap: wrap;
     justify-content: center;
     margin-bottom:2%;
 }
-
-/* TEST Number 2 */
 
 header ul {
     display:flex;
@@ -57,15 +61,145 @@ header ul li a {
 .navigation{
     display:flex;
     justify-content: end;
+    height:57.7px !important;
+}
+
+.three, .nine {
+    margin-bottom:0;
 }
 
 #logo {
     height:50px;
 }
 
-.navBar{
-    margin:0 5% 0;
+.Logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+#aLogo {
+    padding:0;
+}
+
+.navBar{
+    margin:0 5% 0 5%;
+    height:auto;
+}
+
+.navContainer {
+    margin: 0;
+    margin-bottom: 2%;
+}
+
+.nav a:hover {
+    color:var(--color4)
+}
+
+@media screen and (max-width:550px){
+    .phone_nav{
+        display:flex;
+    }
+    .nav{
+        display:none;
+    }
+    .three{
+        max-width:25% !important;
+    }
+    .nine {
+        max-width: 75% !important;
+    }
+    .about {
+        margin: 2% 5% 0 5%;
+    }
+}
+
+/* Hides the overlay while nav bar is present */
+@media screen and (min-width:550px){
+    .fa{
+        opacity:0;
+        visibility: hidden;
+    }
+    #liClick {
+        display:none;
+    }
+}
+
+.phone_nav{
+    justify-content: flex-end;
+}
+
+
+.fa{
+    background-color: transparent;
+    color:var(--blue);
+    position:relative;
+    right:2%;
+    opacity:1;
+}
+
+.overlay{
+    height: 100%;
+    width: 0;
+    position: fixed; 
+    z-index: 10; 
+    right: 0;
+    top: 0;
+    background-color: var(--less_transparent_background);
+    overflow-x: hidden; 
+    transition: 0.5s; 
+}
+
+.overlay-content{
+    position: relative;
+    top: 25%; 
+    width: 100%; 
+    text-align: center; 
+    margin-top: 30px; 
+    background-color: transparent;
+    display:block;
+    justify-content: start;
+    align-items: center;
+}
+
+.overlay a{
+    margin-top:15px;
+    padding: 8px;
+    text-decoration: none;
+    font-size: 36px;
+    color: var(--off_white);
+    display: block; 
+    transition: 0.3s; 
+    background-color:transparent;
+    text-align: center;
+    margin-right:10%;
+}
+  
+.ov{
+    width:100%;
+}
+
+.overlay a:hover, .overlay a:focus, .ov:hover {
+    color: var(--color4);
+}
+  
+.overlay .closebtn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+    background-color: transparent;
+}
+  
+@media screen and (max-height: 450px) {
+    .overlay a {font-size: 20px}
+    .overlay .closebtn {
+      font-size: 40px;
+      top: 15px;
+      right: 35px;
+    }
+}
+
 
 .tabs, .tabs::after, .tabs:active {
     background-image: linear-gradient(to bottom right, #8303ab, #ffad00);
@@ -119,6 +253,10 @@ button, .button {
     justify-content: center;
     text-align: center;
     color:white;
+}
+
+.btn button {
+    margin-bottom: 3%;
 }
 
 #section-calendar {
@@ -277,3 +415,4 @@ form, input[type="text"], textarea{
 .aboutText {
     text-indent: 5%;
 }
+

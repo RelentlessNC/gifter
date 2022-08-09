@@ -74,6 +74,60 @@ $(function() {
     $("#accordion").accordion();
 });
 
+
+
+// hides the button when going to other pages
+if (document.getElementById("aLogo").href.includes('#top') != true) {
+    $(".btn").css("visibility", "hidden");
+}
+
+// Future Changes:
+// const mediaQuery = window.matchMedia("(min-width: 550px)")
+
+// // change the color of the background of navbar and calls changeImg
+// if (mediaQuery.matches) { // If media query matches
+    
+//     $(".navContainer").hover(function (){
+
+//         $(this).css("background-color", "white");
+
+//         $(this).css("border-bottom", "solid 5px #e1dddf");
+
+//         document.getElementById("logo").setAttribute("src", './assets/images/logo_name.png');
+
+//         var aElements = document.querySlector(".navContainer").getElementsByTagName("a");
+
+//         for (var i = 0; i < aElements.length; i++) {
+//             aElements[i].style.color = "black";
+//         };
+
+//         }, function(){
+
+//             $(this).css("background-color", "");
+
+//             $(this).css("border-bottom", "");
+
+
+//             document.getElementById("logo").setAttribute("src", './assets/images/logo_name_white.png');
+
+//             var aElements = document.querySlector(".navContainer").getElementsByTagName("a");
+
+//             for (var i = 0; i < aElements.length; i++) {
+//                 aElements[i].style.color = "white";
+//             };
+//         });
+// }
+
+/* Open when someone clicks on the span element */
+function openNav() {
+    document.getElementById("overlayNav").style.width = "100%";
+}
+  
+/* Close when someone clicks on the "x" symbol inside the overlay */
+function closeNav() {
+    document.getElementById("overlayNav").style.width = "0%";
+}
+
 //event listener for Add Event - toggles hide for event modal box
 $(".add-event").on('click', function() {
 

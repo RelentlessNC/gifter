@@ -15,18 +15,21 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <!-- Stylesheet -->
     <link rel="stylesheet" href="assets/styles/style.css">
+    <!--Font Awesome Fonts-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body onload="retrieveEvents(),reminderModal()">
     <header class="bannerImage">
-        <div class="container navBar">
-            <div class="row">
-                <ul class="one columns">
-                    <li><a href="#top"><img src="./assets/images/logo_name_white.png" alt="Logo" id="logo"></img></a></li>
+        <div class="container navContainer">
+            <div class="row navBar">
+                <ul class="three columns Logo">
+                    <li><a href="#top" id="aLogo"><img src="./assets/images/logo_name_white.png" alt="Logo" id="logo"></img></a></li>
                 </ul>
-                <ul class="eleven columns navigation">
-                    <li><a href="./about-page.html">About</a></li>
-                    <li><a href="./contact.html">Contact</a></li>
+                <ul class="nine columns navigation">
+                    <li class="nav"><a href="./about-page.html">About</a></li>
+                    <li class="nav"><a href="./contact.html">Contact</a></li>
+                    <li id="liClick"><i class="fa fa-bars fa-3x" onclick="openNav()"></i></li>
                 </ul>
             </div>
         </div>
@@ -36,6 +39,22 @@
             <button class="add-event" type="button">Add Event</button>
         </div>
     </header>
+
+    <div class="phone_nav">
+
+        <div class="overlay" id="overlayNav">
+  
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  
+          <div class="overlay-content">
+            <il class="ov"><a href="./about-page.html" onclick="closeNav()"> <span class="nav_numbers">01. </span>About</a></il>
+            <il class="ov"><a href="./contact.html" onclick="closeNav()"> <span class="nav_numbers">02. </span>Contact</a></il>
+
+          </div>
+        </div>
+  
+      </div>
+
      <div class="container">
         <div class="row">
             <div class="12 columns" id="tabs">
