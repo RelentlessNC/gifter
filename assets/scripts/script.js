@@ -1,5 +1,4 @@
 const eventModal = document.getElementById("dialog-message")
-const editBox = document.getElementById("edit-box")
 const giphyAPI = 'https://api.giphy.com/v1/gifs/search';
 const selectEventTypeEl = document.getElementById("etype");
 const giphyKEY = 'PVW7bT7xE7oiwvc3VLc9oHgGuFdSrfUb';
@@ -29,6 +28,7 @@ function fetchGifs(e) {
             return response.json();
         })
         .then(function(data) {
+            console.log(data);
             displayGifs(data);
 
         })
@@ -90,14 +90,10 @@ $(".add-event").on('click', function() {
     $(function() {
         $("#dialog-message").dialog({
             modal: true,
-        })
-    })
-    $(function() {
-        $("#dialog-message").dialog({
-            modal: true,
         });
     });
 })
+
 
 const wrapper = document.getElementById('accordion');
 
@@ -108,7 +104,11 @@ wrapper.addEventListener('click', (event) => {
     }
     //edit button event listener
     console.log('hello')
-    editBox.classList.toggle('hide')
+    $(function() {
+        $("#edit-message").dialog({
+            modal: true,
+        })
+    });
 });
 
 
@@ -131,6 +131,103 @@ $("#edit-etype").on('mouseout', function() {
         otherOption.classList.add('hide')
     }
 })
+
+// save
+$(".save-button").on('click', function() {
+    const parentNode = $(this)[0].parentNode
+    let event = {
+        title: parentNode.children[2].value,
+        date: Date.parse(parentNode.children[5].value),
+        type: $("#etype :selected").val(),
+        other: parentNode.children[9].value,
+        name: parentNode.children[12].value,
+        email: parentNode.children[15].value,
+        brand: $("#brand :selected").val(),
+        amount: parentNode.children[20].value,
+        message: parentNode.children[22].value
+    }
+
+    //  search the array to see if the current object matches any objects in the array.
+    //  if there is a match, replace the existing event in the array with the current event
+    if (allEventsArray.find(obj => obj.title === event.title)) {
+        var location = allEventsArray.findIndex(obj => obj.title === event.title);
+        allEventsArray[location] = event;
+    } else {
+        //  if no match, then add the current event to the array
+        window.alert("Please enter the name of an existing event...")
+        return
+    }
+
+    // save the allEventsArray variable to the local storage
+    localStorage.setItem('events', JSON.stringify(allEventsArray));
+
+    $("#edit-message").dialog("close")
+    retrieveEvents();
+    $("body").css("background-color", "gray");
+    $("#confirmation-message").css("visibility", "visible");
+    // script for confirmation modal w/ jquery
+    $(function() {
+        $("#confirmation-message").dialog({
+            modal: true,
+            width: 650,
+            resizable: false,
+            buttons: [{
+                    text: "Confirm",
+                    "class": 'modalButtonClass',
+                    // script for congrats modal when confirm is clicked
+                    click: function() {
+                        $(this).dialog("close");
+                        $("#congrats-message").css("visibility", "visible");
+                        $(function() {
+                            $("#congrats-message").dialog({
+                                modal: true,
+                                width: 650,
+                                resizable: false,
+                                buttons: [{
+                                        text: "Back to Calendar",
+                                        "class": 'modalButtonClass',
+                                        click: function() {
+                                            $(this).dialog("close");
+                                            window.location.reload(true);
+                                            $("body").css("background-color", "transparent");
+                                        }
+                                    },
+                                    {
+                                        text: "Schedule Another Event",
+                                        "class": 'modalButtonClass',
+                                        click: function() {
+                                            $(this).dialog("close");
+                                            $("body").css("background-color", "transparent");
+                                            $(function() {
+                                                $("#dialog-message").dialog({
+                                                    modal: true,
+                                                })
+                                            })
+                                            $(function() {
+                                                $("#dialog-message").dialog({
+                                                    modal: true,
+                                                });
+                                            });
+                                        }
+                                    }
+                                ]
+                            })
+                        })
+                    }
+                },
+                {
+                    text: "Cancel",
+                    "class": 'modalButtonClass',
+                    click: function() {
+                        $(this).dialog("close");
+                        $("body").css("background-color", "transparent");
+                    }
+                }
+            ]
+        })
+    })
+})
+
 
 //event listener for Schedule Event button - toggles hide for event modal box
 $(".schedule-button").on('click', function() {
