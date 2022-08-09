@@ -4,18 +4,15 @@
     --color3: #764ba2;
     --color3RGBA: rgba(116, 79, 168, 0.75);
     --color4: #8E37D7;
-
     --orange: #ffad00;
     --darkPurple: #8303ab;
     --opGradient:linear-gradient(to bottom right, #8303ab, #ffad00);
 
     --less_transparent_background:rgba(46, 55, 69, .97);
     --off_white:#dcfbfa;
-
-
 }
 
-.container{
+.container {
     margin: 0 2%;
 }
 
@@ -32,34 +29,31 @@
 }
 
 header ul {
-    display:flex;
+    display: flex;
     align-items: center;
 }
 
 header ul li {
-	display: inline;
-	float: left;
-	position: relative;
-	margin: 0;
-    padding-left:5px;
+    display: inline;
+    float: left;
+    position: relative;
+    margin: 0;
+    padding-left: 5px;
     padding-right: 5p;
-	
-	list-style-type: none;
+    list-style-type: none;
 }
 
 header ul li a {
-	display: inline-block;
-	padding: 14px 16px;
-	
-	color: white;
-	font-size: 1.7rem;
-	text-decoration: none;
-	
-	transition: 0.2s;
+    display: inline-block;
+    padding: 14px 16px;
+    color: white;
+    font-size: 1.7rem;
+    text-decoration: none;
+    transition: 0.2s;
 }
 
-.navigation{
-    display:flex;
+.navigation {
+    display: flex;
     justify-content: end;
     height:57.7px !important;
 }
@@ -69,7 +63,7 @@ header ul li a {
 }
 
 #logo {
-    height:50px;
+    height: 50px;
 }
 
 .Logo {
@@ -203,7 +197,7 @@ header ul li a {
 
 .tabs, .tabs::after, .tabs:active {
     background-image: linear-gradient(to bottom right, #8303ab, #ffad00);
-    color:white;
+    color: white;
 }
 
 .title {
@@ -211,14 +205,15 @@ header ul li a {
 }
 
 .ui-state-default a:link,
- .ui-state-default a:visited, a.ui-button, a:link.ui-button,
-  a:visited.ui-button{
-    color:white;
-    
+.ui-state-default a:visited,
+a.ui-button,
+a:link.ui-button,
+a:visited.ui-button {
+    color: white;
 }
 
 .tabsList li a:active {
-    color:white;
+    color: white;
 }
 
 h1,
@@ -226,13 +221,13 @@ h4 {
     text-align: center;
 }
 
-button, .button {
-    color:white;
+button,
+.button {
+    color: white;
 }
 
-
 .add-event:hover {
-    color:white;
+    color: white;
     border-color: white;
 }
 
@@ -245,14 +240,14 @@ button, .button {
     background-size: cover;
     position: relative;
     margin-bottom: 2%;
-    z-index:1;
-    color:white;
+    z-index: 1;
+    color: white;
 }
 
 .btn {
     justify-content: center;
     text-align: center;
-    color:white;
+    color: white;
 }
 
 .btn button {
@@ -377,8 +372,8 @@ button, .button {
     outline: none;
 }
 
-.btn::after{
-    color:white;
+.btn::after {
+    color: white;
 }
 
 .btn-hover.color-3 {
@@ -391,7 +386,7 @@ button, .button {
 }
 
 .modalButtonClass {
-    width:300px;
+    width: 300px;
 }
 
 #confirmation-message,
@@ -415,4 +410,31 @@ form, input[type="text"], textarea{
 .aboutText {
     text-indent: 5%;
 }
+
+#accordion2 h5 {
+    background-color: rgba(116, 79, 168, 0.75);
+    display: flex;
+    justify-content: center;
+}
+
+#accordion2 ul{
+    text-align: center;
+}
+
+.edit-button{
+    color: #555;
+}
+
+.ui-accordion-content {
+    min-height: 177px; 
+}
+
+#message-box,#message-box2 {
+    width: 100%;
+    max-width: 100%;
+    border-style: solid;
+    margin-bottom: 30px;
+    border-color: rgb(225, 224, 224);
+    border-radius: 3px
+  }
 

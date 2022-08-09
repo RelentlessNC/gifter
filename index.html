@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
-<body onload="retrieveEvents(),reminderModal()">
+<body onload="retrieveEvents()">
     <header class="bannerImage">
         <div class="container navContainer">
             <div class="row navBar">
@@ -56,38 +56,21 @@
       </div>
 
      <div class="container">
+
         <div class="row">
             <div class="12 columns" id="tabs">
                 <ul class="tabsList">
-                <li><a class="tabs" href="#tabs-1">Upcoming Events</a></li>
-                <li><a class="tabs" href="#tabs-2">Past Events</a></li>
-                <li><a class="tabs" href="#tabs-3">Other</a></li>
-
+                    <li><a class="tabs" href="#tabs-1">Upcoming Events</a></li>
+                    <li><a class="tabs" href="#tabs-2">Past Events</a></li>
                 </ul>
                 <div id="tabs-1">
                     <div class="upcoming-main-box" id="accordion">
-                        <h5>Mom's birthday</h5>
-                        <ul>
-                            <li>25$ gift card to Target</li>
-                            <button class="edit-button">EDIT</button>
-                        </ul>
-                        <h5>Father's Day</h5>
-                        <ul>
-                            <li>$25 gift card to Lowes</li>
-                        </ul>
+
                     </div>
                 </div>
                 <div id="tabs-2">
-                    <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa
-                        ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra
-                        nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
-                </div>
-                <div id="tabs-3">
-                    <p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent
-                        per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a, lacus.</p>
-                    <p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra
-                        blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula
-                        velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
+                    <div class="past-events-box" id="accordion2">
+                    </div>
                 </div>
             </div>
         </div>
@@ -115,48 +98,51 @@
             <label for="email">Recipients Email:</label>
             <input type="text" id="email" name="email"><br>
             <label for="brand">Select a brand of gift card: </label>
-            <select name="brand" id="brand"></select>
+            <select name="brand" id="brand">
+                <option value="" disabled selected>Select your option</option>
+            </select>
             <label for="gift-amount">Gift Amount</label>
             <input type="text" id="gift-amount" name="gift-amount">
             <label for="personal-message">Leave a personal message</label>
-            <textarea style="width: 100%; max-width: 100%;" type="text" id="personal-message" name="personal-message" placeholder="Write your message here..."></textarea>
+            <div contenteditable="true" id="message-box" type="text" name="personal-message">Write your message here...</div>
             <button class="btn-hover color-3 schedule-button" id="schedule-event">Schedule Event</button>
         </div>
     </div>
 
-    <form id="edit-box" class="edit-event-modal hide">
-        <div class="edit-event-box">
-            <h5>Edit your event...</h5>
-            <label for="edit-etitle">Event Title: </label>
-            <input type="text" id="edit-etitle" name="edit-etitle"><br>
-            <label for="edit-edate">Event Date:</label>
-            <input type="date" id="edit-edate" name="edit-edate"><br>
-            <label for="edit-etype">Event Type: </label>
-            <select name="edit-etype" id="edit-etype">
+    <div id="edit-message" title="Edit your event" class="event-modal hide">
+        <div class="event-box">
+            <h5>Edit an event...</h5>
+            <label id = "edit-title" for="etitle">Enter the name of the event you would like to edit: </label>
+            <input type="text" id="etitle" name="etitle"><br>
+            <label for="edate">Event Date:</label>
+            <input type="date" id="edate" name="edate"><br>
+            <label for="etype">Event Type: </label>
+            <select name="etype" id="etype">
                 <option></option>
-                <option value="edit-birthday">Birthday</option>
-                <option value="edit-anniversary">Anniversary</option>
-                <option value="edit-mothers-day">Mother's/Father's Day</option>
-                <option value="edit-other">Other</option>
-                <input for="edit-other-option" id="edit-other-option" class="hide">
+                <option value="birthday">Birthday</option>
+                <option value="anniversary">Anniversary</option>
+                <option value="mothers-day">Mother's/Father's Day</option>
+                <option value="other">Other</option>
+                <input for="other-option" id="other-option" class="hide">
               </select>
+            <h5>Send a gift...</h5>
+            <label for="rname">Recipients Name: </label>
+            <input type="text" id="rname" name="rname"><br>
+            <label for="email">Recipients Email:</label>
+            <input type="text" id="email" name="email"><br>
+            <label for="brand">Select a brand of gift card: </label>
+            <select name="brand" id="edit-brand">
+                <option value="" disabled selected>Select your option</option>
+            </select>
+            <label for="gift-amount">Gift Amount</label>
+            <input type="text" id="gift-amount" name="gift-amount">
+            <label for="personal-message">Leave a personal message</label>
+            <div contenteditable="true" id="message-box2" type="text" name="personal-message">Write your message here...</div>
+            <button class="btn-hover color-3 save-button" id="save-event">Save</button>
         </div>
-        <div class="edit-gift-box">
-            <h5>Edit your gift...</h5>
-            <label for="edit-rname">Recipients Name: </label>
-            <input type="text" id="edit-rname" name="edit-rname"><br>
-            <label for="edit-email">Recipients Email:</label>
-            <input type="text" id="edit-email" name="edit-email"><br>
-            <label for="edit-brand">Select a brand of gift card: </label>
-            <select name="edit-brand" id="edit-brand"></select>
-            <label for="edit-gift-amount">Gift Amount</label>
-            <input type="text" id="edit-gift-amount" name="edit-gift-amount">
-            <label for="edit-personal-message">Leave a personal message</label>
-            <textarea style="width: 100%; max-width: 100%;" type="text" id="edit-personal-message" name="edit-personal-message" placeholder="Write your message here..."></textarea>
-            <button class="btn-hover color-3" id="edit-schedule-event">Save Changes</button>
-        </div>
-    </form>
+    </div>
 
+    
     <!-- REMINDER MODAL -->
     <div class="reminder-modal hide" id="reminder-modal">
         <h5>Event Reminder</h5>
