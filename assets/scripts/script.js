@@ -13,9 +13,9 @@ var fourteenDays = todayUnix + (86400 * 14); // Unix timestamp
 // console.log('todayUnix: ' + todayUnix);
 // console.log('fourteenDays Unix: ' + fourteenDays);
 // console.log('fourteenDays: ' + new Date(fourteenDays * 1000));
-var TZOffset = today.getTimezoneOffset() * 60000;
+var TZOffset = today.getTimezoneOffset() * 60;
 
-selectEventTypeEl.addEventListener("change", fetchGifs)
+selectEventTypeEl.addEventListener("change", fetchGifs);
 
 
 function fetchGifs(e) {
@@ -190,7 +190,7 @@ $(".save-button").on('click', function() {
     const parentNode = $(this)[0].parentNode
     let event = {
         title: parentNode.children[2].value,
-        date: Date.parse(parentNode.children[5].value),
+        date: Math.floor((Date.parse(parentNode.children[5].value)) / 1000 + TZOffset),
         type: $("#etype :selected").val(),
         other: parentNode.children[9].value,
         name: parentNode.children[12].value,
@@ -288,7 +288,7 @@ $(".schedule-button").on('click', function() {
     const parentNode = $(this)[0].parentNode
     let event = {
         title: parentNode.children[2].value,
-        date: Math.floor(new Date(parentNode.children[5].value) / 1000 + 60000), //60,000 is converting minutes into milliseconds to account for Timzone Offset.
+        date: Math.floor((Date.parse(parentNode.children[5].value)) / 1000 + TZOffset), //60,000 is converting minutes into milliseconds to account for Timzone Offset.
         type: $("#etype :selected").val(),
         other: parentNode.children[9].value,
         name: parentNode.children[12].value,
@@ -297,6 +297,7 @@ $(".schedule-button").on('click', function() {
         amount: parentNode.children[20].value,
         message: parentNode.children[22].value
     }
+    console.log(event.date);
 
     //  search the array to see if the current object matches any objects in the array.
     //  if there is a match, replace the existing event in the array with the current event
@@ -457,20 +458,12 @@ function pastEvents() {
     }
 }
 
-// Need to check all future dates against today's current date and display a reminder box if
-// event is today's date +14 days or less
-
-
-
 function retrieveEvents() {
-    // get data from local storage and store it in an array
+    // get data from local storage and store it in allEventsArray
     if (localStorage.length > 0) {
         allEventsArray = JSON.parse(localStorage.getItem("events"));
         if (allEventsArray != null) {
             allEventsArray.sort((a, b) => a.date - b.date);
-            for (var i = 0; i < allEventsArray.length; i++) {
-                //console.log(new Date(allEventsArray[i].date));
-            }
             upcomingEvents();
             pastEvents();
             reminderModal();
@@ -480,9 +473,12 @@ function retrieveEvents() {
 
 
 // DISPLAY REMINDER MODAL
+// check all future dates against today's current date and display a reminder box if
+// event is today's date +14 days or less
 function reminderModal() {
     var i = 0;
     var upcoming = false;
+    // find the starting point which is the first future event that is within 2 weeks from today
     var startingPoint;
     while (!upcoming) {
         if (allEventsArray[i].date < todayUnix) {
@@ -492,9 +488,10 @@ function reminderModal() {
             upcoming = true;
         }
     }
-    // if no gift selected, then event-gift content = '';
-    if (allEventsArray[i].date <= fourteenDays) {
-        within2Weeks(i, fourteenDays);
+    // TO DO:  if no gift selected, then event-gift content = '';
+    // populate the reminder modal with information from the event at the startingPoint
+    if (allEventsArray[startingPoint].date <= fourteenDays) {
+        within2Weeks(startingPoint);
     }
     $("#reminder-modal").dialog({
         modal: true,
@@ -511,7 +508,7 @@ function reminderModal() {
                     if (allEventsArray[i].date <= fourteenDays) {
                         within2Weeks(i, fourteenDays);
                     } else if (allEventsArray[i].date > fourteenDays) {
-                        notWithin2Weeks(i);
+                        i = notWithin2Weeks(i);
                     }
                 }
             },
@@ -521,7 +518,8 @@ function reminderModal() {
                         i++;
                         within2Weeks(i);
                     } else if (allEventsArray[i + 1].date > fourteenDays) {
-                        notWithin2Weeks(i);
+                        i = notWithin2Weeks(i + 1);
+
                     }
                 }
             },
@@ -532,6 +530,7 @@ function reminderModal() {
     });
 }
 
+// fill the content of the reminder modal with the event content if the event is within 2 weeks from today
 function within2Weeks(i) {
     document.getElementById('event-title').textContent = 'Event: ' + allEventsArray[i].title;
     var eventDate = new Date(allEventsArray[i].date * 1000);
@@ -540,10 +539,11 @@ function within2Weeks(i) {
     document.getElementById('event-gift').textContent = 'Gift: ' + allEventsArray[i].brand;
 }
 
-//
+// display a message to user that the remaining events are not in the next 2 weeks from today
 function notWithin2Weeks(i) {
     document.getElementById('event-title').textContent = '';
     document.getElementById('event-date').textContent = '';
     document.getElementById('event-type').textContent = '';
     document.getElementById('event-gift').textContent = 'The remaining events are not within the next 2 weeks.';
+    return i++;
 }
