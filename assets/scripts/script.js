@@ -156,7 +156,6 @@ wrapper.addEventListener('click', (event) => {
         return;
     }
     //edit button event listener
-    console.log('hello')
     $(function() {
         $("#edit-message").dialog({
             modal: true,
@@ -279,7 +278,6 @@ $(".save-button").on('click', function() {
             ]
         })
     })
-    console.log(allEventsArray);
 })
 
 
@@ -297,7 +295,6 @@ $(".schedule-button").on('click', function() {
         amount: parentNode.children[20].value,
         message: parentNode.children[22].value
     }
-    console.log(event.date);
 
     //  search the array to see if the current object matches any objects in the array.
     //  if there is a match, replace the existing event in the array with the current event
@@ -480,13 +477,17 @@ function reminderModal() {
     var upcoming = false;
     // find the starting point which is the first future event that is within 2 weeks from today
     var startingPoint;
-    while (!upcoming) {
+    while (!upcoming && i < allEventsArray.length) {
+        console.log('i: ' + i);
         if (allEventsArray[i].date < todayUnix) {
             i++;
-            startingPoint = i;
         } else {
+            startingPoint = i;
             upcoming = true;
         }
+    }
+    if (!startingPoint) {
+        return;
     }
     // TO DO:  if no gift selected, then event-gift content = '';
     // populate the reminder modal with information from the event at the startingPoint
@@ -497,30 +498,24 @@ function reminderModal() {
         modal: true,
         buttons: {
             Prev: function() {
-                if (i > startingPoint) {
-                    i--;
+                i--;
+                if (i >= startingPoint && allEventsArray[i].date <= fourteenDays) {
+                    within2Weeks(i);
+                } else {
+                    i++;
+                }
+            },
+            Next: function() {
+                i++;
+                if (i < allEventsArray.length) {
                     if (allEventsArray[i].date <= fourteenDays) {
                         within2Weeks(i);
                     } else if (allEventsArray[i].date > fourteenDays) {
                         notWithin2Weeks(i);
-                    }
-                } else {
-                    if (allEventsArray[i].date <= fourteenDays) {
-                        within2Weeks(i, fourteenDays);
-                    } else if (allEventsArray[i].date > fourteenDays) {
-                        i = notWithin2Weeks(i);
-                    }
-                }
-            },
-            Next: function() {
-                if (i < allEventsArray.length) {
-                    if (allEventsArray[i + 1].date <= fourteenDays) {
-                        i++;
-                        within2Weeks(i);
-                    } else if (allEventsArray[i + 1].date > fourteenDays) {
-                        i = notWithin2Weeks(i + 1);
 
                     }
+                } else {
+                    i--;
                 }
             },
             Close: function() {
@@ -545,5 +540,4 @@ function notWithin2Weeks(i) {
     document.getElementById('event-date').textContent = '';
     document.getElementById('event-type').textContent = '';
     document.getElementById('event-gift').textContent = 'The remaining events are not within the next 2 weeks.';
-    return i++;
 }
