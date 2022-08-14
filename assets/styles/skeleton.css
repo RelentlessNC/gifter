@@ -29,6 +29,7 @@
 /* Grid
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
+/* Had to hard code changes in this file do to getSkeleton api not being as versatile as I want it to be */
 .container {
   position: relative;
   width:  auto !important;
