@@ -298,7 +298,7 @@ $(".schedule-button").on('click', function() {
 
     //  search the array to see if the current object matches any objects in the array.
     //  if there is a match, replace the existing event in the array with the current event
-    if (allEventsArray.find(obj => obj.title === event.title)) {
+    if (allEventsArray != null && allEventsArray.find(obj => obj.title === event.title)) {
         var location = allEventsArray.findIndex(obj => obj.title === event.title);
         allEventsArray[location] = event;
     } else {
