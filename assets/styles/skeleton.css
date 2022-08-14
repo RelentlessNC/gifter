@@ -29,6 +29,7 @@
 /* Grid
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
+/* Changed componets of container due to it not being as versatile as I want */
 .container {
   position: relative;
   width:  auto !important;
