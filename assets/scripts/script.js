@@ -108,7 +108,7 @@ console.log('hello')
 editBox.classList.toggle('hide')
 });
 
-
+//created event listener on the other option for events in the event modal.  When other is selected, a input box will appear by removing the hide class.  If something else is chosen, it will re-add the hide class.
 $("#etype").on('mouseout', function() {
     const selectedOption = $("#etype option:selected").val()
     let otherOption = document.getElementById("other-option")
@@ -119,6 +119,7 @@ $("#etype").on('mouseout', function() {
     }
 })
 
+//same as above but for the edit event modal
 $("#edit-etype").on('mouseout', function() {
     const selectedOption = $("#edit-etype option:selected").val()
     let otherOption = document.getElementById("edit-other-option")
@@ -233,9 +234,11 @@ function upcomingEvents() {
 
     for (var i = 0; i <allEvents.length; i++){
         var eventDate = new Date(upcomingEventsEl[i].date)
+    //created a variable for ul and h5 to get appended to the upcoming-main-box div.  
         let ul = document.createElement('ul');
         let h5 = document.createElement('h5');
-        let div = document.createElement('div')
+        let div = document.createElement('div');
+    //created variables for each of the input fields in the event modal box with a li tag.    
         let lineDate = document.createElement('li');
         let lineMessage = document.createElement('li');
         let lineBrand = document.createElement('li');
@@ -245,6 +248,7 @@ function upcomingEvents() {
         let lineButton = document.createElement('button');
         lineButton.setAttribute('class','edit-button');
         lineButton.textContent = 'Edit'
+    //made the variables the text input for the event modal
         h5.innerText = upcomingEventsEl[i].title;
         lineName.innerText = upcomingEventsEl[i].name;
         lineEmail.innerText = upcomingEventsEl[i].email;
@@ -259,6 +263,7 @@ function upcomingEvents() {
         ul.appendChild(lineBrand);
         ul.appendChild(lineAmount);
         ul.appendChild(lineButton);
+    //appended the ul and h5 to the div element
         accordionDiv.appendChild(h5);
         accordionDiv.appendChild(ul);
     }
@@ -272,6 +277,7 @@ function pastEvents() {
     var setDate = new Date();
     var todayDate = setDate.setDate(setDate.getDate());
     var i = 0
+//created for loop to grab the input to put into the past events tab.  also created if statement to take the date input by the user for the event and run it against today's date.  If that date is less than today's date, then it will be appended to the past events tab
     if (pastEventsEl[i].date < todayDate ) {
         for (var i = 0; i <allEvents.length; i++){
             var eventDate = new Date(pastEventsEl[i].date)
@@ -300,6 +306,8 @@ function pastEvents() {
             console.log(ul.appendChild(lineAmount))
             pastEventDiv.appendChild(h5);
             pastEventDiv.appendChild(ul);
+            console.log(pastEventsEl[i].date)
+            console.log(todayDate)
         }
     }
 }
