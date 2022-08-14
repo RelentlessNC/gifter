@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
+<!-- Contains the Skeleton code for the navigation as well as the title, did it this way in order to keep the same background image -->
 <body onload="retrieveEvents()">
     <header class="bannerImage" style="background-image: url('assets/images/Banner.jpg');">
         <div class="container navContainer">
@@ -40,6 +41,7 @@
         </div>
     </header>
 
+    <!-- The html for the mobile navbar -->
     <div class="phone_nav">
 
         <div class="overlay" id="overlayNav">
@@ -55,6 +57,7 @@
   
       </div>
 
+     <!-- The tabs in skeleton -->
      <div class="container">
 
         <div class="row">
@@ -76,6 +79,7 @@
         </div>
     </div>
 
+    <!--   Dialog box   -->   
     <div id="dialog-message" title="Add your event" class="event-modal hide">
         <div class="event-box">
             <h5>Let's get your event set up...</h5>
@@ -109,6 +113,7 @@
         </div>
     </div>
 
+    <!--   Edit event box   -->
     <div id="edit-message" title="Edit your event" class="event-modal hide">
         <div class="event-box">
             <h5>Edit an event...</h5>
@@ -152,7 +157,7 @@
         <p id="event-gift"></p>
     </div>
 
-
+    <!--   Gif modal   -->
     <div class="giphy-modal hide" id="giphy-modal">
         <h5>GIPHY</h5>
         <ul id="giphy-options"></ul>
