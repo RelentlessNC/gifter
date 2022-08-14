@@ -1,3 +1,4 @@
+// Creating global variables
 const eventModal = document.getElementById("dialog-message")
 const giphyAPI = 'https://api.giphy.com/v1/gifs/search';
 const selectEventTypeEl = document.getElementById("etype");
@@ -44,7 +45,7 @@ function displayGifs(gifData) {
     textbox.appendChild(img);
 }
 
-// giftbit api
+// fetch data from giftbit api
 fetch(giftbitAPI, {
         headers: {
             'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJTSEEyNTYifQ==.MytEdlNFcVp3clFCT2hrZ0Uxb1FNc2pZbWRoRjVKVmYwdlh3L2x6c0hqL1QvYTJpQ1N2cW1kc1JqOEFLWDJTMjJ0cmNzODNaSVVMOGJvcldOWTVNVkJBV1Yvb1B3ck4vZGQyMVNkcE9EN1pSMm8xeFdYbHRwd0ZPaVlsaHB2Smk=.weqw9hjbaEcLpqZlkrVMFngOntTuAIi3d09A/4dybFs=',
@@ -53,14 +54,16 @@ fetch(giftbitAPI, {
     .then((response) => response.json())
     .then(function(data) {
         allBrands = data;
+        // Call the function to display brands in the select dropdown        
         displayBrands();
     });
 
-//   display giftbit options under dropdown
+// function to display giftbit options under dropdown
 function displayBrands() {
     var editBrandDrop = document.getElementById('edit-brand')
     var brandDrop = document.getElementById('brand');
-
+    
+    // Loop through the all giftbit api brands, create an element to be displayed on the dropdown, and append the element
     for (var i = 0; i < allBrands.brands.length; i++) {
         var option = document.createElement('option');
         var editOption = document.createElement('option');
@@ -147,7 +150,7 @@ $(".add-event").on('click', function() {
     });
 })
 
-
+// wrap the edit buttons in a div so that click event can be applied to edit button on each event
 const wrapper = document.getElementById('accordion');
 
 wrapper.addEventListener('click', (event) => {
@@ -184,7 +187,7 @@ $("#edit-etype").on('mouseout', function() {
     }
 })
 
-// save
+// Add functionality to the save button on the edit modal
 $(".save-button").on('click', function() {
     const parentNode = $(this)[0].parentNode
     let event = {
@@ -218,6 +221,7 @@ $(".save-button").on('click', function() {
     $("body").css("background-color", "gray");
     $("#confirmation-message").css("visibility", "visible");
     // script for confirmation modal w/ jquery
+    // Display the confirmation modal after saving an edit
     $(function() {
         $("#confirmation-message").dialog({
             modal: true,
@@ -236,7 +240,7 @@ $(".save-button").on('click', function() {
                                 width: 650,
                                 resizable: false,
                                 buttons: [{
-                                        text: "Back to Calendar",
+                                        text: "Back to Events",
                                         "class": 'modalButtonClass',
                                         click: function() {
                                             $(this).dialog("close");
@@ -316,6 +320,7 @@ $(".schedule-button").on('click', function() {
     $("body").css("background-color", "gray");
     $("#confirmation-message").css("visibility", "visible");
     // script for confirmation modal w/ jquery
+    // display confirmation modal after schedule button is clicked 
     $(function() {
         $("#confirmation-message").dialog({
             modal: true,
@@ -334,7 +339,8 @@ $(".schedule-button").on('click', function() {
                                 width: 650,
                                 resizable: false,
                                 buttons: [{
-                                        text: "Back to Calendar",
+                                        // return to the homepage 
+                                        text: "Back to Events",
                                         "class": 'modalButtonClass',
                                         click: function() {
                                             $(this).dialog("close");
@@ -343,6 +349,7 @@ $(".schedule-button").on('click', function() {
                                         }
                                     },
                                     {
+                                        // return to the schedule event modal                                        
                                         text: "Schedule Another Event",
                                         "class": 'modalButtonClass',
                                         click: function() {
