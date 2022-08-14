@@ -1,3 +1,4 @@
+/* Very creative names for our :root variables */
 :root {
     --color1: #667eea;
     --color2: #6B8DD6;
@@ -12,10 +13,12 @@
     --off_white:#dcfbfa;
 }
 
+/* Sets the outside container to have no top margin (fixes the awkawrd banner image) */
 .container {
     margin: 0 2%;
 }
 
+/* The following goes over the main functions of the website in the banner and navbar up to line 125 */
 .aboutTitle {
     position:relative;
     left:15%;
@@ -52,6 +55,7 @@ header ul li a {
     transition: 0.2s;
 }
 
+/* Skeleton had an issue with getting their row to be all the same height so I hard coded it */
 .navigation {
     display: flex;
     justify-content: end;
@@ -119,6 +123,7 @@ header ul li a {
     }
 }
 
+/* The css for the phone navbar function up to line 222 */
 .phone_nav{
     justify-content: flex-end;
 }
@@ -132,6 +137,7 @@ header ul li a {
     opacity:1;
 }
 
+/* The wrapper of the navbar */
 .overlay{
     height: 100%;
     width: 0;
@@ -144,6 +150,7 @@ header ul li a {
     transition: 0.5s; 
 }
 
+/* The container of the mobile navbar */
 .overlay-content{
     position: relative;
     top: 25%; 
@@ -156,6 +163,7 @@ header ul li a {
     align-items: center;
 }
 
+/* Sets parameters for the links in mobile overlay */
 .overlay a{
     margin-top:15px;
     padding: 8px;
@@ -173,10 +181,12 @@ header ul li a {
     width:100%;
 }
 
+/* Overlay hover functions */
 .overlay a:hover, .overlay a:focus, .ov:hover {
     color: var(--color4);
 }
   
+/* Overlay + close overlay */
 .overlay .closebtn {
     position: absolute;
     top: 20px;
@@ -184,7 +194,8 @@ header ul li a {
     font-size: 60px;
     background-color: transparent;
 }
-  
+ 
+/* Media screen for mobile navbar */
 @media screen and (max-height: 450px) {
     .overlay a {font-size: 20px}
     .overlay .closebtn {
@@ -194,7 +205,7 @@ header ul li a {
     }
 }
 
-
+/* Functions for the tabs and the buttons up to line 419*/
 .tabs, .tabs::after, .tabs:active {
     background-image: linear-gradient(to bottom right, #8303ab, #ffad00);
     color: white;
@@ -204,6 +215,7 @@ header ul li a {
     font-family: 'noto-serif', 'serif';
 }
 
+/* Had issues getting the button to be white so I made sure that it would be white */
 .ui-state-default a:link,
 .ui-state-default a:visited,
 a.ui-button,
@@ -398,16 +410,17 @@ button,
     visibility: hidden;
 }
 
-#accordion h5 {
-    background-color: rgba(116, 79, 168, 0.75);
-}
-
 form, input[type="text"], textarea{
     min-width:100% !important;
 }
 
 .aboutText {
     text-indent: 5%;
+}
+
+/* Accordion function up to line 448 */
+#accordion h5 {
+    background-color: rgba(116, 79, 168, 0.75);
 }
 
 #accordion2 h5 {
@@ -428,6 +441,7 @@ form, input[type="text"], textarea{
     min-height: 177px; 
 }
 
+/* Message box */
 #message-box,#message-box2 {
     width: 100%;
     max-width: 100%;
