@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>About Us</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--Skeleton-->
+    <link rel="stylesheet" href="assets/styles/skeletonNormalize.css">
+    <link rel="stylesheet" href="assets/styles/skeleton.css">
+    <!--jQuery -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="assets/styles/style.css">
+    <!--Font Awesome Fonts-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    
+    <!-- Contains the Skeleton code for the navigation as well as the title, did it this way in order to keep the same background image -->
+    <header class="bannerImage" style="background-image: url('assets/images/Banner.jpg');">
+        <div class="container navContainer">
+            <div class="row navBar">
+                <ul class="three columns Logo">
+                    <li><a href="./index.html" id="aLogo"><img src="./assets/images/logo_name_white.png" alt="Logo" id="logo"></img></a></li>
+                </ul>
+                <ul class="nine columns navigation">
+                    <li class="nav"><a href="./about-page.html">About</a></li>
+                    <li class="nav"><a href="./contact.html">Contact</a></li>
+                    <li id="liClick"><i class="fa fa-bars fa-3x" onclick="openNav()"></i></li>
+                </ul>
+            </div>
+        </div>
+        <h1 class="title" id="top">Gifter</h1>
+        <h4>The Gift That Keeps On Giving</h4>
+        <div class="btn">
+            <button class="add-event" type="button">Add Event</button>
+        </div>
+    </header>
+
+    <!-- The html for the mobile navbar -->
+    <div class="phone_nav">
+
+        <div class="overlay" id="overlayNav">
+  
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  
+          <div class="overlay-content">
+            <il class="ov"><a href="./about-page.html" onclick="closeNav()"> <span class="nav_numbers">01. </span>About</a></il>
+            <il class="ov"><a href="./contact.html" onclick="closeNav()"> <span class="nav_numbers">02. </span>Contact</a></il>
+
+          </div>
+        </div>
+  
+      </div>
+
+    <!--   Contact Form   -->
+    <scetion class="container">
+
+        <h2 class="aboutTitle title">Contact Us</h2>
+        <p class="about">
+            <span>Write to us at</span> &nbsp; <a href="mailto:smellymonkeys@gmail.com">smellymonkeys@gmail.com</a> or fill out this form:
+        </p>
+        <div class="row about">
+            <div class="six columns">
+                <div class="form about">
+                    <form>
+                      <label for="name">Name</label>
+                      <input type="text" id="name" name="name" placeholder="Your name..">
+                      <label for="email">Email</label>
+                      <input type="text" id="email" name="email" placeholder="Your email..">
+                      <label for="request">Request</label>
+                      <textarea id="request" name="requst" placeholder="What can we do for you?" style="height:170px"></textarea>
+                      <a class="about" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><input type="submit" value="submit"></input></a>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </scetion>
+
+     
+
+
+    <!-- Note: columns can be nested, but it's not recommended since Skeleton's grid has %-based gutters, meaning a nested grid results in variable with gutters (which can end up being *really* small on certain browser/device sizes) -->
+    <!-- Accordion jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <!-- Dialog Box jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+    <script src="./assets/scripts/script.js"></script>
+</body>
+
+</html>

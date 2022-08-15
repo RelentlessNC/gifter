@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>About Us</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--Skeleton-->
+    <link rel="stylesheet" href="assets/styles/skeletonNormalize.css">
+    <link rel="stylesheet" href="assets/styles/skeleton.css">
+    <!--jQuery -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="assets/styles/style.css">
+    <!--Font Awesome Fonts-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+    <!-- Contains the Skeleton code for the navigation as well as the title, did it this way in order to keep the same background image -->
+    <header class="bannerImage" style="background-image: url('assets/images/Banner.jpg');">
+        <div class="container navContainer">
+            <div class="row navBar">
+                <ul class="three columns Logo">
+                    <li><a href="./index.html" id="aLogo"><img src="./assets/images/logo_name_white.png" alt="Logo" id="logo"></img></a></li>
+                </ul>
+                <ul class="nine columns navigation">
+                    <li class="nav"><a href="./about-page.html">About</a></li>
+                    <li class="nav"><a href="./contact.html">Contact</a></li>
+                    <li id="liClick"><i class="fa fa-bars fa-3x" onclick="openNav()"></i></li>
+                </ul>
+            </div>
+        </div>
+        <h1 class="title" id="top">Gifter</h1>
+        <h4>The Gift That Keeps On Giving</h4>
+        <div class="btn">
+            <button class="add-event" type="button">Add Event</button>
+        </div>
+    </header>
+
+    <!-- The html for the mobile navbar -->
+    <div class="phone_nav">
+
+        <div class="overlay" id="overlayNav">
+  
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  
+          <div class="overlay-content">
+            <il class="ov"><a href="./about-page.html" onclick="closeNav()"> <span class="nav_numbers">01. </span>About</a></il>
+            <il class="ov"><a href="./contact.html" onclick="closeNav()"> <span class="nav_numbers">02. </span>Contact</a></il>
+
+          </div>
+        </div>
+  
+      </div>
+
+    <!-- About and User story paragaphs with getskeleton api -->
+    <scetion class="container">
+
+        <h2 class="aboutTitle title">About</h2>
+        <div class="row about">
+            <div class="six columns aboutText">
+                This project will combine all of our knowledge we’ve learned in the UTA bootcamp up til this point. 
+                This project is surrounding an application that will take a date input and save it to local storage 
+                and then once you’re within a specified timeframe of the date added, we’ll notify the user so that 
+                they’re able to select a specific gift/card/flower to send to their intended receiver. We’ll also have 
+                a viewing area for all the users event’s they’ve saved so they can be sure they don’t forget any special event ever again.  
+            </div>
+        </div>
+
+        <br>
+
+        <h2 class="aboutTitle title">User Story</h2>
+        <div class="row about">
+            <div class="six columns aboutText">
+                Have you ever looked at the calendar and had a wave of anxiety and fear rush over your body like a 
+                cold chill, as it slowly dawns upon you that you forgot to wish a special person in your life, Happy 
+                Birthday or Happy Anniversary, or even good luck on an event? Well if this hasn’t happened to you, 
+                please move along, but if you’re like us, this application is designed for you and your peace of mind! 
+                This application is designed to remember important events and not only remember, but celebrate these events 
+                as well. With Gifter, you’ll be able to input a specific date and label it as a certain event. Once you’ve 
+                got it saved, we’ll do the rest from there. When you arrive within two weeks till the event you submitted, 
+                we’ll send you a reminder as well as different options on how to celebrate that person or event. For example, 
+                Mother’s day is Sunday, May 14th of 2023 and we’ll give you a reminder on Sunday, April 30th with different 
+                options of things you can send directly from Gifter. You’ll get an option to send a gift card, flowers, or 
+                even a letter which you can style personally to let that person know you really care. With Gifter, you’ll be 
+                known as the friend/family member/partner that never forgets the important things and you’ll be sure to soar 
+                with all of your relationships.
+            </div>
+        </div>
+    </scetion>
+
+     
+
+
+    <!-- Note: columns can be nested, but it's not recommended since Skeleton's grid has %-based gutters, meaning a nested grid results in variable with gutters (which can end up being *really* small on certain browser/device sizes) -->
+    <!-- Accordion jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <!-- Dialog Box jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+    <script src="./assets/scripts/script.js"></script>
+</body>
+
+</html>

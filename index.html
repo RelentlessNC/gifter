@@ -15,48 +15,60 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <!-- Stylesheet -->
     <link rel="stylesheet" href="assets/styles/style.css">
+    <!--Font Awesome Fonts-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
-<body onload="retrieveEvents(),reminderModal()">
-    <header class="bannerImage">
-        <div class="container navBar">
-            <div class="row">
-                <ul class="one columns">
-                    <li><img src="./assets/images/logo_name_white.png" alt="Logo" id="logo"></li>
+<!-- Contains the Skeleton code for the navigation as well as the title, did it this way in order to keep the same background image -->
+<body onload="retrieveEvents()">
+    <header class="bannerImage" style="background-image: url('assets/images/Banner.jpg');">
+        <div class="container navContainer">
+            <div class="row navBar">
+                <ul class="three columns Logo">
+                    <li><a href="#top" id="aLogo"><img src="./assets/images/logo_name_white.png" alt="Logo" id="logo"></img></a></li>
                 </ul>
-                <ul class="eleven columns navigation">
-                    <li><a>About</a></li>
-                    <li><a>Contact</a></li>
-                    <li><a>Account</a></li>
+                <ul class="nine columns navigation">
+                    <li class="nav"><a href="./about-page.html">About</a></li>
+                    <li class="nav"><a href="./contact.html">Contact</a></li>
+                    <li id="liClick"><i class="fa fa-bars fa-3x" onclick="openNav()"></i></li>
                 </ul>
             </div>
         </div>
-        <h1 class="title">Gifter</h1>
+        <h1 class="title" id="top">Gifter</h1>
         <h4>The Gift That Keeps On Giving</h4>
         <div class="btn">
             <button class="add-event" type="button">Add Event</button>
         </div>
     </header>
-    <div class="container">
+
+    <!-- The html for the mobile navbar -->
+    <div class="phone_nav">
+
+        <div class="overlay" id="overlayNav">
+  
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  
+          <div class="overlay-content">
+            <il class="ov"><a href="./about-page.html" onclick="closeNav()"> <span class="nav_numbers">01. </span>About</a></il>
+            <il class="ov"><a href="./contact.html" onclick="closeNav()"> <span class="nav_numbers">02. </span>Contact</a></il>
+
+          </div>
+        </div>
+  
+      </div>
+
+     <!-- The tabs in skeleton -->
+     <div class="container">
+
         <div class="row">
             <div class="12 columns" id="tabs">
                 <ul class="tabsList">
                     <li><a class="tabs" href="#tabs-1">Upcoming Events</a></li>
                     <li><a class="tabs" href="#tabs-2">Past Events</a></li>
-                    <li><a class="tabs" href="#tabs-3">Other</a></li>
                 </ul>
                 <div id="tabs-1">
                     <div class="upcoming-main-box" id="accordion">
-                        <h5>Mom's birthday</h5>
-                        <ul>
-                            <li>25$ gift card to Target</li>
-                            <li>helloooo</li>
-                            <button class="edit-button">EDIT</button>
-                        </ul>
-                        <h5>Father's Day</h5>
-                        <ul>
-                            <li>$25 gift card to Lowes</li>
-                        </ul>
+
                     </div>
                 </div>
                 <div id="tabs-2">
@@ -67,6 +79,7 @@
         </div>
     </div>
 
+    <!--   Dialog box   -->   
     <div id="dialog-message" title="Add your event" class="event-modal hide">
         <div class="event-box">
             <h5>Let's get your event set up...</h5>
@@ -89,48 +102,55 @@
             <label for="email">Recipients Email:</label>
             <input type="text" id="email" name="email"><br>
             <label for="brand">Select a brand of gift card: </label>
-            <select name="brand" id="brand"></select>
+            <select name="brand" id="brand">
+                <option value="" disabled selected>Select your option</option>
+            </select>
             <label for="gift-amount">Gift Amount</label>
             <input type="text" id="gift-amount" name="gift-amount">
             <label for="personal-message">Leave a personal message</label>
-            <div contenteditable="true" id="message-box" type="text" name="personal-message" >Write your message here...</div>
+            <div contenteditable="true" id="message-box" type="text" name="personal-message">Write your message here...</div>
             <button class="btn-hover color-3 schedule-button" id="schedule-event">Schedule Event</button>
         </div>
     </div>
+    
+    <!-- adding modal for editing events already added -->
 
-    <form id="edit-box" class="edit-event-modal hide">
-        <div class="edit-event-box">
-            <h5>Edit your event...</h5>
-            <label for="edit-etitle">Event Title: </label>
-            <input type="text" id="edit-etitle" name="edit-etitle"><br>
-            <label for="edit-edate">Event Date:</label>
-            <input type="date" id="edit-edate" name="edit-edate"><br>
-            <label for="edit-etype">Event Type: </label>
-            <select name="edit-etype" id="edit-etype">
+    <div id="edit-message" title="Edit your event" class="event-modal hide">
+        <div class="event-box">
+            <!-- Edit event boxes -->
+            <h5>Edit an event...</h5>
+            <label id = "edit-title" for="etitle">Enter the name of the event you would like to edit: </label>
+            <input type="text" id="etitle" name="etitle"><br>
+            <label for="edate">Event Date:</label>
+            <input type="date" id="edate" name="edate"><br>
+            <label for="etype">Event Type: </label>
+            <select name="etype" id="etype">
                 <option></option>
-                <option value="edit-birthday">Birthday</option>
-                <option value="edit-anniversary">Anniversary</option>
-                <option value="edit-mothers-day">Mother's/Father's Day</option>
-                <option value="edit-other">Other</option>
-                <input for="edit-other-option" id="edit-other-option" class="hide">
+                <option value="birthday">Birthday</option>
+                <option value="anniversary">Anniversary</option>
+                <option value="mothers-day">Mother's/Father's Day</option>
+                <option value="other">Other</option>
+                <input for="other-option" id="other-option" class="hide">
               </select>
+            <!-- Edit gift boxes -->
+            <h5>Send a gift...</h5>
+            <label for="rname">Recipients Name: </label>
+            <input type="text" id="rname" name="rname"><br>
+            <label for="email">Recipients Email:</label>
+            <input type="text" id="email" name="email"><br>
+            <label for="brand">Select a brand of gift card: </label>
+            <select name="brand" id="edit-brand">
+                <option value="" disabled selected>Select your option</option>
+            </select>
+            <label for="gift-amount">Gift Amount</label>
+            <input type="text" id="gift-amount" name="gift-amount">
+            <label for="personal-message">Leave a personal message</label>
+            <div contenteditable="true" id="message-box2" type="text" name="personal-message">Write your message here...</div>
+            <button class="btn-hover color-3 save-button" id="save-event">Save</button>
         </div>
-        <div class="edit-gift-box">
-            <h5>Edit your gift...</h5>
-            <label for="edit-rname">Recipients Name: </label>
-            <input type="text" id="edit-rname" name="edit-rname"><br>
-            <label for="edit-email">Recipients Email:</label>
-            <input type="text" id="edit-email" name="edit-email"><br>
-            <label for="edit-brand">Select a brand of gift card: </label>
-            <select name="edit-brand" id="edit-brand"></select>
-            <label for="edit-gift-amount">Gift Amount</label>
-            <input type="text" id="edit-gift-amount" name="edit-gift-amount">
-            <label for="edit-personal-message">Leave a personal message</label>
-            <textarea style="width: 100%; max-width: 100%;" type="text" id="edit-personal-message" name="edit-personal-message" placeholder="Write your message here..."></textarea>
-            <button class="btn-hover color-3" id="edit-schedule-event">Save Changes</button>
-        </div>
-    </form>
+    </div>
 
+    
     <!-- REMINDER MODAL -->
     <div class="reminder-modal hide" id="reminder-modal">
         <h5>Event Reminder</h5>
@@ -140,7 +160,7 @@
         <p id="event-gift"></p>
     </div>
 
-
+    <!--   Gif modal   -->
     <div class="giphy-modal hide" id="giphy-modal">
         <h5>GIPHY</h5>
         <ul id="giphy-options"></ul>
