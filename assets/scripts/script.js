@@ -62,7 +62,7 @@ fetch(giftbitAPI, {
 function displayBrands() {
     var editBrandDrop = document.getElementById('edit-brand')
     var brandDrop = document.getElementById('brand');
-    
+
     // Loop through the all giftbit api brands, create an element to be displayed on the dropdown, and append the element
     for (var i = 0; i < allBrands.brands.length; i++) {
         var option = document.createElement('option');
@@ -393,11 +393,11 @@ function upcomingEvents() {
         for (var i = 0; i < allEventsArray.length; i++) {
             if (allEventsArray[i].date >= todayUnix) {
                 var eventDate = new Date(allEventsArray[i].date * 1000);
-    //created a variable for ul and h5 to get appended to the upcoming-main-box div.  
+                //created a variable for ul and h5 to get appended to the upcoming-main-box div.  
                 let ul = document.createElement('ul');
                 let h5 = document.createElement('h5');
                 let div = document.createElement('div');
-    //created variables for each of the input fields in the event modal box with a li tag.    
+                //created variables for each of the input fields in the event modal box with a li tag.    
                 let lineDate = document.createElement('li');
                 let lineMessage = document.createElement('li');
                 let lineBrand = document.createElement('li');
@@ -407,7 +407,7 @@ function upcomingEvents() {
                 let lineButton = document.createElement('button');
                 lineButton.setAttribute('class', 'edit-button');
                 lineButton.textContent = 'Edit'
-    //made the variables the text input for the event modal
+                    //made the variables the text input for the event modal
                 h5.innerText = allEventsArray[i].title;
                 lineName.innerText = allEventsArray[i].name;
                 lineEmail.innerText = allEventsArray[i].email;
@@ -422,7 +422,7 @@ function upcomingEvents() {
                 ul.appendChild(lineBrand);
                 ul.appendChild(lineAmount);
                 ul.appendChild(lineButton);
-     //appended the ul and h5 to the div element
+                //appended the ul and h5 to the div element
                 accordionDiv.appendChild(h5);
                 accordionDiv.appendChild(ul);
             }
@@ -434,7 +434,7 @@ function upcomingEvents() {
 
 function pastEvents() {
     let pastEventDiv = document.getElementById('accordion2')
-//created for loop to grab the input to put into the past events tab.  also created if statement to take the date input by the user for the event and run it against today's date.  If that date is less than today's date, then it will be appended to the past events tab
+        //created for loop to grab the input to put into the past events tab.  also created if statement to take the date input by the user for the event and run it against today's date.  If that date is less than today's date, then it will be appended to the past events tab
     if (allEventsArray.length > 0) {
         for (var i = 0; i < allEventsArray.length; i++) {
             if (allEventsArray[i].date < todayUnix) {
@@ -491,7 +491,6 @@ function reminderModal() {
     // find the starting point which is the first future event that is within 2 weeks from today
     var startingPoint;
     while (!upcoming && i < allEventsArray.length) {
-        console.log('i: ' + i);
         if (allEventsArray[i].date < todayUnix) {
             i++;
         } else {

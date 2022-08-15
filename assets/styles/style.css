@@ -1,4 +1,5 @@
 /* Very creative names for our :root variables */
+
 :root {
     --color1: #667eea;
     --color2: #6B8DD6;
@@ -7,28 +8,31 @@
     --color4: #8E37D7;
     --orange: #ffad00;
     --darkPurple: #8303ab;
-    --opGradient:linear-gradient(to bottom right, #8303ab, #ffad00);
-
-    --less_transparent_background:rgba(46, 55, 69, .97);
-    --off_white:#dcfbfa;
+    --opGradient: linear-gradient(to bottom right, #8303ab, #ffad00);
+    --less_transparent_background: rgba(46, 55, 69, .97);
+    --off_white: #dcfbfa;
 }
 
+
 /* Sets the outside container to have no top margin (fixes the awkawrd banner image) */
+
 .container {
     margin: 0 2%;
 }
 
+
 /* The following goes over the main functions of the website in the banner and navbar up to line 125 */
+
 .aboutTitle {
-    position:relative;
-    left:15%;
+    position: relative;
+    left: 15%;
 }
 
 .about {
-    display:flex;
+    display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin-bottom:2%;
+    margin-bottom: 2%;
 }
 
 header ul {
@@ -55,15 +59,18 @@ header ul li a {
     transition: 0.2s;
 }
 
+
 /* Skeleton had an issue with getting their row to be all the same height so I hard coded it */
+
 .navigation {
     display: flex;
     justify-content: end;
-    height:57.7px !important;
+    height: 57.7px !important;
 }
 
-.three, .nine {
-    margin-bottom:0;
+.three,
+.nine {
+    margin-bottom: 0;
 }
 
 #logo {
@@ -77,12 +84,12 @@ header ul li a {
 }
 
 #aLogo {
-    padding:0;
+    padding: 0;
 }
 
-.navBar{
-    margin:0 5% 0 5%;
-    height:auto;
+.navBar {
+    margin: 0 5% 0 5%;
+    height: auto;
 }
 
 .navContainer {
@@ -91,18 +98,18 @@ header ul li a {
 }
 
 .nav a:hover {
-    color:var(--color4)
+    color: var(--color4)
 }
 
-@media screen and (max-width:550px){
-    .phone_nav{
-        display:flex;
+@media screen and (max-width:550px) {
+    .phone_nav {
+        display: flex;
     }
-    .nav{
-        display:none;
+    .nav {
+        display: none;
     }
-    .three{
-        max-width:25% !important;
+    .three {
+        max-width: 25% !important;
     }
     .nine {
         max-width: 75% !important;
@@ -112,81 +119,96 @@ header ul li a {
     }
 }
 
+
 /* Hides the overlay while nav bar is present */
-@media screen and (min-width:550px){
-    .fa{
-        opacity:0;
+
+@media screen and (min-width:550px) {
+    .fa {
+        opacity: 0;
         visibility: hidden;
     }
     #liClick {
-        display:none;
+        display: none;
     }
 }
 
+
 /* The css for the phone navbar function up to line 222 */
-.phone_nav{
+
+.phone_nav {
     justify-content: flex-end;
 }
 
-
-.fa{
+.fa {
     background-color: transparent;
-    color:var(--blue);
-    position:relative;
-    right:2%;
-    opacity:1;
+    color: var(--blue);
+    position: relative;
+    right: 2%;
+    opacity: 1;
 }
 
+
 /* The wrapper of the navbar */
-.overlay{
+
+.overlay {
     height: 100%;
     width: 0;
-    position: fixed; 
-    z-index: 10; 
+    position: fixed;
+    z-index: 10;
     right: 0;
     top: 0;
     background-color: var(--less_transparent_background);
-    overflow-x: hidden; 
-    transition: 0.5s; 
+    overflow-x: hidden;
+    transition: 0.5s;
 }
 
+
 /* The container of the mobile navbar */
-.overlay-content{
+
+.overlay-content {
     position: relative;
-    top: 25%; 
-    width: 100%; 
-    text-align: center; 
-    margin-top: 30px; 
+    top: 25%;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
     background-color: transparent;
-    display:block;
+    display: block;
     justify-content: start;
     align-items: center;
 }
 
+
 /* Sets parameters for the links in mobile overlay */
-.overlay a{
-    margin-top:15px;
+
+.overlay a {
+    margin-top: 15px;
     padding: 8px;
     text-decoration: none;
     font-size: 36px;
     color: var(--off_white);
-    display: block; 
-    transition: 0.3s; 
-    background-color:transparent;
+    display: block;
+    transition: 0.3s;
+    background-color: transparent;
     text-align: center;
-    margin-right:10%;
-}
-  
-.ov{
-    width:100%;
+    margin-right: 10%;
 }
 
+.ov {
+    width: 100%;
+}
+
+
 /* Overlay hover functions */
-.overlay a:hover, .overlay a:focus, .ov:hover {
+
+.overlay a:hover,
+.overlay a:focus,
+.ov:hover {
     color: var(--color4);
 }
-  
+
+
 /* Overlay + close overlay */
+
 .overlay .closebtn {
     position: absolute;
     top: 20px;
@@ -194,19 +216,27 @@ header ul li a {
     font-size: 60px;
     background-color: transparent;
 }
- 
+
+
 /* Media screen for mobile navbar */
+
 @media screen and (max-height: 450px) {
-    .overlay a {font-size: 20px}
+    .overlay a {
+        font-size: 20px
+    }
     .overlay .closebtn {
-      font-size: 40px;
-      top: 15px;
-      right: 35px;
+        font-size: 40px;
+        top: 15px;
+        right: 35px;
     }
 }
 
+
 /* Functions for the tabs and the buttons up to line 419*/
-.tabs, .tabs::after, .tabs:active {
+
+.tabs,
+.tabs::after,
+.tabs:active {
     background-image: linear-gradient(to bottom right, #8303ab, #ffad00);
     color: white;
 }
@@ -215,7 +245,9 @@ header ul li a {
     font-family: 'noto-serif', 'serif';
 }
 
+
 /* Had issues getting the button to be white so I made sure that it would be white */
+
 .ui-state-default a:link,
 .ui-state-default a:visited,
 a.ui-button,
@@ -334,7 +366,7 @@ button,
 }
 
 .edit-button {
-    color:black;
+    color: black;
 }
 
 #schedule-event {
@@ -410,15 +442,19 @@ button,
     visibility: hidden;
 }
 
-form, input[type="text"], textarea{
-    min-width:100% !important;
+form,
+input[type="text"],
+textarea {
+    min-width: 100% !important;
 }
 
 .aboutText {
     text-indent: 5%;
 }
 
+
 /* Accordion function up to line 448 */
+
 #accordion h5 {
     background-color: rgba(116, 79, 168, 0.75);
 }
@@ -429,25 +465,32 @@ form, input[type="text"], textarea{
     justify-content: center;
 }
 
-#accordion2 ul{
+#accordion2 ul {
     text-align: center;
 }
 
-.edit-button{
+#accordion2 ul li,
+#accordion ul li {
+    list-style: none;
+}
+
+.edit-button {
     color: #555;
 }
 
 .ui-accordion-content {
-    min-height: 177px; 
+    min-height: 177px;
 }
 
+
 /* Message box */
-#message-box,#message-box2 {
+
+#message-box,
+#message-box2 {
     width: 100%;
     max-width: 100%;
     border-style: solid;
     margin-bottom: 30px;
     border-color: rgb(225, 224, 224);
     border-radius: 3px
-  }
-
+}
