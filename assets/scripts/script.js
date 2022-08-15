@@ -166,7 +166,7 @@ wrapper.addEventListener('click', (event) => {
     });
 });
 
-
+//created event listener on the other option for events in the event modal.  When other is selected, a input box will appear by removing the hide class.  If something else is chosen, it will re-add the hide class.
 $("#etype").on('mouseout', function() {
     const selectedOption = $("#etype option:selected").val()
     let otherOption = document.getElementById("other-option")
@@ -177,6 +177,7 @@ $("#etype").on('mouseout', function() {
     }
 })
 
+//same as above but for the edit event modal
 $("#edit-etype").on('mouseout', function() {
     const selectedOption = $("#edit-etype option:selected").val()
     let otherOption = document.getElementById("edit-other-option")
@@ -392,9 +393,11 @@ function upcomingEvents() {
         for (var i = 0; i < allEventsArray.length; i++) {
             if (allEventsArray[i].date >= todayUnix) {
                 var eventDate = new Date(allEventsArray[i].date * 1000);
+    //created a variable for ul and h5 to get appended to the upcoming-main-box div.  
                 let ul = document.createElement('ul');
                 let h5 = document.createElement('h5');
-                let div = document.createElement('div')
+                let div = document.createElement('div');
+    //created variables for each of the input fields in the event modal box with a li tag.    
                 let lineDate = document.createElement('li');
                 let lineMessage = document.createElement('li');
                 let lineBrand = document.createElement('li');
@@ -404,6 +407,7 @@ function upcomingEvents() {
                 let lineButton = document.createElement('button');
                 lineButton.setAttribute('class', 'edit-button');
                 lineButton.textContent = 'Edit'
+    //made the variables the text input for the event modal
                 h5.innerText = allEventsArray[i].title;
                 lineName.innerText = allEventsArray[i].name;
                 lineEmail.innerText = allEventsArray[i].email;
@@ -418,6 +422,7 @@ function upcomingEvents() {
                 ul.appendChild(lineBrand);
                 ul.appendChild(lineAmount);
                 ul.appendChild(lineButton);
+     //appended the ul and h5 to the div element
                 accordionDiv.appendChild(h5);
                 accordionDiv.appendChild(ul);
             }
@@ -429,6 +434,7 @@ function upcomingEvents() {
 
 function pastEvents() {
     let pastEventDiv = document.getElementById('accordion2')
+//created for loop to grab the input to put into the past events tab.  also created if statement to take the date input by the user for the event and run it against today's date.  If that date is less than today's date, then it will be appended to the past events tab
     if (allEventsArray.length > 0) {
         for (var i = 0; i < allEventsArray.length; i++) {
             if (allEventsArray[i].date < todayUnix) {
