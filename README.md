@@ -50,10 +50,10 @@ Delete Events - This feature will allow users to delete any events located on th
 
 ## Links
 
-[application URL](https://relentlessnc.github.io/group10-project1/)
+URL of deployed application - https://relentlessnc.github.io/gifter/
 
-[GitHub repository](https://github.com/RelentlessNC/group10-project1)
-
+URL of GitHub repository - https://github.com/RelentlessNC/gifter
+ 
 ## License
 
 MIT License
