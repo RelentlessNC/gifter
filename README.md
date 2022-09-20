@@ -47,9 +47,9 @@ WireFraming https://www.mockflow.com/
 
 ## Links 
 
-URL of deployed application - https://relentlessnc.github.io/group10-project1/
+URL of deployed application - https://relentlessnc.github.io/gifter/
 
-URL of GitHub repository - https://github.com/RelentlessNC/group10-project1
+URL of GitHub repository - https://github.com/RelentlessNC/gifter
  
 ## License
 
