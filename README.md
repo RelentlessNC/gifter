@@ -1,4 +1,4 @@
-# Group10-Project1
+# Gifter
 
 ## Description
 
@@ -36,16 +36,19 @@ Delete Events - This feature will allow users to delete any events located on th
 
 ## Credits
 
-Giphy API https://developers.giphy.com/
-Gift Card API https://www.giftbit.com/
-HTML/CSS Skeleton : http://getskeleton.com/
-WireFraming https://www.mockflow.com/
+[Giphy API](https://developers.giphy.com/)
+
+[Gift Card API](https://www.giftbit.com/)
+
+[HTML/CSS Skeleton](http://getskeleton.com/)
+
+[WireFraming](https://www.mockflow.com/)
 
 ## Screenshot
 
-<img title="preview" src="assets/images/preview.png">
+![preview](./assets/images/preview.png)
 
-## Links 
+## Links
 
 URL of deployed application - https://relentlessnc.github.io/gifter/
 
