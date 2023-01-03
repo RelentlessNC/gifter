@@ -298,7 +298,7 @@ $('.schedule-button').on('click', function () {
     other: parentNode.children[9].value,
     name: parentNode.children[12].value,
     email: parentNode.children[15].value,
-    // brand: $('#brand :selected').val(),
+    brand: $('#brand :selected').val(),
     amount: parentNode.children[20].value,
     message: parentNode.children[22].value,
   };
