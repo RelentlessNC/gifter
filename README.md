@@ -52,8 +52,8 @@ Delete Events - This feature will allow users to delete any events located on th
 
 URL of deployed application - https://relentlessnc.github.io/gifter/
 
-URL of GitHub repository - https://github.com/RelentlessNC/gifter
- 
+URL of GitHub repository - https://github.com/josephpicardat/gifter
+
 ## License
 
 MIT License
